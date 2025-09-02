@@ -3,7 +3,7 @@
 ::::
 ::::
 
-# Introdução
+# Índice de Capacidade
 
 :::: progress
 :::: {.progress-bar style="width: 100%;"}

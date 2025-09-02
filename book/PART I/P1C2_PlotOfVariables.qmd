@@ -3,7 +3,7 @@
 ::::
 ::::
 
-# Introdução
+# Gráficos de Controle para Variáveis
 
 :::: progress
 :::: {.progress-bar style="width: 100%;"}
