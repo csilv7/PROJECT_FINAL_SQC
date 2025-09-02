@@ -1,3 +1,3 @@
-# Projeto Final Desenvolvido na DIsciplina de Controle Estatístico de Qualidade na Faculdade de Estatística da Universidade Federal do Pará
+# Projeto Final Desenvolvido na Disciplina de Controle Estatístico de Qualidade (CEQ) na Faculdade de Estatística (FAEST) da Universidade Federal do Pará (UFPA)
 
-* Final Project Developed in the Statistical Quality Control Course at the Statistics Faculty of the Federal University of Pará
+* Final Project Developed in the Discipline of Statistical Quality Control at the Faculty of Statistics of the Federal University of Pará
