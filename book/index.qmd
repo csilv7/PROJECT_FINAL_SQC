@@ -1,0 +1,19 @@
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
+
+# Prefácio {.unnumbered}
+
+No ramo da indústria e alguns outros...
+
+---
+
+Este é um **Quarto Book**. Para saber mais sobre **Quarto Book**, visite <https://quarto.org/docs/books/>.
+
+---
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::

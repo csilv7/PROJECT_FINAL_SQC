@@ -1,0 +1,88 @@
+project:
+  type: book
+  output-dir: C:\Users\user\Documents\PROJETOS\VS Code\CEQ - VS\PROJETO FINAL\docs
+
+book:
+  title: "CONTROLE ESTATÍSTICO DE QUALIDADE"
+  subtitle: "COM R E PYTHON"
+  description: "Fundamentos Teóricos e Aplicações em Softwares"
+
+  author:
+  - name: "Breno Cauã Rodrigues da Silva"
+    affiliations: "UFPA/ICEN/FAEST"
+    
+  - name: "Carlos Antonio Costa De Farias"
+    affiliations: "UFPA/ICEN/FAEST"
+    
+  - name: "Emerson Vitor Da Costa De Lima"
+    affiliations: "UFPA/ICEN/FAEST"
+    
+  - name: "Ingrid Moreira Melo"
+    affiliations: "UFPA/ICEN/FAEST"
+    
+  - name: "Lucas Yukio Da Silva Sakai"
+    affiliations: "UFPA/ICEN/FAEST"
+    
+  - name: "Roberta Rhayane Borges Delgado"
+    affiliations: "UFPA/ICEN/FAEST"
+    
+  - name: "Wallery Reis Risuenho"
+    affiliations: "UFPA/ICEN/FAEST"
+
+  downloads: [pdf]
+  sharing: [twitter, facebook]
+  page-navigation: true
+  repo-url: https://github.com/csilv7/PROJECT_FINAL_SQC
+
+  chapters:
+    - index.qmd
+    - part: "Formulação Matemática-Estatística"
+    - PART I/P1C1.qmd
+    - part: "Gráficos de Controle no R Base"
+    - PART II/P2C1.qmd
+    - part: "Gráficos de Controle no R usando o pacote ggplot2"
+    - PART III/P3C1.qmd
+    - part: "Gráficos de Controle no Python usando Customização Avançada"
+    - PART IV/P4C1.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    code-link: true
+    toc-location: right
+    theme:
+      - cosmo
+      - brand
+    echo: false
+    warning: false
+    message: false
+  pdf:
+    documentclass: scrreprt
+    pdf-engine: lualatex
+    number-sections: true
+    papersize: a4
+    fontsize: 11pt
+    geometry: [left=2.5cm, top=2.5cm, right=2.5cm, bottom=2.5cm]
+    fig-pos: "H"
+    indent: true
+    header-includes: |
+      \usepackage{indentfirst}
+      \usepackage{latexsym,amssymb,amsmath,amsfonts}
+      \usepackage{graphicx} % Figuras
+      \usepackage{latexsym, amssymb, amsmath, amsfonts, amsthm} % Formatação Matemática
+      \usepackage{xcolor}
+      \usepackage{float, caption}
+      \floatplacement{table}{H}
+      \floatplacement{figure}{H}
+      \captionsetup[table]{position=above}
+      \captionsetup[figure]{position=below}
+    echo: false
+    warning: false
+    message: false
+
+lang: pt
