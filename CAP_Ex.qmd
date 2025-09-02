@@ -1,6 +1,0 @@
-# Capítulo de Teste
-
-```{r}
-mtcars
-```
-
