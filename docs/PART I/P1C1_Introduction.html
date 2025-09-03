@@ -8,7 +8,7 @@
 
 <meta name="description" content="Fundamentos Teóricos e Aplicações em Softwares">
 
-<title>3&nbsp; Gráficos de Controle para Atributos – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
+<title>1&nbsp; Introdução ao Controle Estatístico de Qualidade – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../PART I/P1C4_IndCapacity.html" rel="next">
-<link href="../PART I/P1C2_PlotOfVariables.html" rel="prev">
+<link href="../PART I/P1C2_PlotOfVariables.html" rel="next">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART I/P1C3_PlotOfAtributes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../PART I/P1C1_Introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao Controle Estatístico de Qualidade</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../PART I/P1C1_Introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../PART I/P1C1_Introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao Controle Estatístico de Qualidade</span></span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../PART I/P1C3_PlotOfAtributes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../PART I/P1C3_PlotOfAtributes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></span></a>
   </div>
 </li>
@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao Controle Estatístico de Qualidade</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
 </div>
 
 
@@ -269,6 +269,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
+<p>A busca pela qualidade acompanha a história da produção de bens e serviços. Desde os primeiros artesãos, que inspecionavam manualmente suas peças, até os sistemas modernos de manufatura avançada e serviços digitais, sempre houve a necessidade de garantir que o produto final atendesse a requisitos previamente definidos. No entanto, foi apenas no início do século XX que a <strong>estatística</strong> passou a desempenhar um papel central nesse processo.</p>
+<p>O <strong>Controle Estatístico de Qualidade (CEQ)</strong> surge como uma metodologia estruturada para compreender, monitorar e melhorar processos por meio de técnicas estatísticas. Seu objetivo central é distinguir a <strong>variabilidade natural</strong> — inerente a qualquer processo — das <strong>causas especiais de variação</strong>, que sinalizam problemas ou mudanças não planejadas. Essa distinção, introduzida por <strong>Walter A. Shewhart</strong>, é a base conceitual dos gráficos de controle, uma das ferramentas mais utilizadas até hoje.</p>
+<p>A aplicação do CEQ traz benefícios que vão além da simples detecção de falhas. Ao proporcionar uma visão clara sobre a estabilidade de um processo, ele permite:</p>
+<ul>
+<li><strong>Reduzir desperdícios e custos</strong>, ao identificar rapidamente fontes de defeitos;</li>
+<li><strong>Aumentar a confiabilidade</strong> de produtos e serviços;</li>
+<li><strong>Tomar decisões baseadas em evidências</strong>, em vez de percepções subjetivas;</li>
+<li><strong>Promover a melhoria contínua</strong>, princípio central da gestão da qualidade moderna.</li>
+</ul>
+<p>Ao longo das décadas, o CEQ expandiu sua influência. Inicialmente aplicado em linhas de produção industriais, hoje é utilizado em áreas tão diversas quanto <strong>saúde pública</strong>, <strong>administração de serviços</strong>, <strong>engenharia de software</strong> e <strong>educação</strong>. Essa diversidade de aplicações reflete o caráter universal das ferramentas estatísticas: qualquer processo que gere dados pode ser analisado sob a ótica do controle estatístico.</p>
+<p>Neste projeto, exploraremos tanto os fundamentos matemáticos e estatísticos do CEQ quanto suas aplicações práticas em softwares livres. O uso de <strong>R</strong> e <strong>Python</strong> será fundamental para ilustrar, passo a passo, como implementar as técnicas e interpretar seus resultados. Assim, o leitor poderá não apenas compreender a teoria, mas também praticá-la em contextos reais, desenvolvendo autonomia para aplicar o CEQ em sua área de atuação.</p>
 <div class="progress">
 <div class="progress-bar" style="width: 100%;">
 
@@ -732,13 +743,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../PART I/P1C2_PlotOfVariables.html" class="pagination-link" aria-label="Gráficos de Controle para Variáveis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Variáveis</span></span>
+      <a href="../index.html" class="pagination-link" aria-label="Prefácio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefácio</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../PART I/P1C4_IndCapacity.html" class="pagination-link" aria-label="Índice de Capacidade">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../PART I/P1C2_PlotOfVariables.html" class="pagination-link" aria-label="Gráficos de Controle para Variáveis">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Variáveis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -747,12 +758,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Atributos</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução ao Controle Estatístico de Qualidade</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>A busca pela qualidade acompanha a história da produção de bens e serviços. Desde os primeiros artesãos, que inspecionavam manualmente suas peças, até os sistemas modernos de manufatura avançada e serviços digitais, sempre houve a necessidade de garantir que o produto final atendesse a requisitos previamente definidos. No entanto, foi apenas no início do século XX que a **estatística** passou a desempenhar um papel central nesse processo.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>O **Controle Estatístico de Qualidade (CEQ)** surge como uma metodologia estruturada para compreender, monitorar e melhorar processos por meio de técnicas estatísticas. Seu objetivo central é distinguir a **variabilidade natural** — inerente a qualquer processo — das **causas especiais de variação**, que sinalizam problemas ou mudanças não planejadas. Essa distinção, introduzida por **Walter A. Shewhart**, é a base conceitual dos gráficos de controle, uma das ferramentas mais utilizadas até hoje.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>A aplicação do CEQ traz benefícios que vão além da simples detecção de falhas. Ao proporcionar uma visão clara sobre a estabilidade de um processo, ele permite:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Reduzir desperdícios e custos**, ao identificar rapidamente fontes de defeitos;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Aumentar a confiabilidade** de produtos e serviços;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Tomar decisões baseadas em evidências**, em vez de percepções subjetivas;</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Promover a melhoria contínua**, princípio central da gestão da qualidade moderna.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Ao longo das décadas, o CEQ expandiu sua influência. Inicialmente aplicado em linhas de produção industriais, hoje é utilizado em áreas tão diversas quanto **saúde pública**, **administração de serviços**, **engenharia de software** e **educação**. Essa diversidade de aplicações reflete o caráter universal das ferramentas estatísticas: qualquer processo que gere dados pode ser analisado sob a ótica do controle estatístico.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Neste projeto, exploraremos tanto os fundamentos matemáticos e estatísticos do CEQ quanto suas aplicações práticas em softwares livres. O uso de **R** e **Python** será fundamental para ilustrar, passo a passo, como implementar as técnicas e interpretar seus resultados. Assim, o leitor poderá não apenas compreender a teoria, mas também praticá-la em contextos reais, desenvolvendo autonomia para aplicar o CEQ em sua área de atuação.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

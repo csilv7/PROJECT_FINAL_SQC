@@ -37,7 +37,7 @@ book:
   chapters:
     - index.qmd
     - part: "Formulação Matemática-Estatística"
-    - PART I/P1C1.qmd
+    - PART I/P1C1_Introduction.qmd
     - PART I/P1C2_PlotOfVariables.qmd
     - PART I/P1C3_PlotOfAtributes.qmd
     - PART I/P1C4_IndCapacity.qmd
