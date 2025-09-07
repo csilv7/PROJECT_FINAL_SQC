@@ -106,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -239,8 +268,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2.1</span> Introdução</a></li>
+  <li><a href="#gráfico-de-controle-para-barx" id="toc-gráfico-de-controle-para-barx" class="nav-link" data-scroll-target="#gráfico-de-controle-para-barx"><span class="header-section-number">2.2</span> Gráfico de Controle para <span class="math inline">\(\bar{X}\)</span></a>
+  <ul class="collapse">
+  <li><a href="#limites-de-probabilidade-e-de-alerta" id="toc-limites-de-probabilidade-e-de-alerta" class="nav-link" data-scroll-target="#limites-de-probabilidade-e-de-alerta"><span class="header-section-number">2.2.1</span> Limites de Probabilidade e de Alerta</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -269,6 +308,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
+<section id="introdução" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">2.1</span> Introdução</h2>
+<p>Os <strong>gráficos de controle para variáveis</strong> são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala <strong>contínua</strong>, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da <strong>tendência central</strong> quanto da <strong>variabilidade</strong> do processo.</p>
+<p>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de <strong>causas comuns de variação</strong>. No entanto, alterações significativas — as chamadas <strong>causas especiais</strong> — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</p>
+<p>Entre os gráficos mais utilizados destacam-se:</p>
+<ul>
+<li><strong>Gráficos de Médias e Amplitudes (<span class="math inline">\(\bar{X}\)</span> e R)</strong>: adequados quando o tamanho da amostra é pequeno (tipicamente <span class="math inline">\(n \leq 10\)</span>). O gráfico <span class="math inline">\(\bar{X}\)</span> monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</li>
+<li><strong>Gráficos de Médias e Desvios-Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(S\)</span>)</strong>: preferidos quando o tamanho das amostras é maior (<span class="math inline">\(n &gt; 10\)</span>) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</li>
+<li><strong>Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)</strong>: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</li>
+</ul>
+<p>Esses gráficos compartilham uma estrutura comum: uma <strong>linha central (LC)</strong> que representa o valor esperado sob controle e dois <strong>limites de controle</strong> — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</p>
+<p>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o <strong>tamanho e a frequência das amostras</strong>, a <strong>definição de subgrupos racionais</strong> e a <strong>escolha entre amplitude ou desvio padrão</strong> como medida de dispersão. Tais escolhas impactam diretamente a <strong>sensibilidade</strong> do gráfico em detectar mudanças, assim como o <strong>custo de amostragem</strong>.</p>
+<p>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</p>
+</section>
+<section id="gráfico-de-controle-para-barx" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="gráfico-de-controle-para-barx"><span class="header-section-number">2.2</span> Gráfico de Controle para <span class="math inline">\(\bar{X}\)</span></h2>
+<p>Para a construção dos Gráfico de Controle de <span class="math inline">\(\bar{X}\)</span>, suponha que a característica de interesse, <span class="math inline">\(X\)</span>, tem média <span class="math inline">\(\mu\)</span> e desvio padrão <span class="math inline">\(\sigma\)</span>, conhecidos. Desta forma, ao retirar uma amostra <span class="math inline">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> de tamanho <span class="math inline">\(n\)</span>, a média amostral é dada por: <span class="math display">\[\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}\]</span></p>
+<p>Pelo Teorema Central do Limite (TCL), sabe-se que <span class="math inline">\(\bar{X}\)</span> é normalmente distribuído com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^{2}/n\)</span>. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de <span class="math inline">\(100(1 - \alpha)\)</span>% para <span class="math inline">\(\mu\)</span> é expresso como: <span class="math display">\[\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.\]</span></p>
+<p>Baseado nisso, Shewhart propôs, de modo geral, que temos um <strong>estimador <span class="math inline">\(T\)</span></strong> de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</p>
+<p>Se considerarmos <span class="math inline">\(T\)</span> como esse estimador, com média <span class="math inline">\(\mu_T\)</span> e desvio-padrão <span class="math inline">\(\sigma_T\)</span>, os limites são calculados da seguinte forma:</p>
+<ul>
+<li><span class="math inline">\(LIC = \mu_T - L\sigma_T\)</span>;</li>
+<li><span class="math inline">\(LC = \mu_T\)</span>;</li>
+<li><span class="math inline">\(LSC = \mu_T + L\sigma_T\)</span>.</li>
+</ul>
+<p>Nessas fórmulas, <strong><span class="math inline">\(L\)</span></strong> representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</p>
+<p>Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</p>
+<ul>
+<li><strong>Se L é grande:</strong> Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um <strong>Erro Tipo I</strong> (alarme falso), mas aumenta a de um <strong>Erro Tipo II</strong> (falhar em detectar um processo fora de controle).</li>
+<li><strong>Se L é pequeno:</strong> Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de <strong>Erro Tipo I</strong> sobe, enquanto a de <strong>Erro Tipo II</strong> diminui.</li>
+</ul>
+<p>Nos EUA, tornou-se prática padrão utilizar <strong>L = 3</strong>, estabelecendo os chamados “limites de 3 sigmas”. Como mencionado no início, a base para isso vem do <strong>Teorema Central do Limite</strong>. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como <span class="math inline">\(0.0027\)</span>. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</p>
+<section id="limites-de-probabilidade-e-de-alerta" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="limites-de-probabilidade-e-de-alerta"><span class="header-section-number">2.2.1</span> Limites de Probabilidade e de Alerta</h3>
+<p><strong>1. Limites de Probabilidade:</strong> Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de <strong>Limites de Probabilidade</strong>. Em vez de fixar <span class="math inline">\(L\)</span>, primeiro se especifica a probabilidade de Erro Tipo I (<span class="math inline">\(\alpha\)</span>) desejada. Por exemplo, se especificarmos um <span class="math inline">\(\alpha = 0,001\)</span>, esperamos um falso alarme a cada 1000 pontos. A partir desse <span class="math inline">\(\alpha\)</span>, determinam-se os valores correspondentes da distribuição normal-padrão (<span class="math inline">\(z_{\alpha/2}\)</span>) para calcular os limites.</p>
+<p><strong>2. Limites de Alerta (<em>2<span class="math inline">\(\sigma\)</span></em>):</strong> Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</p>
+<ul>
+<li><strong>Limites de Ação (<em>3<span class="math inline">\(\sigma\)</span></em>):</strong> São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</li>
+<li><strong>Limites de Alerta (<em>2<span class="math inline">\(\sigma\)</span></em>):</strong> São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo <em>pode</em> não estar operando adequadamente, justificando uma maior atenção.</li>
+</ul>
+<p>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</p>
 <div class="progress">
 <div class="progress-bar" style="width: 100%;">
 
@@ -278,6 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -749,10 +831,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Variáveis</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Os **gráficos de controle para variáveis** são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala **contínua**, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da **tendência central** quanto da **variabilidade** do processo.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de **causas comuns de variação**. No entanto, alterações significativas — as chamadas **causas especiais** — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Entre os gráficos mais utilizados destacam-se:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Médias e Amplitudes ($\bar{X}$ e R)**: adequados quando o tamanho da amostra é pequeno (tipicamente $n \leq 10$). O gráfico $\bar{X}$ monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Médias e Desvios-Padrão ($\bar{X}$ e $S$)**: preferidos quando o tamanho das amostras é maior ($n &gt; 10$) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)**: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Esses gráficos compartilham uma estrutura comum: uma **linha central (LC)** que representa o valor esperado sob controle e dois **limites de controle** — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o **tamanho e a frequência das amostras**, a **definição de subgrupos racionais** e a **escolha entre amplitude ou desvio padrão** como medida de dispersão. Tais escolhas impactam diretamente a **sensibilidade** do gráfico em detectar mudanças, assim como o **custo de amostragem**.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $\bar{X}$</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Para a construção dos Gráfico de Controle de $\bar{X}$, suponha que a característica de interesse, $X$, tem média $\mu$ e desvio padrão $\sigma$, conhecidos. Desta forma, ao retirar uma amostra $X_{1}, X_{2}, \ldots, X_{n}$ de tamanho $n$, a média amostral é dada por:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>$$\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}$$</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Pelo Teorema Central do Limite (TCL), sabe-se que $\bar{X}$ é normalmente distribuído com média $\mu$ e variância $\sigma^{2}/n$. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de $100(1 - \alpha)$% para $\mu$ é expresso como: $$\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.$$</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Baseado nisso, Shewhart propôs, de modo geral, que temos um **estimador $T$** de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Se considerarmos $T$ como esse estimador, com média $\mu_T$ e desvio-padrão $\sigma_T$, os limites são calculados da seguinte forma:</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$LIC = \mu_T - L\sigma_T$;</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$LC = \mu_T$;</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$LSC = \mu_T + L\sigma_T$.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Nessas fórmulas, **$L$** representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Se L é grande:** Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um **Erro Tipo I** (alarme falso), mas aumenta a de um **Erro Tipo II** (falhar em detectar um processo fora de controle).</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Se L é pequeno:** Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de **Erro Tipo I** sobe, enquanto a de **Erro Tipo II** diminui.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>Nos EUA, tornou-se prática padrão utilizar **L = 3**, estabelecendo os chamados "limites de 3 sigmas". Como mencionado no início, a base para isso vem do **Teorema Central do Limite**. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como $0.0027$. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limites de Probabilidade e de Alerta</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>**1. Limites de Probabilidade:** Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de **Limites de Probabilidade**. Em vez de fixar $L$, primeiro se especifica a probabilidade de Erro Tipo I ($\alpha$) desejada. Por exemplo, se especificarmos um $\alpha = 0,001$, esperamos um falso alarme a cada 1000 pontos. A partir desse $\alpha$, determinam-se os valores correspondentes da distribuição normal-padrão ($z_{\alpha/2}$) para calcular os limites.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>**2. Limites de Alerta (*2$\sigma$*):** Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Limites de Ação (*3$\sigma$*):** São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Limites de Alerta (*2$\sigma$*):** São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo *pode* não estar operando adequadamente, justificando uma maior atenção.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

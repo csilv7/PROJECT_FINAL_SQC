@@ -17,7 +17,7 @@ Assim, este trabalho pretende contribuir tanto para estudantes quanto para profi
 
 ---
 
-Este é um **Quarto Book**. Para saber mais sobre **Quarto Book**, visite <https://quarto.org/docs/books/>.
+Este é um **Quarto Book**. Para saber mais sobre **Quarto Book**, visite [quarto.org](https://quarto.org/docs/books/).
 
 ---
 
