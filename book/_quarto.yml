@@ -47,6 +47,7 @@ book:
     - PART III/P3C1.qmd
     - part: "Gráficos de Controle no Python usando Customização Avançada"
     - PART IV/P4C1.qmd
+    #- PART IV/CCO_ARL.qmd
     - references.qmd
 
 bibliography: references.bib
