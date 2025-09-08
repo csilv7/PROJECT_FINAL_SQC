@@ -5,6 +5,24 @@
 
 # Gráficos de Controle para Atributos
 
+## Introdução
+
+## Gráficos de Controle para $p$
+
+
+## Gráficos de Controle para $np$
+
+
+
+## Gráficos de Controle para $c$
+
+Segundo Montgomery, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Há casos em que quando tem-se como interesse o monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como por exemplo o número de defeitos em um equipamento eletrônico.
+
+O gráfico de controle do número de defeitos (gráfico C) mede o número de defeitos em uma amostra de tamanho constante ou uma
+
+## Gráficos de Controle para $u$
+
+
 :::: progress
 :::: {.progress-bar style="width: 100%;"}
 ::::
