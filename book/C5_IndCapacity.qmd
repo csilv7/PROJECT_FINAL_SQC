@@ -1,0 +1,11 @@
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
+
+# Índice de Capacidade
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::

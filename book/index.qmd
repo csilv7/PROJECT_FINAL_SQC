@@ -1,0 +1,27 @@
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
+
+# Prefácio {.unnumbered}
+
+O **Controle Estatístico de Qualidade (CEQ)** consolidou-se, ao longo do último século, como um dos pilares da moderna gestão da qualidade. Desde as contribuições pioneiras de Walter A. Shewhart, que introduziu os gráficos de controle na década de 1920, até as aplicações contemporâneas em manufatura, saúde, tecnologia da informação e administração pública, o CEQ tornou-se uma ferramenta indispensável para compreender e reduzir a variabilidade dos processos.
+
+Mais do que um conjunto de técnicas, o CEQ representa uma mudança de paradigma: a passagem de uma postura reativa — que atua apenas quando falhas são detectadas — para uma abordagem **proativa e preventiva**, voltada a monitorar continuamente os processos e identificar causas de variação antes que estas se traduzam em defeitos ou perdas.
+
+Este projeto nasce da convicção de que a difusão do CEQ deve ir além dos ambientes industriais e alcançar diferentes áreas de conhecimento e prática profissional. Para isso, combinamos o estudo dos **fundamentos estatísticos** com o uso de **ferramentas computacionais modernas**, em especial as linguagens **R** e **Python**, que tornam possível a aplicação prática em contextos reais de análise de dados.
+
+Nosso objetivo não é apenas apresentar técnicas, mas também estimular uma visão crítica sobre sua utilização, incentivando o leitor a compreender o “porquê” por trás dos métodos. O caminho aqui proposto é duplo: rigor matemático-estatístico aliado a uma postura prática de experimentação com softwares livres, de modo que a teoria encontre aplicação imediata em exemplos concretos.
+
+Assim, este trabalho pretende contribuir tanto para estudantes quanto para profissionais que buscam aprofundar-se nos métodos do CEQ, oferecendo uma base sólida para a análise, o monitoramento e a melhoria contínua de processos.
+
+---
+
+Este é um **Quarto Book**. Para saber mais sobre **Quarto Book**, visite [quarto.org](https://quarto.org/docs/books/).
+
+---
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
