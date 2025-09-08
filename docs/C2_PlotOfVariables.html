@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Fundamentos Teóricos e Aplicações em Softwares">
+
+<title>2&nbsp; Gráficos de Controle para Variáveis – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./C3_CCO_CMS.html" rel="next">
+<link href="./C1_Introduction.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./C2_PlotOfVariables.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Variáveis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CONTROLE ESTATÍSTICO DE QUALIDADE</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/csilv7/PROJECT_FINAL_SQC" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+    <a href="./CONTROLE-ESTATÍSTICO-DE-QUALIDADE.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C1_Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao Controle Estatístico de Qualidade</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C2_PlotOfVariables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Variáveis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C3_CCO_CMS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C4_PlotOfAtributes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C5_IndCapacity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2.1</span> Introdução</a></li>
+  <li><a href="#gráfico-de-controle-para-barx" id="toc-gráfico-de-controle-para-barx" class="nav-link" data-scroll-target="#gráfico-de-controle-para-barx"><span class="header-section-number">2.2</span> Gráfico de Controle para <span class="math inline">\(\bar{X}\)</span></a>
+  <ul class="collapse">
+  <li><a href="#limites-de-probabilidade-e-de-alerta" id="toc-limites-de-probabilidade-e-de-alerta" class="nav-link" data-scroll-target="#limites-de-probabilidade-e-de-alerta"><span class="header-section-number">2.2.1</span> Limites de Probabilidade e de Alerta</a></li>
+  </ul></li>
+  <li><a href="#exemplos-computacionais" id="toc-exemplos-computacionais" class="nav-link" data-scroll-target="#exemplos-computacionais"><span class="header-section-number">2.3</span> Exemplos Computacionais</a>
+  <ul class="collapse">
+  <li><a href="#demais-variações-do-gráfico-de-controle-de-barx" id="toc-demais-variações-do-gráfico-de-controle-de-barx" class="nav-link" data-scroll-target="#demais-variações-do-gráfico-de-controle-de-barx"><span class="header-section-number">2.3.1</span> Demais Variações do Gráfico de Controle de <span class="math inline">\(\bar{X}\)</span></a></li>
+  </ul></li>
+  <li><a href="#gráfico-de-controle-para-r" id="toc-gráfico-de-controle-para-r" class="nav-link" data-scroll-target="#gráfico-de-controle-para-r"><span class="header-section-number">2.4</span> Gráfico de Controle para <span class="math inline">\(R\)</span></a></li>
+  <li><a href="#gráfico-de-controle-para-s" id="toc-gráfico-de-controle-para-s" class="nav-link" data-scroll-target="#gráfico-de-controle-para-s"><span class="header-section-number">2.5</span> Gráfico de Controle para <span class="math inline">\(S\)</span></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Variáveis</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="progress">
+<div class="progress-bar" style="width: 100%;">
+
+</div>
+</div>
+<section id="introdução" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">2.1</span> Introdução</h2>
+<p>Os <strong>gráficos de controle para variáveis</strong> são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala <strong>contínua</strong>, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da <strong>tendência central</strong> quanto da <strong>variabilidade</strong> do processo.</p>
+<p>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de <strong>causas comuns de variação</strong>. No entanto, alterações significativas — as chamadas <strong>causas especiais</strong> — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</p>
+<p>Entre os gráficos mais utilizados destacam-se:</p>
+<ul>
+<li><strong>Gráficos de Médias e Amplitudes (<span class="math inline">\(\bar{X}\)</span> e R)</strong>: adequados quando o tamanho da amostra é pequeno (tipicamente <span class="math inline">\(n \leq 10\)</span>). O gráfico <span class="math inline">\(\bar{X}\)</span> monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</li>
+<li><strong>Gráficos de Médias e Desvios-Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(S\)</span>)</strong>: preferidos quando o tamanho das amostras é maior (<span class="math inline">\(n &gt; 10\)</span>) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</li>
+<li><strong>Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)</strong>: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</li>
+</ul>
+<p>Esses gráficos compartilham uma estrutura comum: uma <strong>linha central (LC)</strong> que representa o valor esperado sob controle e dois <strong>limites de controle</strong> — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</p>
+<p>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o <strong>tamanho e a frequência das amostras</strong>, a <strong>definição de subgrupos racionais</strong> e a <strong>escolha entre amplitude ou desvio padrão</strong> como medida de dispersão. Tais escolhas impactam diretamente a <strong>sensibilidade</strong> do gráfico em detectar mudanças, assim como o <strong>custo de amostragem</strong>.</p>
+<p>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</p>
+</section>
+<section id="gráfico-de-controle-para-barx" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="gráfico-de-controle-para-barx"><span class="header-section-number">2.2</span> Gráfico de Controle para <span class="math inline">\(\bar{X}\)</span></h2>
+<p>Para a construção dos Gráfico de Controle de <span class="math inline">\(\bar{X}\)</span>, suponha que a característica de interesse, <span class="math inline">\(X\)</span>, tem média <span class="math inline">\(\mu\)</span> e desvio padrão <span class="math inline">\(\sigma\)</span>, conhecidos. Desta forma, ao retirar uma amostra <span class="math inline">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> de tamanho <span class="math inline">\(n\)</span>, a média amostral é dada por: <span class="math display">\[\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}\]</span></p>
+<p>Pelo Teorema Central do Limite (TCL), sabe-se que <span class="math inline">\(\bar{X}\)</span> é normalmente distribuído com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^{2}/n\)</span>. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de <span class="math inline">\(100(1 - \alpha)\)</span>% para <span class="math inline">\(\mu\)</span> é expresso como: <span class="math display">\[\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.\]</span></p>
+<p>Baseado nisso, Shewhart propôs, de modo geral, que temos um <strong>estimador <span class="math inline">\(T\)</span></strong> de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</p>
+<p>Se considerarmos <span class="math inline">\(T\)</span> como esse estimador, com média <span class="math inline">\(\mu_T\)</span> e desvio-padrão <span class="math inline">\(\sigma_T\)</span>, os limites são calculados da seguinte forma:</p>
+<p><span id="eq-DEF_LIMITS"><span class="math display">\[
+\text{Limites} = \begin{cases} \mu_T - L\sigma_T, \quad \text{se o Limite for Inferior} \\ \mu_T, \quad \text{se o Limite for Central} \\ \mu_T + L\sigma_T, \quad \text{se o Limite for Superior} \end{cases}
+\tag{2.1}\]</span></span></p>
+<p>Nessas fórmulas, <strong><span class="math inline">\(L\)</span></strong> representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</p>
+<p>Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</p>
+<ul>
+<li><strong>Se L é grande:</strong> Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um <strong>Erro Tipo I</strong> (alarme falso), mas aumenta a de um <strong>Erro Tipo II</strong> (falhar em detectar um processo fora de controle).</li>
+<li><strong>Se L é pequeno:</strong> Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de <strong>Erro Tipo I</strong> sobe, enquanto a de <strong>Erro Tipo II</strong> diminui.</li>
+</ul>
+<p>Nos EUA, tornou-se prática padrão utilizar <strong>L = 3</strong>, estabelecendo os chamados “limites de 3 sigmas”. Como mencionado no início, a base para isso vem do <strong>Teorema Central do Limite</strong>. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como <span class="math inline">\(0.0026998\)</span>. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</p>
+<section id="limites-de-probabilidade-e-de-alerta" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="limites-de-probabilidade-e-de-alerta"><span class="header-section-number">2.2.1</span> Limites de Probabilidade e de Alerta</h3>
+<p><strong>1. Limites de Probabilidade:</strong> Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de <strong>Limites de Probabilidade</strong>. Em vez de fixar <span class="math inline">\(L\)</span>, primeiro se especifica a probabilidade de Erro Tipo I (<span class="math inline">\(\alpha\)</span>) desejada. Por exemplo, se especificarmos um <span class="math inline">\(\alpha = 0,001\)</span>, esperamos um falso alarme a cada 1000 pontos. A partir desse <span class="math inline">\(\alpha\)</span>, determinam-se os valores correspondentes da distribuição normal-padrão (<span class="math inline">\(z_{\alpha/2}\)</span>) para calcular os limites.</p>
+<p><strong>2. Limites de Alerta (<em>2<span class="math inline">\(\sigma\)</span></em>):</strong> Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</p>
+<ul>
+<li><strong>Limites de Ação (<em>3<span class="math inline">\(\sigma\)</span></em>):</strong> São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</li>
+<li><strong>Limites de Alerta (<em>2<span class="math inline">\(\sigma\)</span></em>):</strong> São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo <em>pode</em> não estar operando adequadamente, justificando uma maior atenção.</li>
+</ul>
+<p>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</p>
+</section>
+</section>
+<section id="exemplos-computacionais" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="exemplos-computacionais"><span class="header-section-number">2.3</span> Exemplos Computacionais</h2>
+<p>Será apresentados alguns exemplos computacionais de como realizar o gráfico de controle para <span class="math inline">\(\bar{X}\)</span>. A maioria dos dados serão provinientes de simulação para fins didáticos.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">R usando <code>ggplot2</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                            <span class="co"># Limite Central</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir limites do eixo Y para garantir que tudo seja visível</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(vec.means, LIC) <span class="sc">-</span> <span class="dv">7</span>, <span class="fu">max</span>(vec.means, LSC) <span class="sc">+</span> <span class="dv">7</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico principal com pontos e linhas</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="co"># "b" para both (pontos e linhas)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> ylim,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="co"># Tipo de ponto (círculo sólido)</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab =</span> <span class="dv">2</span> <span class="co"># Deixa os títulos dos eixos em negrito</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar as linhas de controle</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LIC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LC, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LSC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar a legenda</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>))),</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(<span class="fu">hat</span>(mu) <span class="sc">==</span> .(<span class="fu">round</span>(LC, <span class="dv">2</span>))),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>)))</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"solid"</span> <span class="co"># "n" Remove a caixa ao redor da legenda</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C2_PlotOfVariables_files/figure-html/EX_R_BASE_1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> T)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                         <span class="co"># Limite Central</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Gráfico de Controle no ggplot2</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means)) <span class="sc">+</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LIC, <span class="at">color =</span> <span class="st">"LIC"</span>)) <span class="sc">+</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LC, <span class="at">color =</span> <span class="st">"LC"</span>)) <span class="sc">+</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LSC, <span class="at">color =</span> <span class="st">"LSC"</span>)) <span class="sc">+</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"LIC"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"LC"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"LSC"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>))),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(mu[<span class="dv">0</span>] <span class="sc">==</span> .(<span class="fu">round</span>(x.bar, <span class="dv">2</span>))),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>)))</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Limites"</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C2_PlotOfVariables_files/figure-html/EX_R_ggplot2_1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">25</span>  <span class="co"># Número de Amostras</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span>   <span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular dados com semente de aleatoriedade para reprodutibilidade</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>vec_data <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">25</span>, scale<span class="op">=</span><span class="fl">1.5</span>, size<span class="op">=</span>k<span class="op">*</span>n) <span class="op">+</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="fl">1.2</span>, size<span class="op">=</span>k<span class="op">*</span>n)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a matriz de dados</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>matrix_data <span class="op">=</span> vec_data.reshape(k, n)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de médias (média de cada linha)</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>vec_means <span class="op">=</span> matrix_data.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>vec_sds <span class="op">=</span> matrix_data.std(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar quantidades</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>x_bar <span class="op">=</span> vec_means.mean()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>x_std <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir limites</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> x_bar <span class="op">-</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>lc  <span class="op">=</span> <span class="dv">25</span>                               <span class="co"># Limite Central</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> x_bar <span class="op">+</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar o estilo do gráfico</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"ticks"</span>) <span class="co"># Similar ao theme_classic()</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>), dpi<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, k<span class="op">+</span><span class="dv">1</span>), y<span class="op">=</span>vec_means, marker<span class="op">=</span><span class="st">"o"</span>, color<span class="op">=</span><span class="st">"black"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar as linhas de controle</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lsc, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LSC = </span><span class="sc">{</span>lsc<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lc, color<span class="op">=</span><span class="st">"blue"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"$</span><span class="ch">\\</span><span class="ss">hat</span><span class="ch">{{\\</span><span class="ss">mu</span><span class="ch">}}</span><span class="ss">$ = </span><span class="sc">{</span>lc<span class="sc">:.2f}</span><span class="ss">"</span>) <span class="co"># Usando LaTeX para mu</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lic, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LIC = </span><span class="sc">{</span>lic<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">18</span>, <span class="dv">32</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(18.0, 32.0)</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Amostra"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Medida"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Legenda</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.legend(prop<span class="op">=</span>{<span class="st">"size"</span>:<span class="dv">8</span>, <span class="st">"weight"</span>: <span class="st">"bold"</span>}, loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>) <span class="co"># bbox_to_anchor=(1, 0.5), </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição da Figura</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C2_PlotOfVariables_files/figure-html/EX_PYTHON_1-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="demais-variações-do-gráfico-de-controle-de-barx" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="demais-variações-do-gráfico-de-controle-de-barx"><span class="header-section-number">2.3.1</span> Demais Variações do Gráfico de Controle de <span class="math inline">\(\bar{X}\)</span></h3>
+<section id="gráficos-de-médias-e-amplitudes-barx-e-r" class="level4" data-number="2.3.1.1">
+<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="gráficos-de-médias-e-amplitudes-barx-e-r"><span class="header-section-number">2.3.1.1</span> Gráficos de Médias e Amplitudes (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</h4>
+<p>Na prática da construção de gráficos de controle, a média (<span class="math inline">\(\mu\)</span>) e o desvio-padrão (<span class="math inline">\(\sigma\)</span>) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.</p>
+<p>Para isso, Walter Shewhart sugeriu um método prático: a coleta de <strong><span class="math inline">\(m\)</span></strong> subgrupos (geralmente entre 20 a 25) de tamanho <strong><span class="math inline">\(n\)</span></strong> relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de “subgrupos racionais” com um baixo custo de amostragem.</p>
+<p>Para estimar a média global do processo, <span class="math inline">\(\mu\)</span>, utilizamos a média das médias de todos os subgrupos. Sejam <span class="math inline">\(\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m\)</span> as médias de cada um dos <strong><span class="math inline">\(m\)</span></strong> subgrupos. O melhor estimador para <span class="math inline">\(\mu\)</span> é a grande média, denotada por <span class="math inline">\(\bar{\bar{X}}\)</span>: <span class="math display">\[\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.\]</span></p>
+<p>Onde <span class="math inline">\(\bar{X}_i\)</span> é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de <span class="math inline">\(\bar{\bar{x}}\)</span> será usado como a <strong>linha central (LC)</strong> do gráfico <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>Para construir os limites de controle, tanto do gráfico <span class="math inline">\(\bar{X}\)</span> quanto do gráfico R, precisamos de um estimador para o desvio-padrão do processo, <span class="math inline">\(\sigma\)</span>. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das <strong>amplitudes</strong> das amostras. Para esta análise, optaremos pelo método das amplitudes.</p>
+<p>A amplitude (<span class="math inline">\(R\)</span>) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela: <span class="math display">\[R = X_{\text{max}} - X_{\text{min}}\]</span></p>
+<p>Sendo <span class="math inline">\(R_1, R_2, \ldots, R_m\)</span> as amplitudes de cada um dos <strong><span class="math inline">\(m\)</span></strong> subgrupos, calculamos a amplitude média (<span class="math inline">\(\bar{R}\)</span>) como: <span class="math display">\[\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}\]</span></p>
+</section>
+<section id="construção-do-gráfico-r" class="level4" data-number="2.3.1.2">
+<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="construção-do-gráfico-r"><span class="header-section-number">2.3.1.2</span> Construção do Gráfico R</h4>
+<p>O Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média (<span class="math inline">\(\bar{R}\)</span>), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo (<span class="math inline">\(n\)</span>).</p>
+<ul>
+<li><strong>LSC</strong> = <span class="math inline">\(D_4 \bar{R}\)</span></li>
+<li><strong>LM</strong> = <span class="math inline">\(\bar{R}\)</span></li>
+<li><strong>LIC</strong> = <span class="math inline">\(D_3 \bar{R}\)</span></li>
+</ul>
+<p>É importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, <span class="math inline">\(\sigma\)</span>, através da seguinte relação: <span class="math display">\[\hat{\sigma} = \frac{\bar{R}}{d_2}\]</span></p>
+</section>
+<section id="construção-do-gráfico-barx" class="level4" data-number="2.3.1.3">
+<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="construção-do-gráfico-barx"><span class="header-section-number">2.3.1.3</span> Construção do Gráfico <span class="math inline">\(\bar{X}\)</span></h4>
+<p>Com as estimativas da média (<span class="math inline">\(\bar{\bar{x}}\)</span>) e da variabilidade (via <span class="math inline">\(\bar{R}\)</span>) do processo, podemos construir os limites de controle para o gráfico <span class="math inline">\(\bar{X}\)</span>, que monitora a tendência central do processo.</p>
+<p><span id="eq-DEF_LIMITS_R_CHARTS"><span class="math display">\[
+\text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} \\ \bar{\bar{X}}, \quad \text{se o Limite for Central} \\ \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.
+\tag{2.2}\]</span></span></p>
+<p>As constantes <span class="math inline">\(A_2, d_2, D_3\)</span> e <span class="math inline">\(D_4\)</span> são tabeladas e dependem do tamanho do subgrupo (<span class="math inline">\(n\)</span>). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o “Introdução ao Controle de Qualidade” de Montgomery.</p>
+</section>
+<section id="gráficos-de-médias-e-desvio-padrão-barx-e-r" class="level4" data-number="2.3.1.4">
+<h4 data-number="2.3.1.4" class="anchored" data-anchor-id="gráficos-de-médias-e-desvio-padrão-barx-e-r"><span class="header-section-number">2.3.1.4</span> Gráficos de Médias e Desvio Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</h4>
+</section>
+</section>
+</section>
+<section id="gráfico-de-controle-para-r" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="gráfico-de-controle-para-r"><span class="header-section-number">2.4</span> Gráfico de Controle para <span class="math inline">\(R\)</span></h2>
+</section>
+<section id="gráfico-de-controle-para-s" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="gráfico-de-controle-para-s"><span class="header-section-number">2.5</span> Gráfico de Controle para <span class="math inline">\(S\)</span></h2>
+<div class="progress">
+<div class="progress-bar" style="width: 100%;">
+
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./C1_Introduction.html" class="pagination-link" aria-label="Introdução ao Controle Estatístico de Qualidade">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao Controle Estatístico de Qualidade</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./C3_CCO_CMS.html" class="pagination-link" aria-label="Curva Característica da Operação e Compimento Médio da Sequência">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Variáveis</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Python Environment Setup</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">"C:/Users/user/anaconda3/python.exe"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>Os **gráficos de controle para variáveis** são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala **contínua**, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da **tendência central** quanto da **variabilidade** do processo.</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de **causas comuns de variação**. No entanto, alterações significativas — as chamadas **causas especiais** — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>Entre os gráficos mais utilizados destacam-se:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Médias e Amplitudes ($\bar{X}$ e R)**: adequados quando o tamanho da amostra é pequeno (tipicamente $n \leq 10$). O gráfico $\bar{X}$ monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Médias e Desvios-Padrão ($\bar{X}$ e $S$)**: preferidos quando o tamanho das amostras é maior ($n &gt; 10$) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)**: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>Esses gráficos compartilham uma estrutura comum: uma **linha central (LC)** que representa o valor esperado sob controle e dois **limites de controle** — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o **tamanho e a frequência das amostras**, a **definição de subgrupos racionais** e a **escolha entre amplitude ou desvio padrão** como medida de dispersão. Tais escolhas impactam diretamente a **sensibilidade** do gráfico em detectar mudanças, assim como o **custo de amostragem**.</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $\bar{X}$</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>Para a construção dos Gráfico de Controle de $\bar{X}$, suponha que a característica de interesse, $X$, tem média $\mu$ e desvio padrão $\sigma$, conhecidos. Desta forma, ao retirar uma amostra $X_{1}, X_{2}, \ldots, X_{n}$ de tamanho $n$, a média amostral é dada por:</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>$$\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}$$</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>Pelo Teorema Central do Limite (TCL), sabe-se que $\bar{X}$ é normalmente distribuído com média $\mu$ e variância $\sigma^{2}/n$. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de $100(1 - \alpha)$% para $\mu$ é expresso como: $$\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.$$</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>Baseado nisso, Shewhart propôs, de modo geral, que temos um **estimador $T$** de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>Se considerarmos $T$ como esse estimador, com média $\mu_T$ e desvio-padrão $\sigma_T$, os limites são calculados da seguinte forma:</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>\text{Limites} = \begin{cases} \mu_T - L\sigma_T, \quad \text{se o Limite for Inferior} <span class="sc">\\</span> \mu_T, \quad \text{se o Limite for Central} <span class="sc">\\</span> \mu_T + L\sigma_T, \quad \text{se o Limite for Superior} \end{cases}</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>$$ {#eq-DEF_LIMITS}</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>Nessas fórmulas, **$L$** representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Se L é grande:** Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um **Erro Tipo I** (alarme falso), mas aumenta a de um **Erro Tipo II** (falhar em detectar um processo fora de controle).</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Se L é pequeno:** Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de **Erro Tipo I** sobe, enquanto a de **Erro Tipo II** diminui.</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>Nos EUA, tornou-se prática padrão utilizar **L = 3**, estabelecendo os chamados "limites de 3 sigmas". Como mencionado no início, a base para isso vem do **Teorema Central do Limite**. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como $<span class="in">`r 1-(pnorm(3) - pnorm(-3))`</span>$. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limites de Probabilidade e de Alerta</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>**1. Limites de Probabilidade:** Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de **Limites de Probabilidade**. Em vez de fixar $L$, primeiro se especifica a probabilidade de Erro Tipo I ($\alpha$) desejada. Por exemplo, se especificarmos um $\alpha = 0,001$, esperamos um falso alarme a cada 1000 pontos. A partir desse $\alpha$, determinam-se os valores correspondentes da distribuição normal-padrão ($z_{\alpha/2}$) para calcular os limites.</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>**2. Limites de Alerta (*2$\sigma$*):** Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Limites de Ação (*3$\sigma$*):** São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Limites de Alerta (*2$\sigma$*):** São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo *pode* não estar operando adequadamente, justificando uma maior atenção.</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exemplos Computacionais</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>Será apresentados alguns exemplos computacionais de como realizar o gráfico de controle para $\bar{X}$. A maioria dos dados serão provinientes de simulação para fins didáticos.</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### R Base</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_BASE_1</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                            <span class="co"># Limite Central</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir limites do eixo Y para garantir que tudo seja visível</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(vec.means, LIC) <span class="sc">-</span> <span class="dv">7</span>, <span class="fu">max</span>(vec.means, LSC) <span class="sc">+</span> <span class="dv">7</span>)</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico principal com pontos e linhas</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means,</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="co"># "b" para both (pontos e linhas)</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> ylim,</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="co"># Tipo de ponto (círculo sólido)</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab =</span> <span class="dv">2</span> <span class="co"># Deixa os títulos dos eixos em negrito</span></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar as linhas de controle</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LIC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LC, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LSC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar a legenda</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>))),</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(<span class="fu">hat</span>(mu) <span class="sc">==</span> .(<span class="fu">round</span>(LC, <span class="dv">2</span>))),</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>)))</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"solid"</span> <span class="co"># "n" Remove a caixa ao redor da legenda</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### R usando `ggplot2`</span></span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_ggplot2_1</span></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> T)</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                         <span class="co"># Limite Central</span></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Gráfico de Controle no ggplot2</span></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means)) <span class="sc">+</span></span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LIC, <span class="at">color =</span> <span class="st">"LIC"</span>)) <span class="sc">+</span></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LC, <span class="at">color =</span> <span class="st">"LC"</span>)) <span class="sc">+</span></span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LSC, <span class="at">color =</span> <span class="st">"LSC"</span>)) <span class="sc">+</span></span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"LIC"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"LC"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"LSC"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>))),</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(mu[<span class="dv">0</span>] <span class="sc">==</span> .(<span class="fu">round</span>(x.bar, <span class="dv">2</span>))),</span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>)))</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Limites"</span></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_PYTHON_1</span></span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros</span></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">25</span>  <span class="co"># Número de Amostras</span></span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span>   <span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular dados com semente de aleatoriedade para reprodutibilidade</span></span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>vec_data <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">25</span>, scale<span class="op">=</span><span class="fl">1.5</span>, size<span class="op">=</span>k<span class="op">*</span>n) <span class="op">+</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="fl">1.2</span>, size<span class="op">=</span>k<span class="op">*</span>n)</span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a matriz de dados</span></span>
+<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a>matrix_data <span class="op">=</span> vec_data.reshape(k, n)</span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de médias (média de cada linha)</span></span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>vec_means <span class="op">=</span> matrix_data.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)</span></span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>vec_sds <span class="op">=</span> matrix_data.std(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar quantidades</span></span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>x_bar <span class="op">=</span> vec_means.mean()</span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a>x_std <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir limites</span></span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> x_bar <span class="op">-</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>lc  <span class="op">=</span> <span class="dv">25</span>                               <span class="co"># Limite Central</span></span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> x_bar <span class="op">+</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar o estilo do gráfico</span></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"ticks"</span>) <span class="co"># Similar ao theme_classic()</span></span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>), dpi<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, k<span class="op">+</span><span class="dv">1</span>), y<span class="op">=</span>vec_means, marker<span class="op">=</span><span class="st">"o"</span>, color<span class="op">=</span><span class="st">"black"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar as linhas de controle</span></span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lsc, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LSC = </span><span class="sc">{</span>lsc<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lc, color<span class="op">=</span><span class="st">"blue"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"$</span><span class="ch">\\</span><span class="ss">hat</span><span class="ch">{{\\</span><span class="ss">mu</span><span class="ch">}}</span><span class="ss">$ = </span><span class="sc">{</span>lc<span class="sc">:.2f}</span><span class="ss">"</span>) <span class="co"># Usando LaTeX para mu</span></span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lic, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LIC = </span><span class="sc">{</span>lic<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">18</span>, <span class="dv">32</span>)</span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Amostra"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Medida"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Legenda</span></span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>ax.legend(prop<span class="op">=</span>{<span class="st">"size"</span>:<span class="dv">8</span>, <span class="st">"weight"</span>: <span class="st">"bold"</span>}, loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>) <span class="co"># bbox_to_anchor=(1, 0.5), </span></span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição da Figura</span></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a><span class="fu">### Demais Variações do Gráfico de Controle de $\bar{X}$</span></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Amplitudes ($\bar{X}$ e $R$)</span></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>Na prática da construção de gráficos de controle, a média ($\mu$) e o desvio-padrão ($\sigma$) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.</span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>Para isso, Walter Shewhart sugeriu um método prático: a coleta de **$m$** subgrupos (geralmente entre 20 a 25) de tamanho **$n$** relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de "subgrupos racionais" com um baixo custo de amostragem.</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>Para estimar a média global do processo, $\mu$, utilizamos a média das médias de todos os subgrupos. Sejam $\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m$ as médias de cada um dos **$m$** subgrupos. O melhor estimador para $\mu$ é a grande média, denotada por $\bar{\bar{X}}$: $$\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.$$</span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>Onde $\bar{X}_i$ é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de $\bar{\bar{x}}$ será usado como a **linha central (LC)** do gráfico $\bar{X}$.</span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>Para construir os limites de controle, tanto do gráfico $\bar{X}$ quanto do gráfico R, precisamos de um estimador para o desvio-padrão do processo, $\sigma$. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das **amplitudes** das amostras. Para esta análise, optaremos pelo método das amplitudes.</span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>A amplitude ($R$) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela:</span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>$$R = X_{\text{max}} - X_{\text{min}}$$</span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>Sendo $R_1, R_2, \ldots, R_m$ as amplitudes de cada um dos **$m$** subgrupos, calculamos a amplitude média ($\bar{R}$) como: $$\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}$$</span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Construção do Gráfico R</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>O Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média ($\bar{R}$), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo ($n$).</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**LSC** = $D_4 \bar{R}$</span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**LM** = $\bar{R}$</span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**LIC** = $D_3 \bar{R}$</span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>É importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, $\sigma$, através da seguinte relação:</span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \frac{\bar{R}}{d_2}$$</span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Construção do Gráfico $\bar{X}$</span></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>Com as estimativas da média ($\bar{\bar{x}}$) e da variabilidade (via $\bar{R}$) do processo, podemos construir os limites de controle para o gráfico $\bar{X}$, que monitora a tendência central do processo.</span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>\text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} <span class="sc">\\</span> \bar{\bar{X}}, \quad \text{se o Limite for Central} <span class="sc">\\</span> \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.</span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>$$ {#eq-DEF_LIMITS_R_CHARTS}</span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>As constantes $A_2, d_2, D_3$ e $D_4$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery.</span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $R$)</span></span>
+<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $R$</span></span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $S$</span></span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>::::</span>
+</code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

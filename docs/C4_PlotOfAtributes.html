@@ -6,16 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Breno Cauã Rodrigues da Silva">
-<meta name="author" content="Carlos Antonio Costa De Farias">
-<meta name="author" content="Emerson Vitor Da Costa De Lima">
-<meta name="author" content="Ingrid Moreira Melo">
-<meta name="author" content="Lucas Yukio Da Silva Sakai">
-<meta name="author" content="Roberta Rhayane Borges Delgado">
-<meta name="author" content="Wallery Reis Risuenho">
 <meta name="description" content="Fundamentos Teóricos e Aplicações em Softwares">
 
-<title>CONTROLE ESTATÍSTICO DE QUALIDADE</title>
+<title>4&nbsp; Gráficos de Controle para Atributos – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./C1_Introduction.html" rel="next">
+<link href="./C5_IndCapacity.html" rel="next">
+<link href="./C3_CCO_CMS.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -124,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefácio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./C4_PlotOfAtributes.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -172,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefácio</span></a>
   </div>
 </li>
@@ -196,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C4_PlotOfAtributes.html" class="sidebar-item-text sidebar-link">
+  <a href="./C4_PlotOfAtributes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></span></a>
   </div>
 </li>
@@ -217,95 +211,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Índice</h2>
-   
-  <ul>
-  <li><a href="#prefácio" id="toc-prefácio" class="nav-link active" data-scroll-target="#prefácio">Prefácio</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">CONTROLE ESTATÍSTICO DE QUALIDADE</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
-<p class="subtitle lead">COM R E PYTHON</p>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
 </div>
 
-<div>
-  <div class="description">
-    Fundamentos Teóricos e Aplicações em Softwares
-  </div>
-</div>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autores</div>
-  <div class="quarto-title-meta-heading">Afiliação</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Breno Cauã Rodrigues da Silva </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Carlos Antonio Costa De Farias </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Emerson Vitor Da Costa De Lima </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Ingrid Moreira Melo </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Lucas Yukio Da Silva Sakai </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Roberta Rhayane Borges Delgado </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Wallery Reis Risuenho </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UFPA/ICEN/FAEST
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -320,16 +241,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<section id="prefácio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefácio</h1>
-<p>O <strong>Controle Estatístico de Qualidade (CEQ)</strong> consolidou-se, ao longo do último século, como um dos pilares da moderna gestão da qualidade. Desde as contribuições pioneiras de Walter A. Shewhart, que introduziu os gráficos de controle na década de 1920, até as aplicações contemporâneas em manufatura, saúde, tecnologia da informação e administração pública, o CEQ tornou-se uma ferramenta indispensável para compreender e reduzir a variabilidade dos processos.</p>
-<p>Mais do que um conjunto de técnicas, o CEQ representa uma mudança de paradigma: a passagem de uma postura reativa — que atua apenas quando falhas são detectadas — para uma abordagem <strong>proativa e preventiva</strong>, voltada a monitorar continuamente os processos e identificar causas de variação antes que estas se traduzam em defeitos ou perdas.</p>
-<p>Este projeto nasce da convicção de que a difusão do CEQ deve ir além dos ambientes industriais e alcançar diferentes áreas de conhecimento e prática profissional. Para isso, combinamos o estudo dos <strong>fundamentos estatísticos</strong> com o uso de <strong>ferramentas computacionais modernas</strong>, em especial as linguagens <strong>R</strong> e <strong>Python</strong>, que tornam possível a aplicação prática em contextos reais de análise de dados.</p>
-<p>Nosso objetivo não é apenas apresentar técnicas, mas também estimular uma visão crítica sobre sua utilização, incentivando o leitor a compreender o “porquê” por trás dos métodos. O caminho aqui proposto é duplo: rigor matemático-estatístico aliado a uma postura prática de experimentação com softwares livres, de modo que a teoria encontre aplicação imediata em exemplos concretos.</p>
-<p>Assim, este trabalho pretende contribuir tanto para estudantes quanto para profissionais que buscam aprofundar-se nos métodos do CEQ, oferecendo uma base sólida para a análise, o monitoramento e a melhoria contínua de processos.</p>
-<hr>
-<p>Este é um <strong>Quarto Book</strong>. Para saber mais sobre <strong>Quarto Book</strong>, visite <a href="https://quarto.org/docs/books/">quarto.org</a>.</p>
-<hr>
 <div class="progress">
 <div class="progress-bar" style="width: 100%;">
 
@@ -339,7 +250,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -794,10 +704,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./C3_CCO_CMS.html" class="pagination-link" aria-label="Curva Característica da Operação e Compimento Médio da Sequência">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./C1_Introduction.html" class="pagination-link" aria-label="Introdução ao Controle Estatístico de Qualidade">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao Controle Estatístico de Qualidade</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./C5_IndCapacity.html" class="pagination-link" aria-label="Índice de Capacidade">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -806,28 +719,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prefácio {.unnumbered}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Atributos</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>O **Controle Estatístico de Qualidade (CEQ)** consolidou-se, ao longo do último século, como um dos pilares da moderna gestão da qualidade. Desde as contribuições pioneiras de Walter A. Shewhart, que introduziu os gráficos de controle na década de 1920, até as aplicações contemporâneas em manufatura, saúde, tecnologia da informação e administração pública, o CEQ tornou-se uma ferramenta indispensável para compreender e reduzir a variabilidade dos processos.</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Mais do que um conjunto de técnicas, o CEQ representa uma mudança de paradigma: a passagem de uma postura reativa — que atua apenas quando falhas são detectadas — para uma abordagem **proativa e preventiva**, voltada a monitorar continuamente os processos e identificar causas de variação antes que estas se traduzam em defeitos ou perdas.</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Este projeto nasce da convicção de que a difusão do CEQ deve ir além dos ambientes industriais e alcançar diferentes áreas de conhecimento e prática profissional. Para isso, combinamos o estudo dos **fundamentos estatísticos** com o uso de **ferramentas computacionais modernas**, em especial as linguagens **R** e **Python**, que tornam possível a aplicação prática em contextos reais de análise de dados.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Nosso objetivo não é apenas apresentar técnicas, mas também estimular uma visão crítica sobre sua utilização, incentivando o leitor a compreender o “porquê” por trás dos métodos. O caminho aqui proposto é duplo: rigor matemático-estatístico aliado a uma postura prática de experimentação com softwares livres, de modo que a teoria encontre aplicação imediata em exemplos concretos.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Assim, este trabalho pretende contribuir tanto para estudantes quanto para profissionais que buscam aprofundar-se nos métodos do CEQ, oferecendo uma base sólida para a análise, o monitoramento e a melhoria contínua de processos.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Este é um **Quarto Book**. Para saber mais sobre **Quarto Book**, visite <span class="co">[</span><span class="ot">quarto.org</span><span class="co">](https://quarto.org/docs/books/)</span>.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
