@@ -1,0 +1,182 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CONTROLE ESTATÍSTICO DE QUALIDADE",
+    "section": "",
+    "text": "Prefácio\nO Controle Estatístico de Qualidade (CEQ) consolidou-se, ao longo do último século, como um dos pilares da moderna gestão da qualidade. Desde as contribuições pioneiras de Walter A. Shewhart, que introduziu os gráficos de controle na década de 1920, até as aplicações contemporâneas em manufatura, saúde, tecnologia da informação e administração pública, o CEQ tornou-se uma ferramenta indispensável para compreender e reduzir a variabilidade dos processos.\nMais do que um conjunto de técnicas, o CEQ representa uma mudança de paradigma: a passagem de uma postura reativa — que atua apenas quando falhas são detectadas — para uma abordagem proativa e preventiva, voltada a monitorar continuamente os processos e identificar causas de variação antes que estas se traduzam em defeitos ou perdas.\nEste projeto nasce da convicção de que a difusão do CEQ deve ir além dos ambientes industriais e alcançar diferentes áreas de conhecimento e prática profissional. Para isso, combinamos o estudo dos fundamentos estatísticos com o uso de ferramentas computacionais modernas, em especial as linguagens R e Python, que tornam possível a aplicação prática em contextos reais de análise de dados.\nNosso objetivo não é apenas apresentar técnicas, mas também estimular uma visão crítica sobre sua utilização, incentivando o leitor a compreender o “porquê” por trás dos métodos. O caminho aqui proposto é duplo: rigor matemático-estatístico aliado a uma postura prática de experimentação com softwares livres, de modo que a teoria encontre aplicação imediata em exemplos concretos.\nAssim, este trabalho pretende contribuir tanto para estudantes quanto para profissionais que buscam aprofundar-se nos métodos do CEQ, oferecendo uma base sólida para a análise, o monitoramento e a melhoria contínua de processos.\n\nEste é um Quarto Book. Para saber mais sobre Quarto Book, visite quarto.org.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "C1_Introduction.html",
+    "href": "C1_Introduction.html",
+    "title": "1  Introdução ao Controle Estatístico de Qualidade",
+    "section": "",
+    "text": "1.1 Relação entre Gráficos de Controle e Testes de Hipóteses\nA busca pela qualidade acompanha a história da produção de bens e serviços. Desde os primeiros artesãos, que inspecionavam manualmente suas peças, até os sistemas modernos de manufatura avançada e serviços digitais, sempre houve a necessidade de garantir que o produto final atendesse a requisitos previamente definidos. No entanto, foi apenas no início do século XX que a estatística passou a desempenhar um papel central nesse processo.\nO Controle Estatístico de Qualidade (CEQ) surge como uma metodologia estruturada para compreender, monitorar e melhorar processos por meio de técnicas estatísticas. Seu objetivo central é distinguir a variabilidade natural — inerente a qualquer processo — das causas especiais de variação, que sinalizam problemas ou mudanças não planejadas. Essa distinção, introduzida por Walter A. Shewhart, é a base conceitual dos gráficos de controle, uma das ferramentas mais utilizadas até hoje.\nA aplicação do CEQ traz benefícios que vão além da simples detecção de falhas. Ao proporcionar uma visão clara sobre a estabilidade de um processo, ele permite:\nAo longo das décadas, o CEQ expandiu sua influência. Inicialmente aplicado em linhas de produção industriais, hoje é utilizado em áreas tão diversas quanto saúde pública, administração de serviços, engenharia de software e educação. Essa diversidade de aplicações reflete o caráter universal das ferramentas estatísticas: qualquer processo que gere dados pode ser analisado sob a ótica do controle estatístico.\nNeste projeto, exploraremos tanto os fundamentos matemáticos e estatísticos do CEQ quanto suas aplicações práticas em softwares livres. O uso de R e Python será fundamental para ilustrar, passo a passo, como implementar as técnicas e interpretar seus resultados. Assim, o leitor poderá não apenas compreender a teoria, mas também praticá-la em contextos reais, desenvolvendo autonomia para aplicar o CEQ em sua área de atuação.\nA análise do desempenho de um gráfico de controle está intimamente ligada aos princípios do teste de hipóteses, funcionando como uma ferramenta estatística que realiza uma sequência de testes para monitorar a estabilidade de um processo. Para fins de exemplo, considere que se esteja interessado na média de uma determinada caractéristica de uma variável.\nEssencialmente, a hipótese nula (\\(H_0\\)) postula que o processo está sob controle, com sua média \\(\\mu\\) igual a um valor alvo \\(\\mu_0\\). A estrutura do gráfico reflete diretamente a lógica de um teste: a região entre os Limites de Controle (LIC e LSC) corresponde à área de não rejeição de \\(H_0\\), enquanto qualquer ponto fora desses limites cai na região de rejeição. Assim, quando um ponto amostral se posiciona dentro dos limites, não há evidências para afirmar que o processo saiu do controle.\nAo utilizar essa abordagem, estamos sujeitos a dois tipos de erros estatísticos:\nA habilidade do gráfico em detectar mudanças (como um deslocamento na média para \\(\\mu = \\mu_0 + \\delta\\)) é avaliada pela Curva Característica de Operação (CO), que calcula a probabilidade do Erro Tipo II (\\(\\beta\\)) para diferentes magnitudes de mudança (\\(\\delta\\)) e tamanhos de amostra (\\(n\\)), mantendo um \\(\\alpha\\) fixo.\nApesar das semelhanças, existem diferenças importantes na aplicação de Testes de Hipóteses (TH) e Gráficos de Controle (GC):\nAs causas que levam um processo a sair do controle podem se manifestar de várias formas, mas nem todas se alinham perfeitamente ao modelo de um teste de hipóteses clássico. Por exemplo, uma causa atribuível pode resultar em: 1. Uma mudança permanente na média para um novo valor. 2. Uma mudança temporária, com a média retornando ao estado de controle. 3. Um deslocamento constante ou uma tendência de subida/descida na média.\nÉ importante notar que apenas o primeiro cenário (uma mudança para um novo patamar fixo) corresponde diretamente ao modelo usual de teste de hipóteses que se aprende na estatística básica.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução ao Controle Estatístico de Qualidade</span>"
+    ]
+  },
+  {
+    "objectID": "C1_Introduction.html#relação-entre-gráficos-de-controle-e-testes-de-hipóteses",
+    "href": "C1_Introduction.html#relação-entre-gráficos-de-controle-e-testes-de-hipóteses",
+    "title": "1  Introdução ao Controle Estatístico de Qualidade",
+    "section": "",
+    "text": "Erro Tipo I (\\(\\alpha\\)): Ocorre quando concluímos que o processo está fora de controle, mas na verdade ele continua estável. É o equivalente a um “alarme falso”.\nErro Tipo II (\\(\\beta\\)): Acontece quando concluímos que o processo está sob controle, quando na verdade ele sofreu uma alteração. Este erro é frequentemente mais custoso para a empresa, pois uma falha real no processo não é detectada.\n\n\n\n\nTH: Geralmente, verifica a validade de uma suposição sobre um parâmetro populacional em um único ponto no tempo (ex: a média da população é igual a \\(\\mu_0\\) ?).\nGC: Seu objetivo principal é monitorar e verificar a estabilidade do processo de forma contínua ao longo do tempo.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução ao Controle Estatístico de Qualidade</span>"
+    ]
+  },
+  {
+    "objectID": "C1_Introduction.html#sobre-os-softwares-usados",
+    "href": "C1_Introduction.html#sobre-os-softwares-usados",
+    "title": "1  Introdução ao Controle Estatístico de Qualidade",
+    "section": "1.2 Sobre os Softwares Usados",
+    "text": "1.2 Sobre os Softwares Usados\n\n1.2.1 Linguagem de Programação R\n\n\n1.2.2 Linguagem de Programação Python",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução ao Controle Estatístico de Qualidade</span>"
+    ]
+  },
+  {
+    "objectID": "C2_PlotOfVariables.html",
+    "href": "C2_PlotOfVariables.html",
+    "title": "2  Gráficos de Controle para Variáveis",
+    "section": "",
+    "text": "2.1 Introdução\nOs gráficos de controle para variáveis são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala contínua, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da tendência central quanto da variabilidade do processo.\nA lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de causas comuns de variação. No entanto, alterações significativas — as chamadas causas especiais — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.\nEntre os gráficos mais utilizados destacam-se:\nEsses gráficos compartilham uma estrutura comum: uma linha central (LC) que representa o valor esperado sob controle e dois limites de controle — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.\nO uso adequado de gráficos para variáveis depende de decisões fundamentais: o tamanho e a frequência das amostras, a definição de subgrupos racionais e a escolha entre amplitude ou desvio padrão como medida de dispersão. Tais escolhas impactam diretamente a sensibilidade do gráfico em detectar mudanças, assim como o custo de amostragem.\nPor sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gráficos de Controle para Variáveis</span>"
+    ]
+  },
+  {
+    "objectID": "C2_PlotOfVariables.html#introdução",
+    "href": "C2_PlotOfVariables.html#introdução",
+    "title": "2  Gráficos de Controle para Variáveis",
+    "section": "",
+    "text": "Gráficos de Médias e Amplitudes (\\(\\bar{X}\\) e R): adequados quando o tamanho da amostra é pequeno (tipicamente \\(n \\leq 10\\)). O gráfico \\(\\bar{X}\\) monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.\nGráficos de Médias e Desvios-Padrão (\\(\\bar{X}\\) e \\(S\\)): preferidos quando o tamanho das amostras é maior (\\(n &gt; 10\\)) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.\nGráficos de Medidas Individuais e Amplitudes Móveis (I-MR): aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gráficos de Controle para Variáveis</span>"
+    ]
+  },
+  {
+    "objectID": "C2_PlotOfVariables.html#gráfico-de-controle-para-barx",
+    "href": "C2_PlotOfVariables.html#gráfico-de-controle-para-barx",
+    "title": "2  Gráficos de Controle para Variáveis",
+    "section": "2.2 Gráfico de Controle para \\(\\bar{X}\\)",
+    "text": "2.2 Gráfico de Controle para \\(\\bar{X}\\)\nPara a construção dos Gráfico de Controle de \\(\\bar{X}\\), suponha que a característica de interesse, \\(X\\), tem média \\(\\mu\\) e desvio padrão \\(\\sigma\\), conhecidos. Desta forma, ao retirar uma amostra \\(X_{1}, X_{2}, \\ldots, X_{n}\\) de tamanho \\(n\\), a média amostral é dada por: \\[\\bar{X} = \\dfrac{\\sum_{i=1}^{n} X_{i}}{n}\\]\nPelo Teorema Central do Limite (TCL), sabe-se que \\(\\bar{X}\\) é normalmente distribuído com média \\(\\mu\\) e variância \\(\\sigma^{2}/n\\). Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de \\(100(1 - \\alpha)\\)% para \\(\\mu\\) é expresso como: \\[\\bar{X} \\pm z_{\\alpha/2} \\sqrt{\\sigma^{2}/n}.\\]\nBaseado nisso, Shewhart propôs, de modo geral, que temos um estimador \\(T\\) de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).\nSe considerarmos \\(T\\) como esse estimador, com média \\(\\mu_T\\) e desvio-padrão \\(\\sigma_T\\), os limites são calculados da seguinte forma:\n\\[\n\\text{Limites} = \\begin{cases} \\mu_T - L\\sigma_T, \\quad \\text{se o Limite for Inferior} \\\\ \\mu_T, \\quad \\text{se o Limite for Central} \\\\ \\mu_T + L\\sigma_T, \\quad \\text{se o Limite for Superior} \\end{cases}\n\\tag{2.1}\\]\nNessas fórmulas, \\(L\\) representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.\nContudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:\n\nSe L é grande: Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um Erro Tipo I (alarme falso), mas aumenta a de um Erro Tipo II (falhar em detectar um processo fora de controle).\nSe L é pequeno: Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de Erro Tipo I sobe, enquanto a de Erro Tipo II diminui.\n\nNos EUA, tornou-se prática padrão utilizar L = 3, estabelecendo os chamados “limites de 3 sigmas”. Como mencionado no início, a base para isso vem do Teorema Central do Limite. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como \\(0.0026998\\). Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.\n\n2.2.1 Limites de Probabilidade e de Alerta\n1. Limites de Probabilidade: Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de Limites de Probabilidade. Em vez de fixar \\(L\\), primeiro se especifica a probabilidade de Erro Tipo I (\\(\\alpha\\)) desejada. Por exemplo, se especificarmos um \\(\\alpha = 0,001\\), esperamos um falso alarme a cada 1000 pontos. A partir desse \\(\\alpha\\), determinam-se os valores correspondentes da distribuição normal-padrão (\\(z_{\\alpha/2}\\)) para calcular os limites.\n2. Limites de Alerta (2\\(\\sigma\\)): Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:\n\nLimites de Ação (3\\(\\sigma\\)): São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;\nLimites de Alerta (2\\(\\sigma\\)): São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo pode não estar operando adequadamente, justificando uma maior atenção.\n\nO ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gráficos de Controle para Variáveis</span>"
+    ]
+  },
+  {
+    "objectID": "C2_PlotOfVariables.html#exemplos-computacionais",
+    "href": "C2_PlotOfVariables.html#exemplos-computacionais",
+    "title": "2  Gráficos de Controle para Variáveis",
+    "section": "2.3 Exemplos Computacionais",
+    "text": "2.3 Exemplos Computacionais\nSerá apresentados alguns exemplos computacionais de como realizar o gráfico de controle para \\(\\bar{X}\\). A maioria dos dados serão provinientes de simulação para fins didáticos.\n\nR BaseR usando ggplot2Python\n\n\n\n\nCódigo\n# Número de Amostras Selecionadas\nk &lt;- 25\n\n# Tamanho de cada Amostra\nn &lt;- 5\n\n# Simular Dados e Adicionar Ruído aos Dados\nset.seed(42)\nvec.data &lt;- rnorm(k * n, mean = 25, sd = 1.5) + rnorm(k * n, mean = 0, sd = 1.2)\n\n# Organizar a Matriz de Dados\nmatrix.data &lt;- matrix(vec.data, nrow = k, ncol = n, byrow = TRUE)\n\n# Vetor de Médias\nvec.means &lt;- apply(matrix.data, 1, mean)\n\n# Vetor de Desvios\nvec.sds &lt;- apply(matrix.data, 1, sd)\n\n# Estimar Algumas Quantidades\nx.bar &lt;- mean(vec.means)\nx.std &lt;- 1.5\n\n# Construir Limites\nLIC &lt;- x.bar - (3 / sqrt(n)) * x.std # Limite Inferior de Controle\nLC  &lt;- 25                            # Limite Central\nLSC &lt;- x.bar + (3 / sqrt(n)) * x.std # Limite Superior de Controle\n\n# Definir limites do eixo Y para garantir que tudo seja visível\nylim &lt;- c(min(vec.means, LIC) - 7, max(vec.means, LSC) + 7)\n\n# Criar o gráfico principal com pontos e linhas\nplot(x = 1:k, y = vec.means,\n     type = \"b\", # \"b\" para both (pontos e linhas)\n     xlab = \"Amostra\",\n     ylab = \"Medida\",\n     ylim = ylim,\n     pch = 19, # Tipo de ponto (círculo sólido)\n     col = \"black\",\n     font.lab = 2 # Deixa os títulos dos eixos em negrito\n)\n\n# Adicionar as linhas de controle\nabline(h = LIC, col = \"red\", lwd = 2)\nabline(h = LC, col = \"blue\", lwd = 2)\nabline(h = LSC, col = \"red\", lwd = 2)\n\n# Adicionar a legenda\nlegend(\"topright\",\n       legend = c(\n         bquote(LSC == .(round(LSC, 2))),\n         bquote(hat(mu) == .(round(LC, 2))),\n         bquote(LIC == .(round(LIC, 2)))\n       ),\n       col = c(\"red\", \"blue\", \"red\"),\n       lwd = 2,\n       bty = \"solid\" # \"n\" Remove a caixa ao redor da legenda\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nlibrary(ggplot2)\n\n# Número de Amostras Selecionadas\nk &lt;- 25\n\n# Tamanho de cada Amostra\nn &lt;- 5\n\n# Simular Dados e Adicionar Ruído aos Dados\nset.seed(42)\nvec.data &lt;- rnorm(k * n, mean = 25, sd = 1.5) + rnorm(k * n, mean = 0, sd = 1.2)\n\n# Organizar a Matriz de Dados\nmatrix.data &lt;- matrix(vec.data, nrow = k, ncol = n, byrow = T)\n\n# Vetor de Médias\nvec.means &lt;- apply(matrix.data, 1, mean)\n\n# Vetor de Desvios\nvec.sds &lt;- apply(matrix.data, 1, sd)\n\n# Estimar Algumas Quantidades\nx.bar &lt;- mean(vec.means)\nx.std &lt;- 1.5\n\n# Construir Limites\nLIC &lt;- x.bar - (3 / sqrt(n)) * x.std # Limite Inferior de Controle\nLC  &lt;- 25                         # Limite Central\nLSC &lt;- x.bar + (3 / sqrt(n)) * x.std # Limite Superior de Controle\n\n# Construir Gráfico de Controle no ggplot2\nggplot(data = NULL, aes(x = 1:k, y = vec.means)) +\n  geom_point(size = 2) + geom_line() +\n  geom_hline(aes(yintercept = LIC, color = \"LIC\")) +\n  geom_hline(aes(yintercept = LC, color = \"LC\")) +\n  geom_hline(aes(yintercept = LSC, color = \"LSC\")) +\n  scale_color_manual(\n    values = c(\"LIC\" = \"red\", \"LC\" = \"blue\", \"LSC\" = \"red\"),\n    labels = c(\n      bquote(LIC == .(round(LIC, 2))),\n      bquote(mu[0] == .(round(x.bar, 2))),\n      bquote(LSC == .(round(LSC, 2)))\n    )\n  ) +\n  labs(\n    x = \"Amostra\",\n    y = \"Medida\",\n    color = \"Limites\"\n  ) +\n  theme_classic(base_size = 12) +\n  theme(\n    axis.title.x = element_text(face = \"bold\"),\n    axis.title.y = element_text(face = \"bold\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nimport numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n# Parâmetros\nk = 25  # Número de Amostras\nn = 5   # Tamanho de cada Amostra\n\n# Simular dados com semente de aleatoriedade para reprodutibilidade\nnp.random.seed(42)\nvec_data = np.random.normal(loc=25, scale=1.5, size=k*n) + np.random.normal(loc=0, scale=1.2, size=k*n)\n\n# Organizar a matriz de dados\nmatrix_data = vec_data.reshape(k, n)\n\n# Vetor de médias (média de cada linha)\nvec_means = matrix_data.mean(axis=1)\n\n# Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)\nvec_sds = matrix_data.std(axis=1, ddof=1)\n\n# Estimar quantidades\nx_bar = vec_means.mean()\nx_std = 1.5\n\n# Construir limites\nlic = x_bar - (3 / np.sqrt(n)) * x_std  # Limite Inferior de Controle\nlc  = 25                               # Limite Central\nlsc = x_bar + (3 / np.sqrt(n)) * x_std  # Limite Superior de Controle\n\n# Configurar o estilo do gráfico\nsns.set_theme(style=\"ticks\") # Similar ao theme_classic()\n\n# Configurações de Figura\nfig, ax = plt.subplots(figsize=(5, 3), dpi=800)\n\nsns.lineplot(x=range(1, k+1), y=vec_means, marker=\"o\", color=\"black\", ax=ax)\n\n# Plotar as linhas de controle\nax.axhline(y=lsc, color=\"red\", linestyle=\"-\", label=f\"LSC = {lsc:.2f}\")\nax.axhline(y=lc, color=\"blue\", linestyle=\"-\", label=f\"$\\\\hat{{\\\\mu}}$ = {lc:.2f}\") # Usando LaTeX para mu\nax.axhline(y=lic, color=\"red\", linestyle=\"-\", label=f\"LIC = {lic:.2f}\")\n\n# Configurações de eixos e títulos\nax.set_ylim(18, 32)\n\n\n(18.0, 32.0)\n\n\nCódigo\nax.set_xlabel(\"Amostra\", weight=\"bold\", fontsize=12)\nax.set_ylabel(\"Medida\", weight=\"bold\", fontsize=12)\n\n# Configurações de Legenda\nax.legend(prop={\"size\":8, \"weight\": \"bold\"}, loc=\"upper right\", frameon=False) # bbox_to_anchor=(1, 0.5), \n\n# Outras configurações\nax.spines[\"top\"].set_visible(False)\nax.spines[\"right\"].set_visible(False)\n\n# Exibição da Figura\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n2.3.1 Demais Variações do Gráfico de Controle de \\(\\bar{X}\\)\n\n2.3.1.1 Gráficos de Médias e Amplitudes (\\(\\bar{X}\\) e \\(R\\))\nNa prática da construção de gráficos de controle, a média (\\(\\mu\\)) e o desvio-padrão (\\(\\sigma\\)) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.\nPara isso, Walter Shewhart sugeriu um método prático: a coleta de \\(m\\) subgrupos (geralmente entre 20 a 25) de tamanho \\(n\\) relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de “subgrupos racionais” com um baixo custo de amostragem.\nPara estimar a média global do processo, \\(\\mu\\), utilizamos a média das médias de todos os subgrupos. Sejam \\(\\bar{X}_1, \\bar{X}_2, \\ldots, \\bar{X}_m\\) as médias de cada um dos \\(m\\) subgrupos. O melhor estimador para \\(\\mu\\) é a grande média, denotada por \\(\\bar{\\bar{X}}\\): \\[\\bar{\\bar{X}} = \\frac{\\sum_{i=1}^{m} \\bar{X}_i}{m}.\\]\nOnde \\(\\bar{X}_i\\) é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de \\(\\bar{\\bar{x}}\\) será usado como a linha central (LC) do gráfico \\(\\bar{X}\\).\nPara construir os limites de controle, tanto do gráfico \\(\\bar{X}\\) quanto do gráfico R, precisamos de um estimador para o desvio-padrão do processo, \\(\\sigma\\). Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das amplitudes das amostras. Para esta análise, optaremos pelo método das amplitudes.\nA amplitude (\\(R\\)) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela: \\[R = X_{\\text{max}} - X_{\\text{min}}\\]\nSendo \\(R_1, R_2, \\ldots, R_m\\) as amplitudes de cada um dos \\(m\\) subgrupos, calculamos a amplitude média (\\(\\bar{R}\\)) como: \\[\\bar{R} = \\frac{\\sum_{i=1}^{m} R_i}{m}\\]\n\n\n2.3.1.2 Construção do Gráfico R\nO Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média (\\(\\bar{R}\\)), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo (\\(n\\)).\n\nLSC = \\(D_4 \\bar{R}\\)\nLM = \\(\\bar{R}\\)\nLIC = \\(D_3 \\bar{R}\\)\n\nÉ importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, \\(\\sigma\\), através da seguinte relação: \\[\\hat{\\sigma} = \\frac{\\bar{R}}{d_2}\\]\n\n\n2.3.1.3 Construção do Gráfico \\(\\bar{X}\\)\nCom as estimativas da média (\\(\\bar{\\bar{x}}\\)) e da variabilidade (via \\(\\bar{R}\\)) do processo, podemos construir os limites de controle para o gráfico \\(\\bar{X}\\), que monitora a tendência central do processo.\n\\[\n\\text{Limites} = \\begin{cases} \\bar{\\bar{X}} + A_2 \\bar{R}, \\quad \\text{se o Limite for Inferior} \\\\ \\bar{\\bar{X}}, \\quad \\text{se o Limite for Central} \\\\ \\bar{\\bar{X}} - A_2 \\bar{R}, \\quad \\text{se o Limite for Superior} \\end{cases}.\n\\tag{2.2}\\]\nAs constantes \\(A_2, d_2, D_3\\) e \\(D_4\\) são tabeladas e dependem do tamanho do subgrupo (\\(n\\)). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o “Introdução ao Controle de Qualidade” de Montgomery.\n\n\n2.3.1.4 Gráficos de Médias e Desvio Padrão (\\(\\bar{X}\\) e \\(R\\))",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gráficos de Controle para Variáveis</span>"
+    ]
+  },
+  {
+    "objectID": "C2_PlotOfVariables.html#gráfico-de-controle-para-r",
+    "href": "C2_PlotOfVariables.html#gráfico-de-controle-para-r",
+    "title": "2  Gráficos de Controle para Variáveis",
+    "section": "2.4 Gráfico de Controle para \\(R\\)",
+    "text": "2.4 Gráfico de Controle para \\(R\\)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gráficos de Controle para Variáveis</span>"
+    ]
+  },
+  {
+    "objectID": "C2_PlotOfVariables.html#gráfico-de-controle-para-s",
+    "href": "C2_PlotOfVariables.html#gráfico-de-controle-para-s",
+    "title": "2  Gráficos de Controle para Variáveis",
+    "section": "2.5 Gráfico de Controle para \\(S\\)",
+    "text": "2.5 Gráfico de Controle para \\(S\\)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Gráficos de Controle para Variáveis</span>"
+    ]
+  },
+  {
+    "objectID": "C3_CCO_CMS.html",
+    "href": "C3_CCO_CMS.html",
+    "title": "3  Curva Característica da Operação e Compimento Médio da Sequência",
+    "section": "",
+    "text": "3.1 Introdução\nEspecificar o plano amostral, a frequência de coleta e os limites de controle de um processo são algumas das decisões críticas na construção de gráficos de controle. Na inviabilidade de inspecionar todos os itens produzidos, são selecionados uma certa quantidade por lote de forma aleatória para composição das amostras. Naturalmente, quanto mais itens amostrados, maior a aproximação da representação real do processo e consequente maior controle. Logo, as alternativas viáveis são, ou tomar amostras pequenas com maior frequência, ou amostras grandes com menor frequência (Carpinetti2003?; Montgomery2012Statistical?).\nA depender do número defeitos presentes, o lote pode ser aceito ou rejeitado, parelho ao teste de hipóteses:\n\\[\n\\left\\{ \\begin{array} HH_0: p = p_0\\\\ H_1: p \\neq p_0 \\end{array} \\right.\n\\]\nonde \\(p\\) representa a proporção de defeitos na produção (Botter2013?).\nQuando estabelecemos limites de controle afastados da linha central, aumentamos a tolerância do processo, diminuindo assim o risco de ocorrer pontos fora dos limites. Esse risco é denominado erro tipo I (\\(\\alpha\\)) ou risco do produtor, responsável por indicar condições fora do controle sem causa atribuível (alarme falso).\nA presença de baixos valores para o erro tipo I dificulta a detecção de defeitos reais, implicando no aumento de itens dentro dos limites de controle, quando o processo na realidade estiver fora de controle. A esse risco denominamos erro do tipo II (\\(\\beta\\)) ou risco do consumidor.\nNo caso de aproximação dos limites de controle da linha central gera o efeito contrário; quando o risco do produtor aumenta, o do consumidor diminui (Montgomery2012Statistical?; Botter2013?). O cenário desejável é a identificação eficiente desses defeitos antes que ele seja repassado ao consumidor, garantindo a qualidade do produto.\nPara um processo controlado sob condição de normalidade – \\(X_{i} \\sim N(\\mu, \\sigma^2)\\) – em um nível de operação (\\(L\\)) temos que a probabilidade do processo estar sob controle é dada por\n\\[\nP\\left[LIC \\leq \\bar{X}_i \\leq LSC \\right] \\Rightarrow P\\left[\\dfrac{\\mu -L\\sigma}{\\sqrt{n}} \\leq \\bar{X}_i \\leq \\dfrac{\\mu + L\\sigma}{\\sqrt{n}}\\right],\n\\] onde \\(LIC\\) representa o limite inferior de controle e \\(LSC\\), o limite superior de controle, \\(\\sigma\\) o desvio-padrão da operação e \\(n\\), o número de amostras.\nPara um processo operado em \\(3\\sigma\\) (\\(L=3\\)), temos que \\[\\therefore P\\left[ \\dfrac{\\mu -3\\sigma}{\\sqrt{n}} \\leq \\bar{X}_i \\leq \\dfrac{\\mu + 3\\sigma}{\\sqrt{n}}\\right] = 0.9973.\\]\nPela normalização dos dados – \\(X_{i} \\sim N(0, 1)\\)–, o erro tipo II corresponde a 99,73% e o erro tipo I a 0,27%. Em outras palavras, o processo acusará 27 alarmes falsos em 10.000 itens produzidos.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Curva Característica da Operação e Compimento Médio da Sequência</span>"
+    ]
+  },
+  {
+    "objectID": "C3_CCO_CMS.html#curva-característica-da-operação-cco",
+    "href": "C3_CCO_CMS.html#curva-característica-da-operação-cco",
+    "title": "3  Curva Característica da Operação e Compimento Médio da Sequência",
+    "section": "3.2 Curva Característica da Operação (CCO)",
+    "text": "3.2 Curva Característica da Operação (CCO)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Curva Característica da Operação e Compimento Médio da Sequência</span>"
+    ]
+  },
+  {
+    "objectID": "C3_CCO_CMS.html#compimento-médio-da-sequência-cms",
+    "href": "C3_CCO_CMS.html#compimento-médio-da-sequência-cms",
+    "title": "3  Curva Característica da Operação e Compimento Médio da Sequência",
+    "section": "3.3 Compimento Médio da Sequência (CMS)",
+    "text": "3.3 Compimento Médio da Sequência (CMS)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Curva Característica da Operação e Compimento Médio da Sequência</span>"
+    ]
+  },
+  {
+    "objectID": "C4_PlotOfAtributes.html",
+    "href": "C4_PlotOfAtributes.html",
+    "title": "4  Gráficos de Controle para Atributos",
+    "section": "",
+    "text": "4.1 Introdução",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gráficos de Controle para Atributos</span>"
+    ]
+  },
+  {
+    "objectID": "C4_PlotOfAtributes.html#gráficos-de-controle-para-p",
+    "href": "C4_PlotOfAtributes.html#gráficos-de-controle-para-p",
+    "title": "4  Gráficos de Controle para Atributos",
+    "section": "4.2 Gráficos de Controle para \\(p\\)",
+    "text": "4.2 Gráficos de Controle para \\(p\\)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gráficos de Controle para Atributos</span>"
+    ]
+  },
+  {
+    "objectID": "C4_PlotOfAtributes.html#gráficos-de-controle-para-np",
+    "href": "C4_PlotOfAtributes.html#gráficos-de-controle-para-np",
+    "title": "4  Gráficos de Controle para Atributos",
+    "section": "4.3 Gráficos de Controle para \\(np\\)",
+    "text": "4.3 Gráficos de Controle para \\(np\\)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gráficos de Controle para Atributos</span>"
+    ]
+  },
+  {
+    "objectID": "C4_PlotOfAtributes.html#gráficos-de-controle-para-c",
+    "href": "C4_PlotOfAtributes.html#gráficos-de-controle-para-c",
+    "title": "4  Gráficos de Controle para Atributos",
+    "section": "4.4 Gráficos de Controle para \\(c\\)",
+    "text": "4.4 Gráficos de Controle para \\(c\\)\nSegundo Montgomery, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Há casos em que quando tem-se como interesse o monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como por exemplo o número de defeitos em um equipamento eletrônico.\nO gráfico de controle do número de defeitos (gráfico C) mede o número de defeitos em uma amostra de tamanho constante ou uma",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gráficos de Controle para Atributos</span>"
+    ]
+  },
+  {
+    "objectID": "C4_PlotOfAtributes.html#gráficos-de-controle-para-u",
+    "href": "C4_PlotOfAtributes.html#gráficos-de-controle-para-u",
+    "title": "4  Gráficos de Controle para Atributos",
+    "section": "4.5 Gráficos de Controle para \\(u\\)",
+    "text": "4.5 Gráficos de Controle para \\(u\\)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gráficos de Controle para Atributos</span>"
+    ]
+  }
+]
