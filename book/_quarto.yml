@@ -29,7 +29,7 @@ book:
   - name: "Wallery Reis Risuenho"
     affiliations: "UFPA/ICEN/FAEST"
 
-  downloads: [pdf]
+  # downloads: [pdf]
   sharing: [twitter, facebook]
   page-navigation: true
   repo-url: https://github.com/csilv7/PROJECT_FINAL_SQC
@@ -57,29 +57,29 @@ format:
       - brand
     warning: false
     message: false
-  pdf:
-    keep-tex: true
-    documentclass: scrreprt
-    pdf-engine: lualatex
-    number-sections: true
-    papersize: a4
-    fontsize: 11pt
-    geometry: [left=2.5cm, top=2.5cm, right=2.5cm, bottom=2.5cm]
-    fig-pos: "H"
-    indent: true
-    header-includes: |
-      \usepackage{indentfirst}
-      \usepackage{latexsym,amssymb,amsmath,amsfonts}
-      \usepackage{graphicx} % Figuras
-      \usepackage{latexsym, amssymb, amsmath, amsfonts, amsthm} % Formatação Matemática
-      \usepackage{xcolor}
-      \usepackage{float, caption}
-      \floatplacement{table}{H}
-      \floatplacement{figure}{H}
-      \captionsetup[table]{position=above}
-      \captionsetup[figure]{position=below}
-    echo: false
-    warning: false
-    message: false
+  # pdf:
+  #   keep-tex: true
+  #   documentclass: scrreprt
+  #   pdf-engine: lualatex
+  #   number-sections: true
+  #   papersize: a4
+  #   fontsize: 11pt
+  #   geometry: [left=2.5cm, top=2.5cm, right=2.5cm, bottom=2.5cm]
+  #   fig-pos: "H"
+  #   indent: true
+  #   header-includes: |
+  #     \usepackage{indentfirst}
+  #     \usepackage{latexsym,amssymb,amsmath,amsfonts}
+  #     \usepackage{graphicx} % Figuras
+  #     \usepackage{latexsym, amssymb, amsmath, amsfonts, amsthm} % Formatação Matemática
+  #     \usepackage{xcolor}
+  #     \usepackage{float, caption}
+  #     \floatplacement{table}{H}
+  #     \floatplacement{figure}{H}
+  #     \captionsetup[table]{position=above}
+  #     \captionsetup[figure]{position=below}
+  #   echo: false
+  #   warning: false
+  #   message: false
 
 lang: pt

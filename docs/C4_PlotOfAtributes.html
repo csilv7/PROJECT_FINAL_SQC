@@ -8,7 +8,7 @@
 
 <meta name="description" content="Fundamentos Teóricos e Aplicações em Softwares">
 
-<title>3&nbsp; Gráficos de Controle para Atributos – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
+<title>4&nbsp; Gráficos de Controle para Atributos – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./C4_PlotOfAtributes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./C4_PlotOfAtributes.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -163,9 +163,8 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">CONTROLE ESTATÍSTICO DE QUALIDADE</a> 
-        <div class="sidebar-tools-main tools-wide">
+        <div class="sidebar-tools-main">
     <a href="https://github.com/csilv7/PROJECT_FINAL_SQC" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
-    <a href="./CONTROLE-ESTATÍSTICO-DE-QUALIDADE.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
     <div class="dropdown">
       <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -207,20 +206,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./C2_PlotOfVariables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Variáveis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./C3_CCO_CMS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./C4_PlotOfAtributes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./C5_IndCapacity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -239,11 +244,11 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">3.1</span> Introdução</a></li>
-  <li><a href="#gráficos-de-controle-para-p" id="toc-gráficos-de-controle-para-p" class="nav-link" data-scroll-target="#gráficos-de-controle-para-p"><span class="header-section-number">3.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></a></li>
-  <li><a href="#gráficos-de-controle-para-np" id="toc-gráficos-de-controle-para-np" class="nav-link" data-scroll-target="#gráficos-de-controle-para-np"><span class="header-section-number">3.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></a></li>
-  <li><a href="#gráficos-de-controle-para-c" id="toc-gráficos-de-controle-para-c" class="nav-link" data-scroll-target="#gráficos-de-controle-para-c"><span class="header-section-number">3.4</span> Gráficos de Controle para <span class="math inline">\(c\)</span></a></li>
-  <li><a href="#gráficos-de-controle-para-u" id="toc-gráficos-de-controle-para-u" class="nav-link" data-scroll-target="#gráficos-de-controle-para-u"><span class="header-section-number">3.5</span> Gráficos de Controle para <span class="math inline">\(u\)</span></a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">4.1</span> Introdução</a></li>
+  <li><a href="#gráficos-de-controle-para-p" id="toc-gráficos-de-controle-para-p" class="nav-link" data-scroll-target="#gráficos-de-controle-para-p"><span class="header-section-number">4.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></a></li>
+  <li><a href="#gráficos-de-controle-para-np" id="toc-gráficos-de-controle-para-np" class="nav-link" data-scroll-target="#gráficos-de-controle-para-np"><span class="header-section-number">4.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></a></li>
+  <li><a href="#gráficos-de-controle-para-c" id="toc-gráficos-de-controle-para-c" class="nav-link" data-scroll-target="#gráficos-de-controle-para-c"><span class="header-section-number">4.4</span> Gráficos de Controle para <span class="math inline">\(c\)</span></a></li>
+  <li><a href="#gráficos-de-controle-para-u" id="toc-gráficos-de-controle-para-u" class="nav-link" data-scroll-target="#gráficos-de-controle-para-u"><span class="header-section-number">4.5</span> Gráficos de Controle para <span class="math inline">\(u\)</span></a></li>
   </ul>
 </nav>
     </div>
@@ -252,7 +257,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
 </div>
 
 
@@ -274,22 +279,22 @@ window.Quarto = {
 
 </div>
 </div>
-<section id="introdução" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">3.1</span> Introdução</h2>
+<section id="introdução" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">4.1</span> Introdução</h2>
 </section>
-<section id="gráficos-de-controle-para-p" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="gráficos-de-controle-para-p"><span class="header-section-number">3.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></h2>
+<section id="gráficos-de-controle-para-p" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="gráficos-de-controle-para-p"><span class="header-section-number">4.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></h2>
 </section>
-<section id="gráficos-de-controle-para-np" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="gráficos-de-controle-para-np"><span class="header-section-number">3.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></h2>
+<section id="gráficos-de-controle-para-np" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="gráficos-de-controle-para-np"><span class="header-section-number">4.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></h2>
 </section>
-<section id="gráficos-de-controle-para-c" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="gráficos-de-controle-para-c"><span class="header-section-number">3.4</span> Gráficos de Controle para <span class="math inline">\(c\)</span></h2>
+<section id="gráficos-de-controle-para-c" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="gráficos-de-controle-para-c"><span class="header-section-number">4.4</span> Gráficos de Controle para <span class="math inline">\(c\)</span></h2>
 <p>Segundo Montgomery, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Há casos em que quando tem-se como interesse o monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como por exemplo o número de defeitos em um equipamento eletrônico.</p>
 <p>O gráfico de controle do número de defeitos (gráfico C) mede o número de defeitos em uma amostra de tamanho constante ou uma</p>
 </section>
-<section id="gráficos-de-controle-para-u" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="gráficos-de-controle-para-u"><span class="header-section-number">3.5</span> Gráficos de Controle para <span class="math inline">\(u\)</span></h2>
+<section id="gráficos-de-controle-para-u" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="gráficos-de-controle-para-u"><span class="header-section-number">4.5</span> Gráficos de Controle para <span class="math inline">\(u\)</span></h2>
 <div class="progress">
 <div class="progress-bar" style="width: 100%;">
 
@@ -755,12 +760,12 @@ window.Quarto = {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./C3_CCO_CMS.html" class="pagination-link" aria-label="Curva Característica da Operação e Compimento Médio da Sequência">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Curva Característica da Operação e Compimento Médio da Sequência</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./C5_IndCapacity.html" class="pagination-link" aria-label="Índice de Capacidade">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
