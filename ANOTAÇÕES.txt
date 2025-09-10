@@ -1,0 +1,11 @@
+#### Construção do Gráfico R
+
+O Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média ($\bar{R}$), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo ($n$).
+
+-   **LSC** = $D_4 \bar{R}$
+-   **LM** = $\bar{R}$
+-   **LIC** = $D_3 \bar{R}$
+
+É importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, $\sigma$, através da seguinte relação: $$\hat{\sigma} = \frac{\bar{R}}{d_2}$$
+
+#### Construção do Gráfico $\bar{X}$

@@ -1,6 +1,6 @@
 :::: progress
-:::: {.progress-bar style="width: 100%;"}
-::::
+::: {.progress-bar style="width: 100%;"}
+:::
 ::::
 
 # Gráficos de Controle para Variáveis
@@ -20,9 +20,9 @@ A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta
 
 Entre os gráficos mais utilizados destacam-se:
 
-* **Gráficos de Médias e Amplitudes ($\bar{X}$ e R)**: adequados quando o tamanho da amostra é pequeno (tipicamente $n \leq 10$). O gráfico $\bar{X}$ monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.
-* **Gráficos de Médias e Desvios-Padrão ($\bar{X}$ e $S$)**: preferidos quando o tamanho das amostras é maior ($n > 10$) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.
-* **Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)**: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.
+-   **Gráficos de Médias e Amplitudes (**$\bar{X}$ e $R$): adequados quando o tamanho da amostra é pequeno (tipicamente $n \leq 10$). O gráfico $\bar{X}$ monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.
+-   **Gráficos de Médias e Desvios-Padrão (**$\bar{X}$ e $S$): preferidos quando o tamanho das amostras é maior ($n > 10$) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.
+-   **Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)**: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.
 
 Esses gráficos compartilham uma estrutura comum: uma **linha central (LC)** que representa o valor esperado sob controle e dois **limites de controle** — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.
 
@@ -30,14 +30,17 @@ O uso adequado de gráficos para variáveis depende de decisões fundamentais: o
 
 Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.
 
+### Constantes Estatísticas Usadas
+
+![Constantes Estatísticas usadas no Controle Estatístico de Qualidade para Contrução de Gráficos de Controle.](imagens/CONSTANTES_CEQ.jpg){#fig-CONSTS_CEQ fig-align="center"}
+
 ## Gráfico de Controle para $\bar{X}$
 
-Para a construção dos Gráfico de Controle de $\bar{X}$, suponha que a característica de interesse, $X$, tem média $\mu$ e desvio padrão $\sigma$, conhecidos. Desta forma, ao retirar uma amostra $X_{1}, X_{2}, \ldots, X_{n}$ de tamanho $n$, a média amostral é dada por:
-$$\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}$$
+Para a construção dos Gráfico de Controle de $\bar{X}$, suponha que a característica de interesse, $X$, tem média $\mu$ e desvio padrão $\sigma$, conhecidos. Desta forma, ao retirar uma amostra $X_{1}, X_{2}, \ldots, X_{n}$ de tamanho $n$, a média amostral é dada por: $$\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}$$
 
 Pelo Teorema Central do Limite (TCL), sabe-se que $\bar{X}$ é normalmente distribuído com média $\mu$ e variância $\sigma^{2}/n$. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de $100(1 - \alpha)$% para $\mu$ é expresso como: $$\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.$$
 
-Baseado nisso, Shewhart propôs, de modo geral, que temos um **estimador $T$** de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).
+Baseado nisso, Shewhart propôs, de modo geral, que temos um **estimador** $T$ de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).
 
 Se considerarmos $T$ como esse estimador, com média $\mu_T$ e desvio-padrão $\sigma_T$, os limites são calculados da seguinte forma:
 
@@ -45,23 +48,23 @@ $$
 \text{Limites} = \begin{cases} \mu_T - L\sigma_T, \quad \text{se o Limite for Inferior} \\ \mu_T, \quad \text{se o Limite for Central} \\ \mu_T + L\sigma_T, \quad \text{se o Limite for Superior} \end{cases}
 $$ {#eq-DEF_LIMITS}
 
-Nessas fórmulas, **$L$** representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.
+Nessas fórmulas, $L$ representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.
 
-Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:
+Contudo, a escolha do valor de $L$ é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:
 
-* **Se L é grande:** Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um **Erro Tipo I** (alarme falso), mas aumenta a de um **Erro Tipo II** (falhar em detectar um processo fora de controle).
-* **Se L é pequeno:** Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de **Erro Tipo I** sobe, enquanto a de **Erro Tipo II** diminui.
+-   **Se L é grande:** Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um **Erro Tipo I** (alarme falso), mas aumenta a de um **Erro Tipo II** (falhar em detectar um processo fora de controle).
+-   **Se L é pequeno:** Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de **Erro Tipo I** sobe, enquanto a de **Erro Tipo II** diminui.
 
-Nos EUA, tornou-se prática padrão utilizar **L = 3**, estabelecendo os chamados "limites de 3 sigmas". Como mencionado no início, a base para isso vem do **Teorema Central do Limite**. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como $`r 1-(pnorm(3) - pnorm(-3))`$. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.
+Nos EUA, tornou-se prática padrão utilizar **$L = 3$**, estabelecendo os chamados "limites de 3 sigmas". Como mencionado no início, a base para isso vem do **Teorema Central do Limite**. Com $L = 3$, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como $`r 1-(pnorm(3) - pnorm(-3))`$. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.
 
 ### Limites de Probabilidade e de Alerta
 
 **1. Limites de Probabilidade:** Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de **Limites de Probabilidade**. Em vez de fixar $L$, primeiro se especifica a probabilidade de Erro Tipo I ($\alpha$) desejada. Por exemplo, se especificarmos um $\alpha = 0,001$, esperamos um falso alarme a cada 1000 pontos. A partir desse $\alpha$, determinam-se os valores correspondentes da distribuição normal-padrão ($z_{\alpha/2}$) para calcular os limites.
 
-**2. Limites de Alerta (*2$\sigma$*):** Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:
+**2. Limites de Alerta (*2***$\sigma$): Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:
 
-  * **Limites de Ação (*3$\sigma$*):** São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;
-  * **Limites de Alerta (*2$\sigma$*):** São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo *pode* não estar operando adequadamente, justificando uma maior atenção.
+-   **Limites de Ação (*3***$\sigma$): São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;
+-   **Limites de Alerta (*2***$\sigma$): São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo *pode* não estar operando adequadamente, justificando uma maior atenção.
 
 O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.
 
@@ -69,8 +72,7 @@ O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar des
 
 Será apresentados alguns exemplos computacionais de como realizar o gráfico de controle para $\bar{X}$. A maioria dos dados serão provinientes de simulação para fins didáticos.
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### R Base
 
 ```{r}
@@ -260,7 +262,6 @@ ax.spines["right"].set_visible(False)
 # Exibição da Figura
 plt.show()
 ```
-
 :::
 
 ### Demais Variações do Gráfico de Controle de $\bar{X}$
@@ -269,31 +270,17 @@ plt.show()
 
 Na prática da construção de gráficos de controle, a média ($\mu$) e o desvio-padrão ($\sigma$) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.
 
-Para isso, Walter Shewhart sugeriu um método prático: a coleta de **$m$** subgrupos (geralmente entre 20 a 25) de tamanho **$n$** relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de "subgrupos racionais" com um baixo custo de amostragem.
+Para isso, Walter Shewhart sugeriu um método prático: a coleta de $m$ subgrupos (geralmente entre 20 a 25) de tamanho $n$ relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de "*subgrupos racionais*" com um baixo custo de amostragem.
 
-Para estimar a média global do processo, $\mu$, utilizamos a média das médias de todos os subgrupos. Sejam $\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m$ as médias de cada um dos **$m$** subgrupos. O melhor estimador para $\mu$ é a grande média, denotada por $\bar{\bar{X}}$: $$\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.$$
+Para estimar a média global do processo, $\mu$, utilizamos a média das médias de todos os subgrupos. Sejam $\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m$ as médias de cada um dos $m$ subgrupos. O melhor estimador para $\mu$ é a grande média, denotada por $\bar{\bar{X}}$: $$\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.$$
 
-Onde $\bar{X}_i$ é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de $\bar{\bar{x}}$ será usado como a **linha central (LC)** do gráfico $\bar{X}$.
+\noindent Onde $\bar{X}_i$ é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de $\bar{\bar{x}}$ será usado como a **linha central (LC)** do gráfico $\bar{X}$.
 
-Para construir os limites de controle, tanto do gráfico $\bar{X}$ quanto do gráfico R, precisamos de um estimador para o desvio-padrão do processo, $\sigma$. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das **amplitudes** das amostras. Para esta análise, optaremos pelo método das amplitudes.
+Para construir os limites de controle, tanto do gráfico $\bar{X}$ quanto do gráfico $R$ (será visto mais a frente), precisamos de um estimador para o desvio-padrão do processo, $\sigma$. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das **amplitudes** das amostras. Para esta análise, optaremos pelo método das amplitudes.
 
-A amplitude ($R$) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela:
-$$R = X_{\text{max}} - X_{\text{min}}$$
+A amplitude ($R$) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela: $$R = X_{\text{max}} - X_{\text{min}}.$$
 
-Sendo $R_1, R_2, \ldots, R_m$ as amplitudes de cada um dos **$m$** subgrupos, calculamos a amplitude média ($\bar{R}$) como: $$\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}$$
-
-#### Construção do Gráfico R
-
-O Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média ($\bar{R}$), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo ($n$).
-
-* **LSC** = $D_4 \bar{R}$
-* **LM** = $\bar{R}$
-* **LIC** = $D_3 \bar{R}$
-
-É importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, $\sigma$, através da seguinte relação:
-$$\hat{\sigma} = \frac{\bar{R}}{d_2}$$
-
-#### Construção do Gráfico $\bar{X}$
+\noindent  Sendo $R_1, R_2, \ldots, R_m$ as amplitudes de cada um dos $m$ subgrupos, calculamos a amplitude média ($\bar{R}$) como: $$\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}.$$
 
 Com as estimativas da média ($\bar{\bar{x}}$) e da variabilidade (via $\bar{R}$) do processo, podemos construir os limites de controle para o gráfico $\bar{X}$, que monitora a tendência central do processo.
 
@@ -301,7 +288,208 @@ $$
 \text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} \\ \bar{\bar{X}}, \quad \text{se o Limite for Central} \\ \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.
 $$ {#eq-DEF_LIMITS_R_CHARTS}
 
-As constantes $A_2, d_2, D_3$ e $D_4$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery.
+As constantes $A_2$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery. Tal constantes e outras podem ser vistas na @fig-CONSTS_CEQ.
+
+#### Exemplos Computacionais
+
+Para exemplificar o gráfico de controle recém apresentado, será usado o *Exemplo 6.1. página 239 (Montgomery, 2009): Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro*.
+
+::: panel-tabset
+
+##### R Base
+
+```{r}
+#| label: EX_R_BASE_2
+
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Vetor de Médias
+vec.means <- apply(samples.x, 1, mean)
+
+# Vetor de Amplitudes
+vec.range <- apply(samples.x, 1, function(x) max(x) - min(x))
+
+# Estimar Algumas Quantidades
+x.bar <- mean(vec.means)
+x.range <- mean(vec.range)
+
+# Definir Constantes Estatíticas
+A2 <- 0.729
+
+# Construir Limites
+LIC <- x.bar - A2 * x.range # Limite Inferior de Controle
+LC  <- x.bar                # Limite Central
+LSC <- x.bar + A2 * x.range # Limite Inferior de Controle
+
+# Definir limites do eixo Y para garantir que tudo seja visível
+ylim <- c(min(vec.means, LIC) - 0.25, max(vec.means, LSC) + 0.25)
+
+# Criar o gráfico principal com pontos e linhas
+plot(x = 1:k, y = vec.means,
+     type = "b", # "b" para both (pontos e linhas)
+     xlab = "Amostra",
+     ylab = "Medida",
+     ylim = ylim,
+     pch = 19, # Tipo de ponto (círculo sólido)
+     col = "black",
+     font.lab = 2 # Deixa os títulos dos eixos em negrito
+)
+
+# Adicionar as linhas de controle
+abline(h = LIC, col = "red", lwd = 2)
+abline(h = LC, col = "blue", lwd = 2)
+abline(h = LSC, col = "red", lwd = 2)
+
+# Adicionar a legenda
+legend("topright",
+       legend = c(
+         bquote(LSC == .(round(LSC, 2))),
+         bquote(hat(mu) == .(round(LC, 2))),
+         bquote(LIC == .(round(LIC, 2)))
+       ),
+       col = c("red", "blue", "red"),
+       lwd = 2,
+       cex = 0.75,
+       bty = "solid" # "n" Remove a caixa ao redor da legenda
+)
+```
+
+##### R usando `ggplot2`
+
+```{r}
+#| label: EX_R_ggplot2_2
+
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Vetor de Médias
+vec.means <- apply(samples.x, 1, mean)
+
+# Vetor de Amplitudes
+vec.range <- apply(samples.x, 1, function(x) max(x) - min(x))
+
+# Estimar Algumas Quantidades
+x.bar <- mean(vec.means)
+x.range <- mean(vec.range)
+
+# Definir Constantes Estatíticas
+A2 <- 0.729
+
+# Construir Limites
+LIC <- x.bar - A2 * x.range # Limite Inferior de Controle
+LC  <- x.bar                # Limite Central
+LSC <- x.bar + A2 * x.range # Limite Inferior de Controle
+
+library(ggplot2)
+
+# Construir Gráfico de Controle no ggplot2
+ggplot(data = NULL, aes(x = 1:nrow(samples.x), y = vec.means)) +
+  geom_point(size = 2) + geom_line() +
+  geom_hline(aes(yintercept = LIC, color = "LIC")) +
+  geom_hline(aes(yintercept = LC, color = "LC")) +
+  geom_hline(aes(yintercept = LSC, color = "LSC")) +
+  scale_color_manual(
+    values = c("LIC" = "red", "LC" = "blue", "LSC" = "red"),
+    labels = c(
+      bquote(LIC == .(round(LIC, 2))),
+      bquote(mu[0] == .(round(x.bar, 2))),
+      bquote(LSC == .(round(LSC, 2)))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medida",
+    color = "Limites"
+  ) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )
+```
+
+##### Python
+
+```{python}
+#| label: EX_PYTHON_2
+
+
+```
+
+:::
 
 #### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $R$)
 
@@ -310,6 +498,6 @@ As constantes $A_2, d_2, D_3$ e $D_4$ são tabeladas e dependem do tamanho do su
 ## Gráfico de Controle para $S$
 
 :::: progress
-:::: {.progress-bar style="width: 100%;"}
-::::
+::: {.progress-bar style="width: 100%;"}
+:::
 ::::

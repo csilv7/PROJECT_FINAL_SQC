@@ -244,7 +244,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2.1</span> Introdução</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2.1</span> Introdução</a>
+  <ul class="collapse">
+  <li><a href="#constantes-estatísticas-usadas" id="toc-constantes-estatísticas-usadas" class="nav-link" data-scroll-target="#constantes-estatísticas-usadas"><span class="header-section-number">2.1.1</span> Constantes Estatísticas Usadas</a></li>
+  </ul></li>
   <li><a href="#gráfico-de-controle-para-barx" id="toc-gráfico-de-controle-para-barx" class="nav-link" data-scroll-target="#gráfico-de-controle-para-barx"><span class="header-section-number">2.2</span> Gráfico de Controle para <span class="math inline">\(\bar{X}\)</span></a>
   <ul class="collapse">
   <li><a href="#limites-de-probabilidade-e-de-alerta" id="toc-limites-de-probabilidade-e-de-alerta" class="nav-link" data-scroll-target="#limites-de-probabilidade-e-de-alerta"><span class="header-section-number">2.2.1</span> Limites de Probabilidade e de Alerta</a></li>
@@ -291,37 +294,50 @@ window.Quarto = {
 <p>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de <strong>causas comuns de variação</strong>. No entanto, alterações significativas — as chamadas <strong>causas especiais</strong> — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</p>
 <p>Entre os gráficos mais utilizados destacam-se:</p>
 <ul>
-<li><strong>Gráficos de Médias e Amplitudes (<span class="math inline">\(\bar{X}\)</span> e R)</strong>: adequados quando o tamanho da amostra é pequeno (tipicamente <span class="math inline">\(n \leq 10\)</span>). O gráfico <span class="math inline">\(\bar{X}\)</span> monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</li>
-<li><strong>Gráficos de Médias e Desvios-Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(S\)</span>)</strong>: preferidos quando o tamanho das amostras é maior (<span class="math inline">\(n &gt; 10\)</span>) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</li>
+<li><strong>Gráficos de Médias e Amplitudes (</strong><span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>): adequados quando o tamanho da amostra é pequeno (tipicamente <span class="math inline">\(n \leq 10\)</span>). O gráfico <span class="math inline">\(\bar{X}\)</span> monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</li>
+<li><strong>Gráficos de Médias e Desvios-Padrão (</strong><span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(S\)</span>): preferidos quando o tamanho das amostras é maior (<span class="math inline">\(n &gt; 10\)</span>) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</li>
 <li><strong>Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)</strong>: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</li>
 </ul>
 <p>Esses gráficos compartilham uma estrutura comum: uma <strong>linha central (LC)</strong> que representa o valor esperado sob controle e dois <strong>limites de controle</strong> — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</p>
 <p>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o <strong>tamanho e a frequência das amostras</strong>, a <strong>definição de subgrupos racionais</strong> e a <strong>escolha entre amplitude ou desvio padrão</strong> como medida de dispersão. Tais escolhas impactam diretamente a <strong>sensibilidade</strong> do gráfico em detectar mudanças, assim como o <strong>custo de amostragem</strong>.</p>
 <p>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</p>
+<section id="constantes-estatísticas-usadas" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="constantes-estatísticas-usadas"><span class="header-section-number">2.1.1</span> Constantes Estatísticas Usadas</h3>
+<div id="fig-CONSTS_CEQ" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CONSTS_CEQ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="imagens/CONSTANTES_CEQ.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CONSTS_CEQ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qualidade para Contrução de Gráficos de Controle.
+</figcaption>
+</figure>
+</div>
+</section>
 </section>
 <section id="gráfico-de-controle-para-barx" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="gráfico-de-controle-para-barx"><span class="header-section-number">2.2</span> Gráfico de Controle para <span class="math inline">\(\bar{X}\)</span></h2>
 <p>Para a construção dos Gráfico de Controle de <span class="math inline">\(\bar{X}\)</span>, suponha que a característica de interesse, <span class="math inline">\(X\)</span>, tem média <span class="math inline">\(\mu\)</span> e desvio padrão <span class="math inline">\(\sigma\)</span>, conhecidos. Desta forma, ao retirar uma amostra <span class="math inline">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> de tamanho <span class="math inline">\(n\)</span>, a média amostral é dada por: <span class="math display">\[\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}\]</span></p>
 <p>Pelo Teorema Central do Limite (TCL), sabe-se que <span class="math inline">\(\bar{X}\)</span> é normalmente distribuído com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^{2}/n\)</span>. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de <span class="math inline">\(100(1 - \alpha)\)</span>% para <span class="math inline">\(\mu\)</span> é expresso como: <span class="math display">\[\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.\]</span></p>
-<p>Baseado nisso, Shewhart propôs, de modo geral, que temos um <strong>estimador <span class="math inline">\(T\)</span></strong> de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</p>
+<p>Baseado nisso, Shewhart propôs, de modo geral, que temos um <strong>estimador</strong> <span class="math inline">\(T\)</span> de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</p>
 <p>Se considerarmos <span class="math inline">\(T\)</span> como esse estimador, com média <span class="math inline">\(\mu_T\)</span> e desvio-padrão <span class="math inline">\(\sigma_T\)</span>, os limites são calculados da seguinte forma:</p>
 <p><span id="eq-DEF_LIMITS"><span class="math display">\[
 \text{Limites} = \begin{cases} \mu_T - L\sigma_T, \quad \text{se o Limite for Inferior} \\ \mu_T, \quad \text{se o Limite for Central} \\ \mu_T + L\sigma_T, \quad \text{se o Limite for Superior} \end{cases}
 \tag{2.1}\]</span></span></p>
-<p>Nessas fórmulas, <strong><span class="math inline">\(L\)</span></strong> representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</p>
-<p>Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</p>
+<p>Nessas fórmulas, <span class="math inline">\(L\)</span> representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</p>
+<p>Contudo, a escolha do valor de <span class="math inline">\(L\)</span> é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</p>
 <ul>
 <li><strong>Se L é grande:</strong> Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um <strong>Erro Tipo I</strong> (alarme falso), mas aumenta a de um <strong>Erro Tipo II</strong> (falhar em detectar um processo fora de controle).</li>
 <li><strong>Se L é pequeno:</strong> Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de <strong>Erro Tipo I</strong> sobe, enquanto a de <strong>Erro Tipo II</strong> diminui.</li>
 </ul>
-<p>Nos EUA, tornou-se prática padrão utilizar <strong>L = 3</strong>, estabelecendo os chamados “limites de 3 sigmas”. Como mencionado no início, a base para isso vem do <strong>Teorema Central do Limite</strong>. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como <span class="math inline">\(0.0026998\)</span>. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</p>
+<p>Nos EUA, tornou-se prática padrão utilizar <strong><span class="math inline">\(L = 3\)</span></strong>, estabelecendo os chamados “limites de 3 sigmas”. Como mencionado no início, a base para isso vem do <strong>Teorema Central do Limite</strong>. Com <span class="math inline">\(L = 3\)</span>, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como <span class="math inline">\(0.0026998\)</span>. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</p>
 <section id="limites-de-probabilidade-e-de-alerta" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="limites-de-probabilidade-e-de-alerta"><span class="header-section-number">2.2.1</span> Limites de Probabilidade e de Alerta</h3>
 <p><strong>1. Limites de Probabilidade:</strong> Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de <strong>Limites de Probabilidade</strong>. Em vez de fixar <span class="math inline">\(L\)</span>, primeiro se especifica a probabilidade de Erro Tipo I (<span class="math inline">\(\alpha\)</span>) desejada. Por exemplo, se especificarmos um <span class="math inline">\(\alpha = 0,001\)</span>, esperamos um falso alarme a cada 1000 pontos. A partir desse <span class="math inline">\(\alpha\)</span>, determinam-se os valores correspondentes da distribuição normal-padrão (<span class="math inline">\(z_{\alpha/2}\)</span>) para calcular os limites.</p>
-<p><strong>2. Limites de Alerta (<em>2<span class="math inline">\(\sigma\)</span></em>):</strong> Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</p>
+<p><strong>2. Limites de Alerta (<em>2</em></strong><span class="math inline">\(\sigma\)</span>): Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</p>
 <ul>
-<li><strong>Limites de Ação (<em>3<span class="math inline">\(\sigma\)</span></em>):</strong> São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</li>
-<li><strong>Limites de Alerta (<em>2<span class="math inline">\(\sigma\)</span></em>):</strong> São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo <em>pode</em> não estar operando adequadamente, justificando uma maior atenção.</li>
+<li><strong>Limites de Ação (<em>3</em></strong><span class="math inline">\(\sigma\)</span>): São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</li>
+<li><strong>Limites de Alerta (<em>2</em></strong><span class="math inline">\(\sigma\)</span>): São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo <em>pode</em> não estar operando adequadamente, justificando uma maior atenção.</li>
 </ul>
 <p>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</p>
 </section>
@@ -556,33 +572,231 @@ window.Quarto = {
 <section id="gráficos-de-médias-e-amplitudes-barx-e-r" class="level4" data-number="2.3.1.1">
 <h4 data-number="2.3.1.1" class="anchored" data-anchor-id="gráficos-de-médias-e-amplitudes-barx-e-r"><span class="header-section-number">2.3.1.1</span> Gráficos de Médias e Amplitudes (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</h4>
 <p>Na prática da construção de gráficos de controle, a média (<span class="math inline">\(\mu\)</span>) e o desvio-padrão (<span class="math inline">\(\sigma\)</span>) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.</p>
-<p>Para isso, Walter Shewhart sugeriu um método prático: a coleta de <strong><span class="math inline">\(m\)</span></strong> subgrupos (geralmente entre 20 a 25) de tamanho <strong><span class="math inline">\(n\)</span></strong> relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de “subgrupos racionais” com um baixo custo de amostragem.</p>
-<p>Para estimar a média global do processo, <span class="math inline">\(\mu\)</span>, utilizamos a média das médias de todos os subgrupos. Sejam <span class="math inline">\(\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m\)</span> as médias de cada um dos <strong><span class="math inline">\(m\)</span></strong> subgrupos. O melhor estimador para <span class="math inline">\(\mu\)</span> é a grande média, denotada por <span class="math inline">\(\bar{\bar{X}}\)</span>: <span class="math display">\[\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.\]</span></p>
+<p>Para isso, Walter Shewhart sugeriu um método prático: a coleta de <span class="math inline">\(m\)</span> subgrupos (geralmente entre 20 a 25) de tamanho <span class="math inline">\(n\)</span> relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de “<em>subgrupos racionais</em>” com um baixo custo de amostragem.</p>
+<p>Para estimar a média global do processo, <span class="math inline">\(\mu\)</span>, utilizamos a média das médias de todos os subgrupos. Sejam <span class="math inline">\(\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m\)</span> as médias de cada um dos <span class="math inline">\(m\)</span> subgrupos. O melhor estimador para <span class="math inline">\(\mu\)</span> é a grande média, denotada por <span class="math inline">\(\bar{\bar{X}}\)</span>: <span class="math display">\[\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.\]</span></p>
 <p>Onde <span class="math inline">\(\bar{X}_i\)</span> é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de <span class="math inline">\(\bar{\bar{x}}\)</span> será usado como a <strong>linha central (LC)</strong> do gráfico <span class="math inline">\(\bar{X}\)</span>.</p>
-<p>Para construir os limites de controle, tanto do gráfico <span class="math inline">\(\bar{X}\)</span> quanto do gráfico R, precisamos de um estimador para o desvio-padrão do processo, <span class="math inline">\(\sigma\)</span>. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das <strong>amplitudes</strong> das amostras. Para esta análise, optaremos pelo método das amplitudes.</p>
-<p>A amplitude (<span class="math inline">\(R\)</span>) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela: <span class="math display">\[R = X_{\text{max}} - X_{\text{min}}\]</span></p>
-<p>Sendo <span class="math inline">\(R_1, R_2, \ldots, R_m\)</span> as amplitudes de cada um dos <strong><span class="math inline">\(m\)</span></strong> subgrupos, calculamos a amplitude média (<span class="math inline">\(\bar{R}\)</span>) como: <span class="math display">\[\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}\]</span></p>
-</section>
-<section id="construção-do-gráfico-r" class="level4" data-number="2.3.1.2">
-<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="construção-do-gráfico-r"><span class="header-section-number">2.3.1.2</span> Construção do Gráfico R</h4>
-<p>O Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média (<span class="math inline">\(\bar{R}\)</span>), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo (<span class="math inline">\(n\)</span>).</p>
-<ul>
-<li><strong>LSC</strong> = <span class="math inline">\(D_4 \bar{R}\)</span></li>
-<li><strong>LM</strong> = <span class="math inline">\(\bar{R}\)</span></li>
-<li><strong>LIC</strong> = <span class="math inline">\(D_3 \bar{R}\)</span></li>
-</ul>
-<p>É importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, <span class="math inline">\(\sigma\)</span>, através da seguinte relação: <span class="math display">\[\hat{\sigma} = \frac{\bar{R}}{d_2}\]</span></p>
-</section>
-<section id="construção-do-gráfico-barx" class="level4" data-number="2.3.1.3">
-<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="construção-do-gráfico-barx"><span class="header-section-number">2.3.1.3</span> Construção do Gráfico <span class="math inline">\(\bar{X}\)</span></h4>
+<p>Para construir os limites de controle, tanto do gráfico <span class="math inline">\(\bar{X}\)</span> quanto do gráfico <span class="math inline">\(R\)</span> (será visto mais a frente), precisamos de um estimador para o desvio-padrão do processo, <span class="math inline">\(\sigma\)</span>. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das <strong>amplitudes</strong> das amostras. Para esta análise, optaremos pelo método das amplitudes.</p>
+<p>A amplitude (<span class="math inline">\(R\)</span>) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela: <span class="math display">\[R = X_{\text{max}} - X_{\text{min}}.\]</span></p>
+<p>Sendo <span class="math inline">\(R_1, R_2, \ldots, R_m\)</span> as amplitudes de cada um dos <span class="math inline">\(m\)</span> subgrupos, calculamos a amplitude média (<span class="math inline">\(\bar{R}\)</span>) como: <span class="math display">\[\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}.\]</span></p>
 <p>Com as estimativas da média (<span class="math inline">\(\bar{\bar{x}}\)</span>) e da variabilidade (via <span class="math inline">\(\bar{R}\)</span>) do processo, podemos construir os limites de controle para o gráfico <span class="math inline">\(\bar{X}\)</span>, que monitora a tendência central do processo.</p>
 <p><span id="eq-DEF_LIMITS_R_CHARTS"><span class="math display">\[
 \text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} \\ \bar{\bar{X}}, \quad \text{se o Limite for Central} \\ \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.
 \tag{2.2}\]</span></span></p>
-<p>As constantes <span class="math inline">\(A_2, d_2, D_3\)</span> e <span class="math inline">\(D_4\)</span> são tabeladas e dependem do tamanho do subgrupo (<span class="math inline">\(n\)</span>). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o “Introdução ao Controle de Qualidade” de Montgomery.</p>
+<p>As constantes <span class="math inline">\(A_2\)</span> são tabeladas e dependem do tamanho do subgrupo (<span class="math inline">\(n\)</span>). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o “Introdução ao Controle de Qualidade” de Montgomery. Tal constantes e outras podem ser vistas na <a href="#fig-CONSTS_CEQ" class="quarto-xref">Figura&nbsp;<span>2.1</span></a>.</p>
 </section>
-<section id="gráficos-de-médias-e-desvio-padrão-barx-e-r" class="level4" data-number="2.3.1.4">
-<h4 data-number="2.3.1.4" class="anchored" data-anchor-id="gráficos-de-médias-e-desvio-padrão-barx-e-r"><span class="header-section-number">2.3.1.4</span> Gráficos de Médias e Desvio Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</h4>
+<section id="exemplos-computacionais-1" class="level4" data-number="2.3.1.2">
+<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="exemplos-computacionais-1"><span class="header-section-number">2.3.1.2</span> Exemplos Computacionais</h4>
+<p>Para exemplificar o gráfico de controle recém apresentado, será usado o <em>Exemplo 6.1. página 239 (Montgomery, 2009): Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro</em>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">R usando <code>ggplot2</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando a Tabela 6.1 em R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="fl">1.3235</span>, <span class="fl">1.4128</span>, <span class="fl">1.6744</span>, <span class="fl">1.4573</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="fl">1.4314</span>, <span class="fl">1.3592</span>, <span class="fl">1.6075</span>, <span class="fl">1.4666</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>, <span class="fl">1.4284</span>, <span class="fl">1.4871</span>, <span class="fl">1.4932</span>, <span class="fl">1.4324</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>, <span class="fl">1.5028</span>, <span class="fl">1.6352</span>, <span class="fl">1.3841</span>, <span class="fl">1.2831</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>, <span class="fl">1.5604</span>, <span class="fl">1.2735</span>, <span class="fl">1.5265</span>, <span class="fl">1.4362</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>, <span class="fl">1.5955</span>, <span class="fl">1.5451</span>, <span class="fl">1.3574</span>, <span class="fl">1.3281</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>, <span class="fl">1.6274</span>, <span class="fl">1.5064</span>, <span class="fl">1.8366</span>, <span class="fl">1.4177</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>, <span class="fl">1.4190</span>, <span class="fl">1.4303</span>, <span class="fl">1.6637</span>, <span class="fl">1.6067</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>, <span class="fl">1.3884</span>, <span class="fl">1.7277</span>, <span class="fl">1.5355</span>, <span class="fl">1.5176</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>, <span class="fl">1.4039</span>, <span class="fl">1.6697</span>, <span class="fl">1.5089</span>, <span class="fl">1.6477</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>, <span class="fl">1.4158</span>, <span class="fl">1.7667</span>, <span class="fl">1.4278</span>, <span class="fl">1.5927</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>, <span class="fl">1.5821</span>, <span class="fl">1.3355</span>, <span class="fl">1.5777</span>, <span class="fl">1.3908</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13</span>, <span class="fl">1.2856</span>, <span class="fl">1.4106</span>, <span class="fl">1.4447</span>, <span class="fl">1.6388</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">14</span>, <span class="fl">1.4951</span>, <span class="fl">1.4036</span>, <span class="fl">1.5893</span>, <span class="fl">1.6458</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">15</span>, <span class="fl">1.3589</span>, <span class="fl">1.2863</span>, <span class="fl">1.5996</span>, <span class="fl">1.2497</span>,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="dv">16</span>, <span class="fl">1.5747</span>, <span class="fl">1.5301</span>, <span class="fl">1.5171</span>, <span class="fl">1.1839</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="dv">17</span>, <span class="fl">1.3680</span>, <span class="fl">1.7269</span>, <span class="fl">1.3957</span>, <span class="fl">1.5019</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="dv">18</span>, <span class="fl">1.4163</span>, <span class="fl">1.3864</span>, <span class="fl">1.3057</span>, <span class="fl">1.6210</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="dv">19</span>, <span class="fl">1.5796</span>, <span class="fl">1.4185</span>, <span class="fl">1.6541</span>, <span class="fl">1.5116</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="fl">1.7106</span>, <span class="fl">1.4412</span>, <span class="fl">1.2361</span>, <span class="fl">1.3824</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="dv">21</span>, <span class="fl">1.4371</span>, <span class="fl">1.5051</span>, <span class="fl">1.3485</span>, <span class="fl">1.5670</span>,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="dv">22</span>, <span class="fl">1.4738</span>, <span class="fl">1.5936</span>, <span class="fl">1.6583</span>, <span class="fl">1.4973</span>,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="dv">23</span>, <span class="fl">1.5917</span>, <span class="fl">1.4333</span>, <span class="fl">1.5551</span>, <span class="fl">1.5295</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="dv">24</span>, <span class="fl">1.6399</span>, <span class="fl">1.5243</span>, <span class="fl">1.5705</span>, <span class="fl">1.5563</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="dv">25</span>, <span class="fl">1.5797</span>, <span class="fl">1.3663</span>, <span class="fl">1.6240</span>, <span class="fl">1.3732</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Alguns ajustes</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tbl.<span class="fl">6.1</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tbl.<span class="fl">6.1</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amostra"</span>, <span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Obter apenas as amostras</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>samples.x <span class="ot">&lt;-</span> tbl.<span class="fl">6.1</span>[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, mean)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Amplitudes</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>vec.range <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>x.range <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.range)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir Constantes Estatíticas</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fl">0.729</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> x.bar                <span class="co"># Limite Central</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir limites do eixo Y para garantir que tudo seja visível</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(vec.means, LIC) <span class="sc">-</span> <span class="fl">0.25</span>, <span class="fu">max</span>(vec.means, LSC) <span class="sc">+</span> <span class="fl">0.25</span>)</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico principal com pontos e linhas</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means,</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="co"># "b" para both (pontos e linhas)</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> ylim,</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="co"># Tipo de ponto (círculo sólido)</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab =</span> <span class="dv">2</span> <span class="co"># Deixa os títulos dos eixos em negrito</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar as linhas de controle</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LIC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LC, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LSC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar a legenda</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>))),</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(<span class="fu">hat</span>(mu) <span class="sc">==</span> .(<span class="fu">round</span>(LC, <span class="dv">2</span>))),</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>)))</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex =</span> <span class="fl">0.75</span>,</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"solid"</span> <span class="co"># "n" Remove a caixa ao redor da legenda</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C2_PlotOfVariables_files/figure-html/EX_R_BASE_2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando a Tabela 6.1 em R</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="fl">1.3235</span>, <span class="fl">1.4128</span>, <span class="fl">1.6744</span>, <span class="fl">1.4573</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="fl">1.4314</span>, <span class="fl">1.3592</span>, <span class="fl">1.6075</span>, <span class="fl">1.4666</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>, <span class="fl">1.4284</span>, <span class="fl">1.4871</span>, <span class="fl">1.4932</span>, <span class="fl">1.4324</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>, <span class="fl">1.5028</span>, <span class="fl">1.6352</span>, <span class="fl">1.3841</span>, <span class="fl">1.2831</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>, <span class="fl">1.5604</span>, <span class="fl">1.2735</span>, <span class="fl">1.5265</span>, <span class="fl">1.4362</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>, <span class="fl">1.5955</span>, <span class="fl">1.5451</span>, <span class="fl">1.3574</span>, <span class="fl">1.3281</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>, <span class="fl">1.6274</span>, <span class="fl">1.5064</span>, <span class="fl">1.8366</span>, <span class="fl">1.4177</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>, <span class="fl">1.4190</span>, <span class="fl">1.4303</span>, <span class="fl">1.6637</span>, <span class="fl">1.6067</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>, <span class="fl">1.3884</span>, <span class="fl">1.7277</span>, <span class="fl">1.5355</span>, <span class="fl">1.5176</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>, <span class="fl">1.4039</span>, <span class="fl">1.6697</span>, <span class="fl">1.5089</span>, <span class="fl">1.6477</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>, <span class="fl">1.4158</span>, <span class="fl">1.7667</span>, <span class="fl">1.4278</span>, <span class="fl">1.5927</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>, <span class="fl">1.5821</span>, <span class="fl">1.3355</span>, <span class="fl">1.5777</span>, <span class="fl">1.3908</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13</span>, <span class="fl">1.2856</span>, <span class="fl">1.4106</span>, <span class="fl">1.4447</span>, <span class="fl">1.6388</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">14</span>, <span class="fl">1.4951</span>, <span class="fl">1.4036</span>, <span class="fl">1.5893</span>, <span class="fl">1.6458</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">15</span>, <span class="fl">1.3589</span>, <span class="fl">1.2863</span>, <span class="fl">1.5996</span>, <span class="fl">1.2497</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="dv">16</span>, <span class="fl">1.5747</span>, <span class="fl">1.5301</span>, <span class="fl">1.5171</span>, <span class="fl">1.1839</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="dv">17</span>, <span class="fl">1.3680</span>, <span class="fl">1.7269</span>, <span class="fl">1.3957</span>, <span class="fl">1.5019</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="dv">18</span>, <span class="fl">1.4163</span>, <span class="fl">1.3864</span>, <span class="fl">1.3057</span>, <span class="fl">1.6210</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="dv">19</span>, <span class="fl">1.5796</span>, <span class="fl">1.4185</span>, <span class="fl">1.6541</span>, <span class="fl">1.5116</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="fl">1.7106</span>, <span class="fl">1.4412</span>, <span class="fl">1.2361</span>, <span class="fl">1.3824</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="dv">21</span>, <span class="fl">1.4371</span>, <span class="fl">1.5051</span>, <span class="fl">1.3485</span>, <span class="fl">1.5670</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="dv">22</span>, <span class="fl">1.4738</span>, <span class="fl">1.5936</span>, <span class="fl">1.6583</span>, <span class="fl">1.4973</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="dv">23</span>, <span class="fl">1.5917</span>, <span class="fl">1.4333</span>, <span class="fl">1.5551</span>, <span class="fl">1.5295</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="dv">24</span>, <span class="fl">1.6399</span>, <span class="fl">1.5243</span>, <span class="fl">1.5705</span>, <span class="fl">1.5563</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="dv">25</span>, <span class="fl">1.5797</span>, <span class="fl">1.3663</span>, <span class="fl">1.6240</span>, <span class="fl">1.3732</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Alguns ajustes</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tbl.<span class="fl">6.1</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tbl.<span class="fl">6.1</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amostra"</span>, <span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Obter apenas as amostras</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>samples.x <span class="ot">&lt;-</span> tbl.<span class="fl">6.1</span>[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, mean)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Amplitudes</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>vec.range <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>x.range <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.range)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir Constantes Estatíticas</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fl">0.729</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> x.bar                <span class="co"># Limite Central</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Gráfico de Controle no ggplot2</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples.x), <span class="at">y =</span> vec.means)) <span class="sc">+</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LIC, <span class="at">color =</span> <span class="st">"LIC"</span>)) <span class="sc">+</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LC, <span class="at">color =</span> <span class="st">"LC"</span>)) <span class="sc">+</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LSC, <span class="at">color =</span> <span class="st">"LSC"</span>)) <span class="sc">+</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"LIC"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"LC"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"LSC"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>))),</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(mu[<span class="dv">0</span>] <span class="sc">==</span> .(<span class="fu">round</span>(x.bar, <span class="dv">2</span>))),</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>)))</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Limites"</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C2_PlotOfVariables_files/figure-html/EX_R_ggplot2_2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="gráficos-de-médias-e-desvio-padrão-barx-e-r" class="level4" data-number="2.3.1.3">
+<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="gráficos-de-médias-e-desvio-padrão-barx-e-r"><span class="header-section-number">2.3.1.3</span> Gráficos de Médias e Desvio Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</h4>
 </section>
 </section>
 </section>
@@ -1065,321 +1279,509 @@ window.Quarto = {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Variáveis</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Python Environment Setup</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">"C:/Users/user/anaconda3/python.exe"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>Os **gráficos de controle para variáveis** são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala **contínua**, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da **tendência central** quanto da **variabilidade** do processo.</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de **causas comuns de variação**. No entanto, alterações significativas — as chamadas **causas especiais** — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>Entre os gráficos mais utilizados destacam-se:</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Médias e Amplitudes ($\bar{X}$ e R)**: adequados quando o tamanho da amostra é pequeno (tipicamente $n \leq 10$). O gráfico $\bar{X}$ monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Médias e Desvios-Padrão ($\bar{X}$ e $S$)**: preferidos quando o tamanho das amostras é maior ($n &gt; 10$) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)**: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>Esses gráficos compartilham uma estrutura comum: uma **linha central (LC)** que representa o valor esperado sob controle e dois **limites de controle** — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o **tamanho e a frequência das amostras**, a **definição de subgrupos racionais** e a **escolha entre amplitude ou desvio padrão** como medida de dispersão. Tais escolhas impactam diretamente a **sensibilidade** do gráfico em detectar mudanças, assim como o **custo de amostragem**.</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $\bar{X}$</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>Para a construção dos Gráfico de Controle de $\bar{X}$, suponha que a característica de interesse, $X$, tem média $\mu$ e desvio padrão $\sigma$, conhecidos. Desta forma, ao retirar uma amostra $X_{1}, X_{2}, \ldots, X_{n}$ de tamanho $n$, a média amostral é dada por:</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>$$\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}$$</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>Pelo Teorema Central do Limite (TCL), sabe-se que $\bar{X}$ é normalmente distribuído com média $\mu$ e variância $\sigma^{2}/n$. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de $100(1 - \alpha)$% para $\mu$ é expresso como: $$\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.$$</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>Baseado nisso, Shewhart propôs, de modo geral, que temos um **estimador $T$** de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>Se considerarmos $T$ como esse estimador, com média $\mu_T$ e desvio-padrão $\sigma_T$, os limites são calculados da seguinte forma:</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>\text{Limites} = \begin{cases} \mu_T - L\sigma_T, \quad \text{se o Limite for Inferior} <span class="sc">\\</span> \mu_T, \quad \text{se o Limite for Central} <span class="sc">\\</span> \mu_T + L\sigma_T, \quad \text{se o Limite for Superior} \end{cases}</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>$$ {#eq-DEF_LIMITS}</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>Nessas fórmulas, **$L$** representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>Contudo, a escolha do valor de L é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Se L é grande:** Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um **Erro Tipo I** (alarme falso), mas aumenta a de um **Erro Tipo II** (falhar em detectar um processo fora de controle).</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Se L é pequeno:** Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de **Erro Tipo I** sobe, enquanto a de **Erro Tipo II** diminui.</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>Nos EUA, tornou-se prática padrão utilizar **L = 3**, estabelecendo os chamados "limites de 3 sigmas". Como mencionado no início, a base para isso vem do **Teorema Central do Limite**. Com L = 3, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como $<span class="in">`r 1-(pnorm(3) - pnorm(-3))`</span>$. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limites de Probabilidade e de Alerta</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>**1. Limites de Probabilidade:** Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de **Limites de Probabilidade**. Em vez de fixar $L$, primeiro se especifica a probabilidade de Erro Tipo I ($\alpha$) desejada. Por exemplo, se especificarmos um $\alpha = 0,001$, esperamos um falso alarme a cada 1000 pontos. A partir desse $\alpha$, determinam-se os valores correspondentes da distribuição normal-padrão ($z_{\alpha/2}$) para calcular os limites.</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>**2. Limites de Alerta (*2$\sigma$*):** Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Limites de Ação (*3$\sigma$*):** São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Limites de Alerta (*2$\sigma$*):** São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo *pode* não estar operando adequadamente, justificando uma maior atenção.</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exemplos Computacionais</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>Será apresentados alguns exemplos computacionais de como realizar o gráfico de controle para $\bar{X}$. A maioria dos dados serão provinientes de simulação para fins didáticos.</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### R Base</span></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_BASE_1</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                            <span class="co"># Limite Central</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir limites do eixo Y para garantir que tudo seja visível</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(vec.means, LIC) <span class="sc">-</span> <span class="dv">7</span>, <span class="fu">max</span>(vec.means, LSC) <span class="sc">+</span> <span class="dv">7</span>)</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico principal com pontos e linhas</span></span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means,</span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="co"># "b" para both (pontos e linhas)</span></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Amostra"</span>,</span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Medida"</span>,</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> ylim,</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="co"># Tipo de ponto (círculo sólido)</span></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab =</span> <span class="dv">2</span> <span class="co"># Deixa os títulos dos eixos em negrito</span></span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar as linhas de controle</span></span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LIC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LC, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LSC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar a legenda</span></span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>))),</span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(<span class="fu">hat</span>(mu) <span class="sc">==</span> .(<span class="fu">round</span>(LC, <span class="dv">2</span>))),</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>)))</span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>       ),</span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"solid"</span> <span class="co"># "n" Remove a caixa ao redor da legenda</span></span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### R usando `ggplot2`</span></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_ggplot2_1</span></span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
-<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
-<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
-<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
-<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> T)</span>
-<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
-<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
-<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                         <span class="co"># Limite Central</span></span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Gráfico de Controle no ggplot2</span></span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means)) <span class="sc">+</span></span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LIC, <span class="at">color =</span> <span class="st">"LIC"</span>)) <span class="sc">+</span></span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LC, <span class="at">color =</span> <span class="st">"LC"</span>)) <span class="sc">+</span></span>
-<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LSC, <span class="at">color =</span> <span class="st">"LSC"</span>)) <span class="sc">+</span></span>
-<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"LIC"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"LC"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"LSC"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
-<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
-<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>))),</span>
-<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(mu[<span class="dv">0</span>] <span class="sc">==</span> .(<span class="fu">round</span>(x.bar, <span class="dv">2</span>))),</span>
-<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>)))</span>
-<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Amostra"</span>,</span>
-<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Medida"</span>,</span>
-<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Limites"</span></span>
-<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_PYTHON_1</span></span>
-<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros</span></span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">25</span>  <span class="co"># Número de Amostras</span></span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span>   <span class="co"># Tamanho de cada Amostra</span></span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular dados com semente de aleatoriedade para reprodutibilidade</span></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>vec_data <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">25</span>, scale<span class="op">=</span><span class="fl">1.5</span>, size<span class="op">=</span>k<span class="op">*</span>n) <span class="op">+</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="fl">1.2</span>, size<span class="op">=</span>k<span class="op">*</span>n)</span>
-<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a matriz de dados</span></span>
-<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a>matrix_data <span class="op">=</span> vec_data.reshape(k, n)</span>
-<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de médias (média de cada linha)</span></span>
-<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>vec_means <span class="op">=</span> matrix_data.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)</span></span>
-<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>vec_sds <span class="op">=</span> matrix_data.std(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar quantidades</span></span>
-<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>x_bar <span class="op">=</span> vec_means.mean()</span>
-<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a>x_std <span class="op">=</span> <span class="fl">1.5</span></span>
-<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir limites</span></span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> x_bar <span class="op">-</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Inferior de Controle</span></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>lc  <span class="op">=</span> <span class="dv">25</span>                               <span class="co"># Limite Central</span></span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> x_bar <span class="op">+</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Superior de Controle</span></span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar o estilo do gráfico</span></span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"ticks"</span>) <span class="co"># Similar ao theme_classic()</span></span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>), dpi<span class="op">=</span><span class="dv">800</span>)</span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, k<span class="op">+</span><span class="dv">1</span>), y<span class="op">=</span>vec_means, marker<span class="op">=</span><span class="st">"o"</span>, color<span class="op">=</span><span class="st">"black"</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar as linhas de controle</span></span>
-<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lsc, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LSC = </span><span class="sc">{</span>lsc<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lc, color<span class="op">=</span><span class="st">"blue"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"$</span><span class="ch">\\</span><span class="ss">hat</span><span class="ch">{{\\</span><span class="ss">mu</span><span class="ch">}}</span><span class="ss">$ = </span><span class="sc">{</span>lc<span class="sc">:.2f}</span><span class="ss">"</span>) <span class="co"># Usando LaTeX para mu</span></span>
-<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lic, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LIC = </span><span class="sc">{</span>lic<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">18</span>, <span class="dv">32</span>)</span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Amostra"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Medida"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Legenda</span></span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>ax.legend(prop<span class="op">=</span>{<span class="st">"size"</span>:<span class="dv">8</span>, <span class="st">"weight"</span>: <span class="st">"bold"</span>}, loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>) <span class="co"># bbox_to_anchor=(1, 0.5), </span></span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição da Figura</span></span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a><span class="fu">### Demais Variações do Gráfico de Controle de $\bar{X}$</span></span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Amplitudes ($\bar{X}$ e $R$)</span></span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>Na prática da construção de gráficos de controle, a média ($\mu$) e o desvio-padrão ($\sigma$) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.</span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>Para isso, Walter Shewhart sugeriu um método prático: a coleta de **$m$** subgrupos (geralmente entre 20 a 25) de tamanho **$n$** relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de "subgrupos racionais" com um baixo custo de amostragem.</span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>Para estimar a média global do processo, $\mu$, utilizamos a média das médias de todos os subgrupos. Sejam $\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m$ as médias de cada um dos **$m$** subgrupos. O melhor estimador para $\mu$ é a grande média, denotada por $\bar{\bar{X}}$: $$\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.$$</span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>Onde $\bar{X}_i$ é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de $\bar{\bar{x}}$ será usado como a **linha central (LC)** do gráfico $\bar{X}$.</span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>Para construir os limites de controle, tanto do gráfico $\bar{X}$ quanto do gráfico R, precisamos de um estimador para o desvio-padrão do processo, $\sigma$. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das **amplitudes** das amostras. Para esta análise, optaremos pelo método das amplitudes.</span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>A amplitude ($R$) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela:</span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>$$R = X_{\text{max}} - X_{\text{min}}$$</span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>Sendo $R_1, R_2, \ldots, R_m$ as amplitudes de cada um dos **$m$** subgrupos, calculamos a amplitude média ($\bar{R}$) como: $$\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}$$</span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Construção do Gráfico R</span></span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>O Gráfico R monitora a variabilidade do processo ao longo do tempo. Sua linha central é a amplitude média ($\bar{R}$), e seus limites de controle são calculados usando constantes estatísticas que dependem do tamanho do subgrupo ($n$).</span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**LSC** = $D_4 \bar{R}$</span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**LM** = $\bar{R}$</span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**LIC** = $D_3 \bar{R}$</span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>É importante lembrar que a amplitude média também nos fornece um estimador não viesado para o desvio-padrão do processo, $\sigma$, através da seguinte relação:</span>
-<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>$$\hat{\sigma} = \frac{\bar{R}}{d_2}$$</span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Construção do Gráfico $\bar{X}$</span></span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>Com as estimativas da média ($\bar{\bar{x}}$) e da variabilidade (via $\bar{R}$) do processo, podemos construir os limites de controle para o gráfico $\bar{X}$, que monitora a tendência central do processo.</span>
-<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>\text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} <span class="sc">\\</span> \bar{\bar{X}}, \quad \text{se o Limite for Central} <span class="sc">\\</span> \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.</span>
-<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>$$ {#eq-DEF_LIMITS_R_CHARTS}</span>
-<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>As constantes $A_2, d_2, D_3$ e $D_4$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery.</span>
-<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $R$)</span></span>
-<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $R$</span></span>
-<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $S$</span></span>
-<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>::::</span>
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Variáveis</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Python Environment Setup</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">"C:/Users/user/anaconda3/python.exe"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>Os **gráficos de controle para variáveis** são ferramentas estatísticas desenvolvidas para monitorar características da qualidade que podem ser medidas em escala **contínua**, como diâmetro, peso, volume, temperatura ou tempo. Diferem dos gráficos para atributos, que se baseiam em classificações qualitativas (conforme/não conforme, defeituoso/não defeituoso), ao permitir uma análise mais detalhada tanto da **tendência central** quanto da **variabilidade** do processo.</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>A lógica subjacente é simples, mas poderosa: todo processo produtivo apresenta flutuações naturais, chamadas de **causas comuns de variação**. No entanto, alterações significativas — as chamadas **causas especiais** — indicam que o processo pode estar fora de controle. Os gráficos para variáveis foram construídos justamente para separar esses dois tipos de variação, permitindo identificar quando uma intervenção é necessária.</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>Entre os gráficos mais utilizados destacam-se:</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gráficos de Médias e Amplitudes (**$\bar{X}$ e $R$): adequados quando o tamanho da amostra é pequeno (tipicamente $n \leq 10$). O gráfico $\bar{X}$ monitora a média amostral, enquanto o gráfico R acompanha a variabilidade por meio da amplitude.</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gráficos de Médias e Desvios-Padrão (**$\bar{X}$ e $S$): preferidos quando o tamanho das amostras é maior ($n &gt; 10$) ou variável, por utilizarem o desvio padrão como medida mais robusta de dispersão.</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gráficos de Medidas Individuais e Amplitudes Móveis (I-MR)**: aplicáveis quando não há possibilidade de coletar subgrupos de tamanho maior que 1. O gráfico I acompanha as observações individuais, enquanto o MR mede a variação entre observações consecutivas.</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>Esses gráficos compartilham uma estrutura comum: uma **linha central (LC)** que representa o valor esperado sob controle e dois **limites de controle** — superior (LSC) e inferior (LIC) — que delimitam a faixa de variação natural do processo. Valores fora dessa faixa, ou padrões não aleatórios dentro dela, são interpretados como indícios de descontrole.</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>O uso adequado de gráficos para variáveis depende de decisões fundamentais: o **tamanho e a frequência das amostras**, a **definição de subgrupos racionais** e a **escolha entre amplitude ou desvio padrão** como medida de dispersão. Tais escolhas impactam diretamente a **sensibilidade** do gráfico em detectar mudanças, assim como o **custo de amostragem**.</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>Por sua capacidade de revelar simultaneamente oscilações na média e na variabilidade, os gráficos de controle para variáveis continuam sendo uma das ferramentas mais robustas e versáteis do Controle Estatístico de Qualidade, sustentando análises confiáveis em diferentes contextos produtivos e de serviços.</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Constantes Estatísticas Usadas</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="al">![Constantes Estatísticas usadas no Controle Estatístico de Qualidade para Contrução de Gráficos de Controle.](imagens/CONSTANTES_CEQ.jpg)</span>{#fig-CONSTS_CEQ fig-align="center"}</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $\bar{X}$</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>Para a construção dos Gráfico de Controle de $\bar{X}$, suponha que a característica de interesse, $X$, tem média $\mu$ e desvio padrão $\sigma$, conhecidos. Desta forma, ao retirar uma amostra $X_{1}, X_{2}, \ldots, X_{n}$ de tamanho $n$, a média amostral é dada por: $$\bar{X} = \dfrac{\sum_{i=1}^{n} X_{i}}{n}$$</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>Pelo Teorema Central do Limite (TCL), sabe-se que $\bar{X}$ é normalmente distribuído com média $\mu$ e variância $\sigma^{2}/n$. Usando os fundamentos de estimação intervalar, temos que o Intervalo de Confiança (IC) de $100(1 - \alpha)$% para $\mu$ é expresso como: $$\bar{X} \pm z_{\alpha/2} \sqrt{\sigma^{2}/n}.$$</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>Baseado nisso, Shewhart propôs, de modo geral, que temos um **estimador** $T$ de alguma característica de qualidade. A partir desse princípio, a estrutura de um Gráfico de Controle Shewhart é definida por três linhas principais: uma Linha Central (LC), um Limite Superior de Controle (LSC) e um Limite Inferior de Controle (LIC).</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>Se considerarmos $T$ como esse estimador, com média $\mu_T$ e desvio-padrão $\sigma_T$, os limites são calculados da seguinte forma:</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>\text{Limites} = \begin{cases} \mu_T - L\sigma_T, \quad \text{se o Limite for Inferior} <span class="sc">\\</span> \mu_T, \quad \text{se o Limite for Central} <span class="sc">\\</span> \mu_T + L\sigma_T, \quad \text{se o Limite for Superior} \end{cases}</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>$$ {#eq-DEF_LIMITS}</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>Nessas fórmulas, $L$ representa a distância dos limites de controle em relação à linha central, expressa em unidades de desvio-padrão. Os limites são determinados com base na média e no desvio-padrão da variável quando o processo está operando isento de causas atribuíveis, ou seja, quando está sob controle estatístico.</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>Contudo, a escolha do valor de $L$ é uma tarefa fundamental, pois impacta diretamente a sensibilidade do gráfico e as taxas de erro. Existe um trade-off clássico entre os erros tipo I e tipo II:</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Se L é grande:** Os limites de controle ficam mais afastados da média. Isso diminui a probabilidade de um **Erro Tipo I** (alarme falso), mas aumenta a de um **Erro Tipo II** (falhar em detectar um processo fora de controle).</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Se L é pequeno:** Os limites ficam mais próximos da média, o que aumenta a sensibilidade a desvios. Consequentemente, a probabilidade de **Erro Tipo I** sobe, enquanto a de **Erro Tipo II** diminui.</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>Nos EUA, tornou-se prática padrão utilizar **$L = 3$**, estabelecendo os chamados "limites de 3 sigmas". Como mencionado no início, a base para isso vem do **Teorema Central do Limite**. Com $L = 3$, a probabilidade de um ponto da média amostral cair fora dos limites de controle por puro acaso (Erro Tipo I) é extremamente baixa, calculada como $<span class="in">`r 1-(pnorm(3) - pnorm(-3))`</span>$. Isso significa que, em média, um sinal incorreto de que o processo está fora de controle será gerado apenas a cada 370 pontos amostrais, aproximadamente.</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limites de Probabilidade e de Alerta</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>**1. Limites de Probabilidade:** Uma abordagem alternativa, mais comum no Reino Unido e em partes da Europa Ocidental, é o uso de **Limites de Probabilidade**. Em vez de fixar $L$, primeiro se especifica a probabilidade de Erro Tipo I ($\alpha$) desejada. Por exemplo, se especificarmos um $\alpha = 0,001$, esperamos um falso alarme a cada 1000 pontos. A partir desse $\alpha$, determinam-se os valores correspondentes da distribuição normal-padrão ($z_{\alpha/2}$) para calcular os limites.</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>**2. Limites de Alerta (*2***$\sigma$): Para aumentar a sensibilidade do gráfico, alguns analistas sugerem o uso de dois conjuntos de limites:</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Limites de Ação (*3***$\sigma$): São os limites de controle tradicionais (LIC e LSC). Quando um ponto cai fora deles, uma ação corretiva é necessária para encontrar a causa atribuível;</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Limites de Alerta (*2***$\sigma$): São limites mais estreitos. Se um ou mais pontos se situam entre os limites de alerta e os de ação, isso serve como um aviso de que o processo *pode* não estar operando adequadamente, justificando uma maior atenção.</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>O ponto positivo dessa abordagem é o aumento da sensibilidade para detectar desvios. O ponto negativo, no entanto, é que ela também aumenta o risco de alarmes falsos.</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exemplos Computacionais</span></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>Será apresentados alguns exemplos computacionais de como realizar o gráfico de controle para $\bar{X}$. A maioria dos dados serão provinientes de simulação para fins didáticos.</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### R Base</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_BASE_1</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                            <span class="co"># Limite Central</span></span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir limites do eixo Y para garantir que tudo seja visível</span></span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(vec.means, LIC) <span class="sc">-</span> <span class="dv">7</span>, <span class="fu">max</span>(vec.means, LSC) <span class="sc">+</span> <span class="dv">7</span>)</span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico principal com pontos e linhas</span></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means,</span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="co"># "b" para both (pontos e linhas)</span></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> ylim,</span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="co"># Tipo de ponto (círculo sólido)</span></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab =</span> <span class="dv">2</span> <span class="co"># Deixa os títulos dos eixos em negrito</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar as linhas de controle</span></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LIC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LC, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LSC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar a legenda</span></span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>))),</span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(<span class="fu">hat</span>(mu) <span class="sc">==</span> .(<span class="fu">round</span>(LC, <span class="dv">2</span>))),</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>)))</span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"solid"</span> <span class="co"># "n" Remove a caixa ao redor da legenda</span></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### R usando `ggplot2`</span></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_ggplot2_1</span></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de Amostras Selecionadas</span></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular Dados e Adicionar Ruído aos Dados</span></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a>vec.data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(k <span class="sc">*</span> n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a Matriz de Dados</span></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a>matrix.data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(vec.data, <span class="at">nrow =</span> k, <span class="at">ncol =</span> n, <span class="at">byrow =</span> T)</span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, mean)</span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Desvios</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a>vec.sds <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix.data, <span class="dv">1</span>, sd)</span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>x.std <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> <span class="dv">25</span>                         <span class="co"># Limite Central</span></span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n)) <span class="sc">*</span> x.std <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Gráfico de Controle no ggplot2</span></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means)) <span class="sc">+</span></span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LIC, <span class="at">color =</span> <span class="st">"LIC"</span>)) <span class="sc">+</span></span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LC, <span class="at">color =</span> <span class="st">"LC"</span>)) <span class="sc">+</span></span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LSC, <span class="at">color =</span> <span class="st">"LSC"</span>)) <span class="sc">+</span></span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"LIC"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"LC"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"LSC"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>))),</span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(mu[<span class="dv">0</span>] <span class="sc">==</span> .(<span class="fu">round</span>(x.bar, <span class="dv">2</span>))),</span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>)))</span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Limites"</span></span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_PYTHON_1</span></span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros</span></span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">25</span>  <span class="co"># Número de Amostras</span></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span>   <span class="co"># Tamanho de cada Amostra</span></span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular dados com semente de aleatoriedade para reprodutibilidade</span></span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a>vec_data <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">25</span>, scale<span class="op">=</span><span class="fl">1.5</span>, size<span class="op">=</span>k<span class="op">*</span>n) <span class="op">+</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="fl">1.2</span>, size<span class="op">=</span>k<span class="op">*</span>n)</span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar a matriz de dados</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a>matrix_data <span class="op">=</span> vec_data.reshape(k, n)</span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de médias (média de cada linha)</span></span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a>vec_means <span class="op">=</span> matrix_data.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)</span></span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a>vec_sds <span class="op">=</span> matrix_data.std(axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar quantidades</span></span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a>x_bar <span class="op">=</span> vec_means.mean()</span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>x_std <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir limites</span></span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> x_bar <span class="op">-</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>lc  <span class="op">=</span> <span class="dv">25</span>                               <span class="co"># Limite Central</span></span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> x_bar <span class="op">+</span> (<span class="dv">3</span> <span class="op">/</span> np.sqrt(n)) <span class="op">*</span> x_std  <span class="co"># Limite Superior de Controle</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar o estilo do gráfico</span></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"ticks"</span>) <span class="co"># Similar ao theme_classic()</span></span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>), dpi<span class="op">=</span><span class="dv">800</span>)</span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, k<span class="op">+</span><span class="dv">1</span>), y<span class="op">=</span>vec_means, marker<span class="op">=</span><span class="st">"o"</span>, color<span class="op">=</span><span class="st">"black"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar as linhas de controle</span></span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lsc, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LSC = </span><span class="sc">{</span>lsc<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lc, color<span class="op">=</span><span class="st">"blue"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"$</span><span class="ch">\\</span><span class="ss">hat</span><span class="ch">{{\\</span><span class="ss">mu</span><span class="ch">}}</span><span class="ss">$ = </span><span class="sc">{</span>lc<span class="sc">:.2f}</span><span class="ss">"</span>) <span class="co"># Usando LaTeX para mu</span></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>lic, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"-"</span>, label<span class="op">=</span><span class="ss">f"LIC = </span><span class="sc">{</span>lic<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">18</span>, <span class="dv">32</span>)</span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Amostra"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Medida"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Legenda</span></span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a>ax.legend(prop<span class="op">=</span>{<span class="st">"size"</span>:<span class="dv">8</span>, <span class="st">"weight"</span>: <span class="st">"bold"</span>}, loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>) <span class="co"># bbox_to_anchor=(1, 0.5), </span></span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição da Figura</span></span>
+<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### Demais Variações do Gráfico de Controle de $\bar{X}$</span></span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Amplitudes ($\bar{X}$ e $R$)</span></span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a>Na prática da construção de gráficos de controle, a média ($\mu$) e o desvio-padrão ($\sigma$) do processo raramente são conhecidos. Portanto, esses parâmetros precisam ser estimados a partir de dados amostrais. A premissa fundamental é que essas amostras, ou subgrupos, sejam coletadas em um momento em que o processo esteja operando sob controle estatístico.</span>
+<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a>Para isso, Walter Shewhart sugeriu um método prático: a coleta de $m$ subgrupos (geralmente entre 20 a 25) de tamanho $n$ relativamente pequeno (4, 5 ou 6 itens cada). Essa abordagem visa a construção de "*subgrupos racionais*" com um baixo custo de amostragem.</span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a>Para estimar a média global do processo, $\mu$, utilizamos a média das médias de todos os subgrupos. Sejam $\bar{X}_1, \bar{X}_2, \ldots, \bar{X}_m$ as médias de cada um dos $m$ subgrupos. O melhor estimador para $\mu$ é a grande média, denotada por $\bar{\bar{X}}$: $$\bar{\bar{X}} = \frac{\sum_{i=1}^{m} \bar{X}_i}{m}.$$</span>
+<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-283"><a href="#cb8-283" aria-hidden="true" tabindex="-1"></a>\noindent Onde $\bar{X}_i$ é a média amostral do i-ésimo subgrupo. Por essa razão, o valor de $\bar{\bar{x}}$ será usado como a **linha central (LC)** do gráfico $\bar{X}$.</span>
+<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a>Para construir os limites de controle, tanto do gráfico $\bar{X}$ quanto do gráfico $R$ (será visto mais a frente), precisamos de um estimador para o desvio-padrão do processo, $\sigma$. Essa estimativa pode ser obtida a partir dos desvios-padrões de cada subgrupo ou, mais comumente, a partir das **amplitudes** das amostras. Para esta análise, optaremos pelo método das amplitudes.</span>
+<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a>A amplitude ($R$) de uma amostra é a diferença entre o valor máximo e o valor mínimo observados nela: $$R = X_{\text{max}} - X_{\text{min}}.$$</span>
+<span id="cb8-288"><a href="#cb8-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-289"><a href="#cb8-289" aria-hidden="true" tabindex="-1"></a>\noindent  Sendo $R_1, R_2, \ldots, R_m$ as amplitudes de cada um dos $m$ subgrupos, calculamos a amplitude média ($\bar{R}$) como: $$\bar{R} = \frac{\sum_{i=1}^{m} R_i}{m}.$$</span>
+<span id="cb8-290"><a href="#cb8-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-291"><a href="#cb8-291" aria-hidden="true" tabindex="-1"></a>Com as estimativas da média ($\bar{\bar{x}}$) e da variabilidade (via $\bar{R}$) do processo, podemos construir os limites de controle para o gráfico $\bar{X}$, que monitora a tendência central do processo.</span>
+<span id="cb8-292"><a href="#cb8-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-293"><a href="#cb8-293" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-294"><a href="#cb8-294" aria-hidden="true" tabindex="-1"></a>\text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} <span class="sc">\\</span> \bar{\bar{X}}, \quad \text{se o Limite for Central} <span class="sc">\\</span> \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.</span>
+<span id="cb8-295"><a href="#cb8-295" aria-hidden="true" tabindex="-1"></a>$$ {#eq-DEF_LIMITS_R_CHARTS}</span>
+<span id="cb8-296"><a href="#cb8-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-297"><a href="#cb8-297" aria-hidden="true" tabindex="-1"></a>As constantes $A_2$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery. Tal constantes e outras podem ser vistas na @fig-CONSTS_CEQ.</span>
+<span id="cb8-298"><a href="#cb8-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-299"><a href="#cb8-299" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Exemplos Computacionais</span></span>
+<span id="cb8-300"><a href="#cb8-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-301"><a href="#cb8-301" aria-hidden="true" tabindex="-1"></a>Para exemplificar o gráfico de controle recém apresentado, será usado o *Exemplo 6.1. página 239 (Montgomery, 2009): Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro*.</span>
+<span id="cb8-302"><a href="#cb8-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-303"><a href="#cb8-303" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb8-304"><a href="#cb8-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-305"><a href="#cb8-305" aria-hidden="true" tabindex="-1"></a><span class="fu">##### R Base</span></span>
+<span id="cb8-306"><a href="#cb8-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-309"><a href="#cb8-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-310"><a href="#cb8-310" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_BASE_2</span></span>
+<span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-312"><a href="#cb8-312" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando a Tabela 6.1 em R</span></span>
+<span id="cb8-313"><a href="#cb8-313" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb8-314"><a href="#cb8-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb8-315"><a href="#cb8-315" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="fl">1.3235</span>, <span class="fl">1.4128</span>, <span class="fl">1.6744</span>, <span class="fl">1.4573</span>,</span>
+<span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="fl">1.4314</span>, <span class="fl">1.3592</span>, <span class="fl">1.6075</span>, <span class="fl">1.4666</span>,</span>
+<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>, <span class="fl">1.4284</span>, <span class="fl">1.4871</span>, <span class="fl">1.4932</span>, <span class="fl">1.4324</span>,</span>
+<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>, <span class="fl">1.5028</span>, <span class="fl">1.6352</span>, <span class="fl">1.3841</span>, <span class="fl">1.2831</span>,</span>
+<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>, <span class="fl">1.5604</span>, <span class="fl">1.2735</span>, <span class="fl">1.5265</span>, <span class="fl">1.4362</span>,</span>
+<span id="cb8-320"><a href="#cb8-320" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>, <span class="fl">1.5955</span>, <span class="fl">1.5451</span>, <span class="fl">1.3574</span>, <span class="fl">1.3281</span>,</span>
+<span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>, <span class="fl">1.6274</span>, <span class="fl">1.5064</span>, <span class="fl">1.8366</span>, <span class="fl">1.4177</span>,</span>
+<span id="cb8-322"><a href="#cb8-322" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>, <span class="fl">1.4190</span>, <span class="fl">1.4303</span>, <span class="fl">1.6637</span>, <span class="fl">1.6067</span>,</span>
+<span id="cb8-323"><a href="#cb8-323" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>, <span class="fl">1.3884</span>, <span class="fl">1.7277</span>, <span class="fl">1.5355</span>, <span class="fl">1.5176</span>,</span>
+<span id="cb8-324"><a href="#cb8-324" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>, <span class="fl">1.4039</span>, <span class="fl">1.6697</span>, <span class="fl">1.5089</span>, <span class="fl">1.6477</span>,</span>
+<span id="cb8-325"><a href="#cb8-325" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>, <span class="fl">1.4158</span>, <span class="fl">1.7667</span>, <span class="fl">1.4278</span>, <span class="fl">1.5927</span>,</span>
+<span id="cb8-326"><a href="#cb8-326" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>, <span class="fl">1.5821</span>, <span class="fl">1.3355</span>, <span class="fl">1.5777</span>, <span class="fl">1.3908</span>,</span>
+<span id="cb8-327"><a href="#cb8-327" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13</span>, <span class="fl">1.2856</span>, <span class="fl">1.4106</span>, <span class="fl">1.4447</span>, <span class="fl">1.6388</span>,</span>
+<span id="cb8-328"><a href="#cb8-328" aria-hidden="true" tabindex="-1"></a>    <span class="dv">14</span>, <span class="fl">1.4951</span>, <span class="fl">1.4036</span>, <span class="fl">1.5893</span>, <span class="fl">1.6458</span>,</span>
+<span id="cb8-329"><a href="#cb8-329" aria-hidden="true" tabindex="-1"></a>    <span class="dv">15</span>, <span class="fl">1.3589</span>, <span class="fl">1.2863</span>, <span class="fl">1.5996</span>, <span class="fl">1.2497</span>,</span>
+<span id="cb8-330"><a href="#cb8-330" aria-hidden="true" tabindex="-1"></a>    <span class="dv">16</span>, <span class="fl">1.5747</span>, <span class="fl">1.5301</span>, <span class="fl">1.5171</span>, <span class="fl">1.1839</span>,</span>
+<span id="cb8-331"><a href="#cb8-331" aria-hidden="true" tabindex="-1"></a>    <span class="dv">17</span>, <span class="fl">1.3680</span>, <span class="fl">1.7269</span>, <span class="fl">1.3957</span>, <span class="fl">1.5019</span>,</span>
+<span id="cb8-332"><a href="#cb8-332" aria-hidden="true" tabindex="-1"></a>    <span class="dv">18</span>, <span class="fl">1.4163</span>, <span class="fl">1.3864</span>, <span class="fl">1.3057</span>, <span class="fl">1.6210</span>,</span>
+<span id="cb8-333"><a href="#cb8-333" aria-hidden="true" tabindex="-1"></a>    <span class="dv">19</span>, <span class="fl">1.5796</span>, <span class="fl">1.4185</span>, <span class="fl">1.6541</span>, <span class="fl">1.5116</span>,</span>
+<span id="cb8-334"><a href="#cb8-334" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="fl">1.7106</span>, <span class="fl">1.4412</span>, <span class="fl">1.2361</span>, <span class="fl">1.3824</span>,</span>
+<span id="cb8-335"><a href="#cb8-335" aria-hidden="true" tabindex="-1"></a>    <span class="dv">21</span>, <span class="fl">1.4371</span>, <span class="fl">1.5051</span>, <span class="fl">1.3485</span>, <span class="fl">1.5670</span>,</span>
+<span id="cb8-336"><a href="#cb8-336" aria-hidden="true" tabindex="-1"></a>    <span class="dv">22</span>, <span class="fl">1.4738</span>, <span class="fl">1.5936</span>, <span class="fl">1.6583</span>, <span class="fl">1.4973</span>,</span>
+<span id="cb8-337"><a href="#cb8-337" aria-hidden="true" tabindex="-1"></a>    <span class="dv">23</span>, <span class="fl">1.5917</span>, <span class="fl">1.4333</span>, <span class="fl">1.5551</span>, <span class="fl">1.5295</span>,</span>
+<span id="cb8-338"><a href="#cb8-338" aria-hidden="true" tabindex="-1"></a>    <span class="dv">24</span>, <span class="fl">1.6399</span>, <span class="fl">1.5243</span>, <span class="fl">1.5705</span>, <span class="fl">1.5563</span>,</span>
+<span id="cb8-339"><a href="#cb8-339" aria-hidden="true" tabindex="-1"></a>    <span class="dv">25</span>, <span class="fl">1.5797</span>, <span class="fl">1.3663</span>, <span class="fl">1.6240</span>, <span class="fl">1.3732</span></span>
+<span id="cb8-340"><a href="#cb8-340" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a><span class="co"># Alguns ajustes</span></span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tbl.<span class="fl">6.1</span>)</span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tbl.<span class="fl">6.1</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amostra"</span>, <span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>)</span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a><span class="co"># Obter apenas as amostras</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a>samples.x <span class="ot">&lt;-</span> tbl.<span class="fl">6.1</span>[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, mean)</span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Amplitudes</span></span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a>vec.range <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))</span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a>x.range <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.range)</span>
+<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir Constantes Estatíticas</span></span>
+<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fl">0.729</span></span>
+<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> x.bar                <span class="co"># Limite Central</span></span>
+<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir limites do eixo Y para garantir que tudo seja visível</span></span>
+<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(vec.means, LIC) <span class="sc">-</span> <span class="fl">0.25</span>, <span class="fu">max</span>(vec.means, LSC) <span class="sc">+</span> <span class="fl">0.25</span>)</span>
+<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico principal com pontos e linhas</span></span>
+<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">y =</span> vec.means,</span>
+<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"b"</span>, <span class="co"># "b" para both (pontos e linhas)</span></span>
+<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> ylim,</span>
+<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="co"># Tipo de ponto (círculo sólido)</span></span>
+<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab =</span> <span class="dv">2</span> <span class="co"># Deixa os títulos dos eixos em negrito</span></span>
+<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar as linhas de controle</span></span>
+<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LIC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-385"><a href="#cb8-385" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LC, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-386"><a href="#cb8-386" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> LSC, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-387"><a href="#cb8-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-388"><a href="#cb8-388" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar a legenda</span></span>
+<span id="cb8-389"><a href="#cb8-389" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb8-390"><a href="#cb8-390" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb8-391"><a href="#cb8-391" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>))),</span>
+<span id="cb8-392"><a href="#cb8-392" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(<span class="fu">hat</span>(mu) <span class="sc">==</span> .(<span class="fu">round</span>(LC, <span class="dv">2</span>))),</span>
+<span id="cb8-393"><a href="#cb8-393" aria-hidden="true" tabindex="-1"></a>         <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>)))</span>
+<span id="cb8-394"><a href="#cb8-394" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb8-395"><a href="#cb8-395" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
+<span id="cb8-396"><a href="#cb8-396" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb8-397"><a href="#cb8-397" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex =</span> <span class="fl">0.75</span>,</span>
+<span id="cb8-398"><a href="#cb8-398" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"solid"</span> <span class="co"># "n" Remove a caixa ao redor da legenda</span></span>
+<span id="cb8-399"><a href="#cb8-399" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-400"><a href="#cb8-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-401"><a href="#cb8-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-402"><a href="#cb8-402" aria-hidden="true" tabindex="-1"></a><span class="fu">##### R usando `ggplot2`</span></span>
+<span id="cb8-403"><a href="#cb8-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-406"><a href="#cb8-406" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-407"><a href="#cb8-407" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_ggplot2_2</span></span>
+<span id="cb8-408"><a href="#cb8-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-409"><a href="#cb8-409" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando a Tabela 6.1 em R</span></span>
+<span id="cb8-410"><a href="#cb8-410" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb8-411"><a href="#cb8-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb8-412"><a href="#cb8-412" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="fl">1.3235</span>, <span class="fl">1.4128</span>, <span class="fl">1.6744</span>, <span class="fl">1.4573</span>,</span>
+<span id="cb8-413"><a href="#cb8-413" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="fl">1.4314</span>, <span class="fl">1.3592</span>, <span class="fl">1.6075</span>, <span class="fl">1.4666</span>,</span>
+<span id="cb8-414"><a href="#cb8-414" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>, <span class="fl">1.4284</span>, <span class="fl">1.4871</span>, <span class="fl">1.4932</span>, <span class="fl">1.4324</span>,</span>
+<span id="cb8-415"><a href="#cb8-415" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>, <span class="fl">1.5028</span>, <span class="fl">1.6352</span>, <span class="fl">1.3841</span>, <span class="fl">1.2831</span>,</span>
+<span id="cb8-416"><a href="#cb8-416" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>, <span class="fl">1.5604</span>, <span class="fl">1.2735</span>, <span class="fl">1.5265</span>, <span class="fl">1.4362</span>,</span>
+<span id="cb8-417"><a href="#cb8-417" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>, <span class="fl">1.5955</span>, <span class="fl">1.5451</span>, <span class="fl">1.3574</span>, <span class="fl">1.3281</span>,</span>
+<span id="cb8-418"><a href="#cb8-418" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>, <span class="fl">1.6274</span>, <span class="fl">1.5064</span>, <span class="fl">1.8366</span>, <span class="fl">1.4177</span>,</span>
+<span id="cb8-419"><a href="#cb8-419" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>, <span class="fl">1.4190</span>, <span class="fl">1.4303</span>, <span class="fl">1.6637</span>, <span class="fl">1.6067</span>,</span>
+<span id="cb8-420"><a href="#cb8-420" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>, <span class="fl">1.3884</span>, <span class="fl">1.7277</span>, <span class="fl">1.5355</span>, <span class="fl">1.5176</span>,</span>
+<span id="cb8-421"><a href="#cb8-421" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>, <span class="fl">1.4039</span>, <span class="fl">1.6697</span>, <span class="fl">1.5089</span>, <span class="fl">1.6477</span>,</span>
+<span id="cb8-422"><a href="#cb8-422" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>, <span class="fl">1.4158</span>, <span class="fl">1.7667</span>, <span class="fl">1.4278</span>, <span class="fl">1.5927</span>,</span>
+<span id="cb8-423"><a href="#cb8-423" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>, <span class="fl">1.5821</span>, <span class="fl">1.3355</span>, <span class="fl">1.5777</span>, <span class="fl">1.3908</span>,</span>
+<span id="cb8-424"><a href="#cb8-424" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13</span>, <span class="fl">1.2856</span>, <span class="fl">1.4106</span>, <span class="fl">1.4447</span>, <span class="fl">1.6388</span>,</span>
+<span id="cb8-425"><a href="#cb8-425" aria-hidden="true" tabindex="-1"></a>    <span class="dv">14</span>, <span class="fl">1.4951</span>, <span class="fl">1.4036</span>, <span class="fl">1.5893</span>, <span class="fl">1.6458</span>,</span>
+<span id="cb8-426"><a href="#cb8-426" aria-hidden="true" tabindex="-1"></a>    <span class="dv">15</span>, <span class="fl">1.3589</span>, <span class="fl">1.2863</span>, <span class="fl">1.5996</span>, <span class="fl">1.2497</span>,</span>
+<span id="cb8-427"><a href="#cb8-427" aria-hidden="true" tabindex="-1"></a>    <span class="dv">16</span>, <span class="fl">1.5747</span>, <span class="fl">1.5301</span>, <span class="fl">1.5171</span>, <span class="fl">1.1839</span>,</span>
+<span id="cb8-428"><a href="#cb8-428" aria-hidden="true" tabindex="-1"></a>    <span class="dv">17</span>, <span class="fl">1.3680</span>, <span class="fl">1.7269</span>, <span class="fl">1.3957</span>, <span class="fl">1.5019</span>,</span>
+<span id="cb8-429"><a href="#cb8-429" aria-hidden="true" tabindex="-1"></a>    <span class="dv">18</span>, <span class="fl">1.4163</span>, <span class="fl">1.3864</span>, <span class="fl">1.3057</span>, <span class="fl">1.6210</span>,</span>
+<span id="cb8-430"><a href="#cb8-430" aria-hidden="true" tabindex="-1"></a>    <span class="dv">19</span>, <span class="fl">1.5796</span>, <span class="fl">1.4185</span>, <span class="fl">1.6541</span>, <span class="fl">1.5116</span>,</span>
+<span id="cb8-431"><a href="#cb8-431" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="fl">1.7106</span>, <span class="fl">1.4412</span>, <span class="fl">1.2361</span>, <span class="fl">1.3824</span>,</span>
+<span id="cb8-432"><a href="#cb8-432" aria-hidden="true" tabindex="-1"></a>    <span class="dv">21</span>, <span class="fl">1.4371</span>, <span class="fl">1.5051</span>, <span class="fl">1.3485</span>, <span class="fl">1.5670</span>,</span>
+<span id="cb8-433"><a href="#cb8-433" aria-hidden="true" tabindex="-1"></a>    <span class="dv">22</span>, <span class="fl">1.4738</span>, <span class="fl">1.5936</span>, <span class="fl">1.6583</span>, <span class="fl">1.4973</span>,</span>
+<span id="cb8-434"><a href="#cb8-434" aria-hidden="true" tabindex="-1"></a>    <span class="dv">23</span>, <span class="fl">1.5917</span>, <span class="fl">1.4333</span>, <span class="fl">1.5551</span>, <span class="fl">1.5295</span>,</span>
+<span id="cb8-435"><a href="#cb8-435" aria-hidden="true" tabindex="-1"></a>    <span class="dv">24</span>, <span class="fl">1.6399</span>, <span class="fl">1.5243</span>, <span class="fl">1.5705</span>, <span class="fl">1.5563</span>,</span>
+<span id="cb8-436"><a href="#cb8-436" aria-hidden="true" tabindex="-1"></a>    <span class="dv">25</span>, <span class="fl">1.5797</span>, <span class="fl">1.3663</span>, <span class="fl">1.6240</span>, <span class="fl">1.3732</span></span>
+<span id="cb8-437"><a href="#cb8-437" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-438"><a href="#cb8-438" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-439"><a href="#cb8-439" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-440"><a href="#cb8-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-441"><a href="#cb8-441" aria-hidden="true" tabindex="-1"></a><span class="co"># Alguns ajustes</span></span>
+<span id="cb8-442"><a href="#cb8-442" aria-hidden="true" tabindex="-1"></a>tbl.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tbl.<span class="fl">6.1</span>)</span>
+<span id="cb8-443"><a href="#cb8-443" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tbl.<span class="fl">6.1</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amostra"</span>, <span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>)</span>
+<span id="cb8-444"><a href="#cb8-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-445"><a href="#cb8-445" aria-hidden="true" tabindex="-1"></a><span class="co"># Obter apenas as amostras</span></span>
+<span id="cb8-446"><a href="#cb8-446" aria-hidden="true" tabindex="-1"></a>samples.x <span class="ot">&lt;-</span> tbl.<span class="fl">6.1</span>[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb8-447"><a href="#cb8-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-448"><a href="#cb8-448" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Médias</span></span>
+<span id="cb8-449"><a href="#cb8-449" aria-hidden="true" tabindex="-1"></a>vec.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, mean)</span>
+<span id="cb8-450"><a href="#cb8-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-451"><a href="#cb8-451" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor de Amplitudes</span></span>
+<span id="cb8-452"><a href="#cb8-452" aria-hidden="true" tabindex="-1"></a>vec.range <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.x, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))</span>
+<span id="cb8-453"><a href="#cb8-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-454"><a href="#cb8-454" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar Algumas Quantidades</span></span>
+<span id="cb8-455"><a href="#cb8-455" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.means)</span>
+<span id="cb8-456"><a href="#cb8-456" aria-hidden="true" tabindex="-1"></a>x.range <span class="ot">&lt;-</span> <span class="fu">mean</span>(vec.range)</span>
+<span id="cb8-457"><a href="#cb8-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-458"><a href="#cb8-458" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir Constantes Estatíticas</span></span>
+<span id="cb8-459"><a href="#cb8-459" aria-hidden="true" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fl">0.729</span></span>
+<span id="cb8-460"><a href="#cb8-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-461"><a href="#cb8-461" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Limites</span></span>
+<span id="cb8-462"><a href="#cb8-462" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">&lt;-</span> x.bar <span class="sc">-</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-463"><a href="#cb8-463" aria-hidden="true" tabindex="-1"></a>LC  <span class="ot">&lt;-</span> x.bar                <span class="co"># Limite Central</span></span>
+<span id="cb8-464"><a href="#cb8-464" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">&lt;-</span> x.bar <span class="sc">+</span> A2 <span class="sc">*</span> x.range <span class="co"># Limite Inferior de Controle</span></span>
+<span id="cb8-465"><a href="#cb8-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-466"><a href="#cb8-466" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-467"><a href="#cb8-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-468"><a href="#cb8-468" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir Gráfico de Controle no ggplot2</span></span>
+<span id="cb8-469"><a href="#cb8-469" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(samples.x), <span class="at">y =</span> vec.means)) <span class="sc">+</span></span>
+<span id="cb8-470"><a href="#cb8-470" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-471"><a href="#cb8-471" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LIC, <span class="at">color =</span> <span class="st">"LIC"</span>)) <span class="sc">+</span></span>
+<span id="cb8-472"><a href="#cb8-472" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LC, <span class="at">color =</span> <span class="st">"LC"</span>)) <span class="sc">+</span></span>
+<span id="cb8-473"><a href="#cb8-473" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> LSC, <span class="at">color =</span> <span class="st">"LSC"</span>)) <span class="sc">+</span></span>
+<span id="cb8-474"><a href="#cb8-474" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb8-475"><a href="#cb8-475" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"LIC"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"LC"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"LSC"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb8-476"><a href="#cb8-476" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb8-477"><a href="#cb8-477" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LIC <span class="sc">==</span> .(<span class="fu">round</span>(LIC, <span class="dv">2</span>))),</span>
+<span id="cb8-478"><a href="#cb8-478" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(mu[<span class="dv">0</span>] <span class="sc">==</span> .(<span class="fu">round</span>(x.bar, <span class="dv">2</span>))),</span>
+<span id="cb8-479"><a href="#cb8-479" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bquote</span>(LSC <span class="sc">==</span> .(<span class="fu">round</span>(LSC, <span class="dv">2</span>)))</span>
+<span id="cb8-480"><a href="#cb8-480" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-481"><a href="#cb8-481" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-482"><a href="#cb8-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-483"><a href="#cb8-483" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Amostra"</span>,</span>
+<span id="cb8-484"><a href="#cb8-484" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Medida"</span>,</span>
+<span id="cb8-485"><a href="#cb8-485" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Limites"</span></span>
+<span id="cb8-486"><a href="#cb8-486" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-487"><a href="#cb8-487" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb8-488"><a href="#cb8-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-489"><a href="#cb8-489" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb8-490"><a href="#cb8-490" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb8-491"><a href="#cb8-491" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-492"><a href="#cb8-492" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-493"><a href="#cb8-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-494"><a href="#cb8-494" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Python</span></span>
+<span id="cb8-495"><a href="#cb8-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-498"><a href="#cb8-498" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-499"><a href="#cb8-499" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_PYTHON_2</span></span>
+<span id="cb8-500"><a href="#cb8-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-501"><a href="#cb8-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-502"><a href="#cb8-502" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-503"><a href="#cb8-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-504"><a href="#cb8-504" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-505"><a href="#cb8-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-506"><a href="#cb8-506" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $R$)</span></span>
+<span id="cb8-507"><a href="#cb8-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-508"><a href="#cb8-508" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $R$</span></span>
+<span id="cb8-509"><a href="#cb8-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-510"><a href="#cb8-510" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $S$</span></span>
+<span id="cb8-511"><a href="#cb8-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-512"><a href="#cb8-512" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb8-513"><a href="#cb8-513" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb8-514"><a href="#cb8-514" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-515"><a href="#cb8-515" aria-hidden="true" tabindex="-1"></a>::::</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
