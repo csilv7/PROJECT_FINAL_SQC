@@ -245,8 +245,15 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">4.1</span> Introdução</a></li>
-  <li><a href="#gráficos-de-controle-para-p" id="toc-gráficos-de-controle-para-p" class="nav-link" data-scroll-target="#gráficos-de-controle-para-p"><span class="header-section-number">4.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></a></li>
-  <li><a href="#gráficos-de-controle-para-np" id="toc-gráficos-de-controle-para-np" class="nav-link" data-scroll-target="#gráficos-de-controle-para-np"><span class="header-section-number">4.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></a></li>
+  <li><a href="#gráficos-de-controle-para-p" id="toc-gráficos-de-controle-para-p" class="nav-link" data-scroll-target="#gráficos-de-controle-para-p"><span class="header-section-number">4.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></a>
+  <ul class="collapse">
+  <li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo"><span class="header-section-number">4.2.1</span> Exemplo</a></li>
+  </ul></li>
+  <li><a href="#gráficos-de-controle-para-np" id="toc-gráficos-de-controle-para-np" class="nav-link" data-scroll-target="#gráficos-de-controle-para-np"><span class="header-section-number">4.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></a>
+  <ul class="collapse">
+  <li><a href="#gráfico-np-com-subgrupos-fixos" id="toc-gráfico-np-com-subgrupos-fixos" class="nav-link" data-scroll-target="#gráfico-np-com-subgrupos-fixos"><span class="header-section-number">4.3.1</span> Gráfico <span class="math inline">\(np\)</span> com Subgrupos Fixos</a></li>
+  <li><a href="#gráfico-np-com-subgrupos-variáveis" id="toc-gráfico-np-com-subgrupos-variáveis" class="nav-link" data-scroll-target="#gráfico-np-com-subgrupos-variáveis"><span class="header-section-number">4.3.2</span> Gráfico <span class="math inline">\(np\)</span> com Subgrupos Variáveis</a></li>
+  </ul></li>
   <li><a href="#gráficos-de-controle-para-c" id="toc-gráficos-de-controle-para-c" class="nav-link" data-scroll-target="#gráficos-de-controle-para-c"><span class="header-section-number">4.4</span> Gráficos de Controle para <span class="math inline">\(c\)</span></a></li>
   <li><a href="#gráficos-de-controle-para-u" id="toc-gráficos-de-controle-para-u" class="nav-link" data-scroll-target="#gráficos-de-controle-para-u"><span class="header-section-number">4.5</span> Gráficos de Controle para <span class="math inline">\(u\)</span></a></li>
   </ul>
@@ -257,7 +264,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gráficos de Controle para Atributos</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
 </div>
 
 
@@ -284,9 +291,395 @@ window.Quarto = {
 </section>
 <section id="gráficos-de-controle-para-p" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="gráficos-de-controle-para-p"><span class="header-section-number">4.2</span> Gráficos de Controle para <span class="math inline">\(p\)</span></h2>
+<p>O gráfico <span class="math inline">\(p\)</span> é uma ferramenta destinada ao monitoramento da proporção de unidades defeituosas em um processo produtivo. Esse gráfico é particularmente útil quando a característica de qualidade em estudo pode ser classificada de forma binária, isto é, como “defeituoso” ou “não defeituoso”.</p>
+<p>Para cada amostra coletada é calculada a fração amostral não conforme, definida como a razão entre o número de unidades não conformes (ou seja, unidades defeituosas) na amostra <span class="math inline">\(D_i\)</span> e o tamanho <span class="math inline">\(n\)</span> da amostra, isto é, <span class="math display">\[\hat{p_i} = \frac{D_i}{n}\]</span> Sendo assim, a linha central para o gráfico <span class="math inline">\(p\)</span> é dada por <span class="math inline">\(\hat{p}\)</span> e os limites para o gráfico (±3<span class="math inline">\(\sigma\)</span>) são dados por: <span class="math display">\[LIC = \hat{p} - 3\sqrt\frac{\hat{p}(1 - \hat{p})}{n}\]</span> <span class="math display">\[LSC = \hat{p} + 3\sqrt\frac{\hat{p}(1 - \hat{p})}{n}\]</span></p>
+<section id="exemplo" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="exemplo"><span class="header-section-number">4.2.1</span> Exemplo</h3>
+<p>Selecionadas 19 amostras de tamanho <span class="math inline">\(n\)</span> = 50, temos que:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Amostra =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Di =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="dv">11</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">8</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pi =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.08</span>, <span class="fl">0.06</span>, <span class="fl">0.4</span>, <span class="fl">0.22</span>, <span class="fl">0.18</span>, <span class="fl">0.06</span>, <span class="fl">0.4</span>, <span class="fl">0.22</span>, <span class="fl">0.12</span>, <span class="fl">0.14</span>, <span class="fl">0.22</span>, <span class="fl">0.06</span>, <span class="fl">0.06</span>, <span class="fl">0.18</span>, <span class="fl">0.06</span>, <span class="fl">0.16</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporção média</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>p_barra <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados<span class="sc">$</span>pi)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>p_barra</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1694737</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cálculo dos limites</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">=</span> p_barra <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>((p_barra<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p_barra))<span class="sc">/</span><span class="dv">50</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>LC <span class="ot">=</span> p_barra</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">=</span> p_barra <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>((p_barra<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p_barra))<span class="sc">/</span><span class="dv">50</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(LSC, LIC, LC)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           LSC        LIC        LC
+[1,] 0.3286447 0.01030263 0.1694737</code></pre>
+</div>
+</div>
+<section id="gráfico" class="level4" data-number="4.2.1.1">
+<h4 data-number="4.2.1.1" class="anchored" data-anchor-id="gráfico"><span class="header-section-number">4.2.1.1</span> Gráfico</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dados<span class="sc">$</span>pi, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(LSC, <span class="fu">max</span>(dados<span class="sc">$</span>pi))),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Gráfico p"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Fração não-conforme"</span>, <span class="at">xlab =</span> <span class="st">"Amostra"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(LSC, LC, LIC), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>), </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Legenda</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"p-barra"</span>, <span class="st">"LIC/LSC"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">NA</span>, <span class="cn">NA</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C4_PlotOfAtributes_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>É possível notar no gráfico que as amostras 6 e 10 ultrapassam o limite superior de controle, portanto, estão, estatísticamente, fora de controle.</p>
+</section>
+</section>
 </section>
 <section id="gráficos-de-controle-para-np" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="gráficos-de-controle-para-np"><span class="header-section-number">4.3</span> Gráficos de Controle para <span class="math inline">\(np\)</span></h2>
+<p>Em determinados processos, os itens produzidos podem apresentar certo número de pequenas não conformidades que não o caracterizem como um item não conforme. No entanto, pequenas não conformidades em excesso pode ser perceptível (e indesejável) ao consumidor.</p>
+<p>O gráfico <span class="math inline">\(np\)</span> tem por objetivo o monitoramento do número de itens defeituosos em uma linha de produção, detectando possíveis problemas no processo quando há extrapolação dos limites de controle.</p>
+<section id="gráfico-np-com-subgrupos-fixos" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="gráfico-np-com-subgrupos-fixos"><span class="header-section-number">4.3.1</span> Gráfico <span class="math inline">\(np\)</span> com Subgrupos Fixos</h3>
+<p>Quando o número de amostras coletadas é fixa ao longo do tempo, seus limites de controle e de advertência também o serão. Desta forma, os limites de controle do gráfico <span class="math inline">\(p\)</span> com nível de operação <span class="math inline">\(3\sigma\)</span> (<span class="math inline">\(L=3\)</span>) são adaptados de tal forma que</p>
+<p><span class="math display">\[
+LIC = \left\{ \begin{array} n\bar{p} -3\sqrt{n\bar{p}\cdot(1-\bar{p})}, \text{ se } LIC &gt; 0; \\ 0, \text{ caso contrário.} \end{array} \right .
+\]</span></p>
+<p>representa as condições do <strong>limite inferior de controle</strong>,</p>
+<p><span class="math display">\[
+LC = n\bar{p}
+\]</span></p>
+<p>representa o <strong>limite central</strong> e</p>
+<p><span class="math display">\[
+LSC = n\bar{p} + 3 \sqrt{n\bar{p}\cdot(1-\bar{p})}
+\]</span></p>
+<p>representa o <strong>limite superior de controle</strong>.</p>
+<p>A construção da carta de controle <span class="math inline">\(np\)</span> considera o número de defeitos constados em cada amostra e, baseado nele, é calculado a proporção de defeitos. É possível a determinação de zonas de alerta, onde o processo ainda não sofreu efetivo descontrole, porém é dado um sinal de aviso. O processo deve ser monitorado com maior cautela em casos de tendência ou variações cíclicas e sucessivas.</p>
+<p>Para contextualização o gráfico abaixo representa uma linha de produção com controle realizado feito a partir de <span class="math inline">\(n=50\)</span> itens em cada amostra, com número de defeitos representado por <span class="math inline">\(D_i\)</span>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar pacote</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(glue)) <span class="fu">install.packages</span>(<span class="st">"glue"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de não-conformidades</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># para reprodutibilidade</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>D_i <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">20</span>, <span class="dv">50</span>, <span class="fl">0.1235</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>media_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(D_i <span class="sc">/</span> n)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>lc <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>lsc <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>lic <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar limites negativos</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>lic <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>, lic)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>lic_a <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>lic_a <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>, lic_a)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">xlab =</span> <span class="st">''</span>, <span class="at">ylab =</span> <span class="st">''</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(lic <span class="sc">*</span> <span class="fl">0.75</span>, lsc <span class="sc">*</span> <span class="fl">1.15</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>))  <span class="co"># &lt;-- parêntese corrigido</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Zona de alerta</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span>(<span class="at">ybottom =</span> lic_a, <span class="at">ytop =</span> lsc_a, <span class="at">xleft =</span> <span class="dv">0</span>, <span class="at">xright =</span> <span class="dv">20</span>,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">248</span><span class="sc">/</span><span class="dv">255</span>, <span class="dv">238</span><span class="sc">/</span><span class="dv">255</span>, <span class="dv">153</span><span class="sc">/</span><span class="dv">255</span>, <span class="at">alpha =</span> .<span class="dv">30</span>), <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Sobreposição da série</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(D_i, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">1.15</span>, <span class="at">type =</span> <span class="st">'b'</span>,</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(lic <span class="sc">*</span> <span class="fl">0.75</span>, lsc <span class="sc">*</span> <span class="fl">1.15</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>),</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">'#096CC8'</span>, <span class="at">xlab =</span> <span class="st">'Amostra'</span>, <span class="at">ylab =</span> <span class="st">'Número de não-conformes'</span>,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">'Gráfico np'</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">labels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Linhas de controle</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(lsc, lc, lic),</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'#CD5C5C'</span>, <span class="st">'#8FC6FA'</span>, <span class="st">'#CD5C5C'</span>),</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">lwd =</span> <span class="fl">1.25</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Textos</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">18</span>),</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="fu">c</span>(lic <span class="sc">*</span> <span class="fl">1.15</span>, lc <span class="sc">*</span> <span class="fl">1.05</span>, lsc <span class="sc">*</span> <span class="fl">0.98</span>, lsc_a <span class="sc">*</span> <span class="fl">0.98</span>),</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">glue</span>(<span class="st">"LIC = {sprintf('%.4f', lic)}"</span>),</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>                <span class="fu">glue</span>(<span class="st">"LC = {sprintf('%.4f', lc)}"</span>),</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>                <span class="fu">glue</span>(<span class="st">"LSC = {sprintf('%.4f', lsc)}"</span>),</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Zona de Alerta'</span>),</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'#CD5C5C'</span>, <span class="st">'#8FC6FA'</span>, <span class="st">'#CD5C5C'</span>, <span class="st">'#BCAA01'</span>),</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> .<span class="dv">75</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C4_PlotOfAtributes_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração de dados</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#random.seed(1236)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#D_i = list(np.random.normal(loc=15, scale=3, size=25)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de não-conformidades</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>D_i <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">18</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">17</span>]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>p_i <span class="op">=</span> [x <span class="op">/</span> n <span class="cf">for</span> x <span class="kw">in</span> D_i]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># União de dados em um dataframe</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> pd.DataFrame({<span class="st">'Amostra'</span>: <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(D_i)<span class="op">+</span><span class="dv">1</span>)), <span class="st">'D_i'</span>: D_i, <span class="st">'p_i'</span>: p_i})</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Média das proporções</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>media_p <span class="op">=</span> dados[<span class="st">'p_i'</span>].mean()</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>lc <span class="op">=</span> n<span class="op">*</span>media_p</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>lic_a <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">6</span>))</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>plt.plot(dados[<span class="st">'D_i'</span>], color<span class="op">=</span><span class="st">'#096CC8'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.9</span>, markersize <span class="op">=</span> <span class="dv">6</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas dos Limites de Controle</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>lc, color<span class="op">=</span><span class="st">'#8FC6FA'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span>, label<span class="op">=</span><span class="st">'LC'</span>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>lsc, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LSC = </span><span class="sc">{</span>lsc<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>lic, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'LIC'</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Anotação dos Limites de Controle</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'LC = </span><span class="sc">{</span>lc<span class="sc">:.4f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, lc), xytext<span class="op">=</span>(<span class="dv">0</span>, lc<span class="op">*</span><span class="fl">1.05</span>), color<span class="op">=</span><span class="st">'#2471a3'</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'LSC= </span><span class="sc">{</span>lsc<span class="sc">:.4f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, lsc), xytext<span class="op">=</span>(<span class="dv">0</span>, lsc<span class="op">*</span><span class="fl">0.95</span>), color<span class="op">=</span><span class="st">'#CD5C5C'</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'LIC = </span><span class="sc">{</span>lic<span class="sc">:.4f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, lic), xytext<span class="op">=</span>(<span class="dv">0</span>, lic<span class="op">*</span><span class="fl">1.15</span>), color<span class="op">=</span><span class="st">'#CD5C5C'</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Zona de alerta</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>plt.axhspan(ymin<span class="op">=</span>lic_a, ymax<span class="op">=</span>lsc_a, alpha<span class="op">=</span><span class="fl">0.3</span>, color <span class="op">=</span><span class="st">'#F8EE99'</span>, label <span class="op">=</span> <span class="st">'Zona de Alerta'</span>)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">'Zona de Alerta'</span>, xy<span class="op">=</span>(<span class="bu">len</span>(dados)<span class="op">*</span><span class="fl">.9</span>, lsc_a), xytext<span class="op">=</span>(<span class="bu">len</span>(dados)<span class="op">*</span><span class="fl">.9</span>, lsc_a<span class="op">*</span><span class="fl">.96</span>), color<span class="op">=</span><span class="st">'#BCAA01'</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificação dos eixos</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gráfico de Controle np'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Amostra'</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Número de Não-Conformidades'</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, lsc<span class="op">*</span><span class="fl">1.15</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0.0, 29.026536966799764)</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(dados)), labels<span class="op">=</span>dados[<span class="st">'Amostra'</span>])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>([&lt;matplotlib.axis.XTick object at 0x000002B3731447A0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373197BC0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37310EC90&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373130B00&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37310E900&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373196060&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731479E0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AC800&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AD250&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731963F0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731ADC10&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AE630&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AF080&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AFA70&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AE030&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E0470&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E0D70&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E17F0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E2210&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E1100&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E2A80&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E3440&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E3E60&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731E3B30&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731AED20&gt;], [Text(0, 0, '1'), Text(1, 0, '2'), Text(2, 0, '3'), Text(3, 0, '4'), Text(4, 0, '5'), Text(5, 0, '6'), Text(6, 0, '7'), Text(7, 0, '8'), Text(8, 0, '9'), Text(9, 0, '10'), Text(10, 0, '11'), Text(11, 0, '12'), Text(12, 0, '13'), Text(13, 0, '14'), Text(14, 0, '15'), Text(15, 0, '16'), Text(16, 0, '17'), Text(17, 0, '18'), Text(18, 0, '19'), Text(19, 0, '20'), Text(20, 0, '21'), Text(21, 0, '22'), Text(22, 0, '23'), Text(23, 0, '24'), Text(24, 0, '25')])</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C4_PlotOfAtributes_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1536"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>A partir do gráfico acima podemos concluir pela estabilidade do processo, com linha central em <span class="math inline">\(LC = 15,44\)</span>, limites de alerta (<span class="math inline">\(2\sigma\)</span>) em <span class="math inline">\(\{LIA; LSA\} = \{5,6395; 25,2405\}\)</span> e limites de controle em <span class="math inline">\(\{LIC; LSC\} = \{8,9064; 21,97364\}\)</span>. Nota-se que não há pontos fora da zona de alerta e todos os pontos das <span class="math inline">\(m=25\)</span> amostras retiradas não apresentam sinais de tendência ou ciclidade.</p>
+</section>
+<section id="gráfico-np-com-subgrupos-variáveis" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="gráfico-np-com-subgrupos-variáveis"><span class="header-section-number">4.3.2</span> Gráfico <span class="math inline">\(np\)</span> com Subgrupos Variáveis</h3>
+<p>Na ocorrência de amostras de tamanho variável, sendo <span class="math inline">\(n_j = 1,2,\dots,m\)</span>, os limites de controle se adequam ao tamanho amostral individual. Desta forma, os limites para um processo em <span class="math inline">\(3\sigma\)</span> são expressos por</p>
+<p><span class="math display">\[
+LIC = \left\{ \begin{array} nn_j\bar{p} -3\sqrt{n_j\bar{p}\cdot(1-\bar{p})}, \text{ \hspace{.5cm} se \hspace{.25cm}} LIC &gt; 0; \\ 0, \text{ \hspace{5.1cm} caso contrário.} \end{array} \right .
+\]</span></p>
+<p>representando as condições do <strong>limite inferior de controle</strong>, <span class="math display">\[
+LC = n_j\bar{p}
+\]</span> representa o <strong>limite central</strong> e <span class="math display">\[
+LSC = n_j\bar{p} + 3 \sqrt{n_j\bar{p}\cdot(1-\bar{p})}
+\]</span> representa o <strong>limite superior de controle</strong>.</p>
+<p>A construção do gráfico considera o número variável do tamanho amostral (<span class="math inline">\(n\)</span>), gerando, portanto, limites de controle e de alerta flutuantes. A carta abaixo considerou dimensões de amostra entre 48 e 52 unidades em cada retirada.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(glue)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1236</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>n_j <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">48</span><span class="sc">:</span><span class="dv">52</span>, <span class="dv">25</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)       <span class="co"># Subgrupos variáveis</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>D_i <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span><span class="dv">15</span>, <span class="at">sd=</span><span class="dv">3</span>),<span class="dv">0</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p_i <span class="ot">=</span> D_i <span class="sc">/</span> n_j</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># União de dados em um dataframe</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Amostra=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(D_i), <span class="at">D_i=</span>D_i, <span class="at">n_j=</span>n_j, <span class="at">p_i=</span>p_i)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Média das proporções</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>media_p <span class="ot">=</span> <span class="fu">mean</span>(dados<span class="sc">$</span>p_i)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>lc <span class="ot">=</span> n_j<span class="sc">*</span>media_p</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>lsc <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>lic <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>lic_a <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dados<span class="sc">$</span>D_i, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd=</span><span class="fl">1.25</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="fl">1.15</span>, <span class="at">type=</span><span class="st">'b'</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(dados)), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(lic)<span class="sc">*</span><span class="fl">0.75</span>,<span class="fu">max</span>(lsc)<span class="sc">*</span><span class="fl">1.1</span>),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">col=</span><span class="st">'#096CC8'</span>, <span class="at">xlab=</span><span class="st">'Amostra'</span>, <span class="at">ylab=</span><span class="st">'Número de não-conformes'</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">'Gráfico np'</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> dados<span class="sc">$</span>Amostra, <span class="at">labels=</span>dados<span class="sc">$</span>Amostra)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas dos Limites de Controle</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lc, <span class="at">col =</span> <span class="st">'#8FC6FA'</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="fl">1.25</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lsc, <span class="at">col=</span> <span class="st">'#CD5C5C'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lic, <span class="at">col=</span><span class="st">'#CD5C5C'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas de Alerta</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lsc_a, <span class="at">col=</span> <span class="st">'#BCAA01'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lic_a, <span class="at">col=</span> <span class="st">'#BCAA01'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração das legendas</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="st">'topleft'</span>,<span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"LIC"</span>, <span class="st">"LC"</span>, <span class="st">"LSC"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'#CD5C5C'</span>,<span class="st">'#8FC6FA'</span>,<span class="st">'#CD5C5C'</span>), </span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">lwd=</span><span class="fl">1.25</span>, <span class="at">cex=</span>.<span class="dv">75</span>, <span class="at">horiz=</span><span class="cn">TRUE</span>, <span class="at">title=</span><span class="st">'Limites de Controle'</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="st">'topright'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"LIA"</span>, <span class="st">"LSA"</span>), <span class="at">col=</span><span class="st">'#BCAA01'</span>, </span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">1.5</span>, <span class="at">cex=</span>.<span class="dv">75</span>, <span class="at">horiz=</span><span class="cn">TRUE</span>, <span class="at">title=</span><span class="st">'Zona de Alerta (2σ)'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C4_PlotOfAtributes_files/figure-html/np-var-grr-3.png" class="img-fluid figure-img" width="1536"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>n_j <span class="op">=</span> [<span class="dv">51</span>,<span class="dv">48</span>,<span class="dv">48</span>,<span class="dv">50</span>,<span class="dv">48</span>,<span class="dv">50</span>,<span class="dv">51</span>,<span class="dv">50</span>,<span class="dv">49</span>,<span class="dv">50</span>,<span class="dv">51</span>,<span class="dv">52</span>,<span class="dv">52</span>,<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">48</span>,<span class="dv">49</span>,<span class="dv">48</span>,<span class="dv">48</span>,<span class="dv">52</span>,<span class="dv">48</span>,<span class="dv">52</span>,<span class="dv">49</span>,<span class="dv">50</span>,<span class="dv">49</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>D_i <span class="op">=</span> [<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">10</span>,<span class="dv">16</span>,<span class="dv">11</span>,<span class="dv">19</span>,<span class="dv">12</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">18</span>,<span class="dv">14</span>,<span class="dv">19</span>,<span class="dv">14</span>,<span class="dv">16</span>,<span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">14</span>,<span class="dv">20</span>,<span class="dv">14</span>,<span class="dv">17</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>p_i <span class="op">=</span> [x <span class="op">/</span> y <span class="cf">for</span> x, y <span class="kw">in</span> <span class="bu">zip</span>(D_i, n_j)]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># União de dados em um dataframe</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> pd.DataFrame({<span class="st">'Amostra'</span>: <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(D_i)<span class="op">+</span><span class="dv">1</span>)), <span class="st">'D_i'</span>: D_i, <span class="st">'n_j'</span>:n_j, <span class="st">'p_i'</span>: p_i})</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Média das proporções</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>media_p <span class="op">=</span> dados[<span class="st">'p_i'</span>].mean().<span class="bu">round</span>(<span class="dv">4</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>lc <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>lic_a <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">6</span>))</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>plt.plot(dados[<span class="st">'D_i'</span>], color<span class="op">=</span><span class="st">'#096CC8'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.9</span>, markersize <span class="op">=</span> <span class="dv">6</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas dos Limites de Controle</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>plt.plot(lc, color<span class="op">=</span><span class="st">'#8FC6FA'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span>, label<span class="op">=</span><span class="st">'LC'</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>plt.plot(lsc, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LSC'</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>plt.plot(lic, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'LIC'</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas de Alerta</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>plt.plot(lsc_a, color<span class="op">=</span><span class="st">'#BCAA01'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LSA'</span>)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>plt.plot(lic_a, color<span class="op">=</span><span class="st">'#BCAA01'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LIA'</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Limites de Controle'</span>)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">0</span>, np.<span class="bu">max</span>(lsc)<span class="op">*</span><span class="fl">1.15</span>])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0.0, 30.065050709186004)</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(dados)), labels<span class="op">=</span>dados[<span class="st">'Amostra'</span>])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>([&lt;matplotlib.axis.XTick object at 0x000002B37389E4E0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37389D430&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3731FA510&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37390ABA0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373867F80&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373909B80&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373908BC0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37390B7D0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393C290&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373909610&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3738650D0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393D010&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393D9A0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393E330&gt;, &lt;matplotlib.axis.XTick object at 0x000002B35EF4A7B0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393EA20&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393F5C0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37393FCB0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373950AD0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B37390A630&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373951370&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373951E20&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3739528A0&gt;, &lt;matplotlib.axis.XTick object at 0x000002B373953260&gt;, &lt;matplotlib.axis.XTick object at 0x000002B3739515B0&gt;], [Text(0, 0, '1'), Text(1, 0, '2'), Text(2, 0, '3'), Text(3, 0, '4'), Text(4, 0, '5'), Text(5, 0, '6'), Text(6, 0, '7'), Text(7, 0, '8'), Text(8, 0, '9'), Text(9, 0, '10'), Text(10, 0, '11'), Text(11, 0, '12'), Text(12, 0, '13'), Text(13, 0, '14'), Text(14, 0, '15'), Text(15, 0, '16'), Text(16, 0, '17'), Text(17, 0, '18'), Text(18, 0, '19'), Text(19, 0, '20'), Text(20, 0, '21'), Text(21, 0, '22'), Text(22, 0, '23'), Text(23, 0, '24'), Text(24, 0, '25')])</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="C4_PlotOfAtributes_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="1536"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Quando trabalhamos com limites variáveis, há uma sensibilidade maior em detectar pontos de atenção e pontos fora de controle, dado que amostras menores tendem a indicar proporcionalmente mais defeitos.</p>
+</section>
 </section>
 <section id="gráficos-de-controle-para-c" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="gráficos-de-controle-para-c"><span class="header-section-number">4.4</span> Gráficos de Controle para <span class="math inline">\(c\)</span></h2>
@@ -769,35 +1162,368 @@ window.Quarto = {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Atributos</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $p$</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $np$</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $c$</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Segundo Montgomery, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Há casos em que quando tem-se como interesse o monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como por exemplo o número de defeitos em um equipamento eletrônico.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>O gráfico de controle do número de defeitos (gráfico C) mede o número de defeitos em uma amostra de tamanho constante ou uma</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $u$</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>::::</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gráficos de Controle para Atributos</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE, echo=FALSE}</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">use_python</span>(<span class="st">"C:/Users/user/anaconda3/python.exe"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $p$</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>O gráfico $p$ é uma ferramenta destinada ao monitoramento da proporção de unidades defeituosas em um processo produtivo. Esse gráfico é particularmente útil quando a característica de qualidade em estudo pode ser classificada de forma binária, isto é, como "defeituoso" ou "não defeituoso".</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>Para cada amostra coletada é calculada a fração amostral não conforme, definida como a razão entre o número de unidades não conformes (ou seja, unidades defeituosas) na amostra $D_i$ e o tamanho $n$ da amostra, isto é, $$\hat{p_i} = \frac{D_i}{n}$$</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>Sendo assim, a linha central para o gráfico $p$ é dada por $\hat{p}$ e os limites para o gráfico (±3$\sigma$) são dados por:</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>$$LIC = \hat{p} - 3\sqrt\frac{\hat{p}(1 - \hat{p})}{n}$$</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>$$LSC = \hat{p} + 3\sqrt\frac{\hat{p}(1 - \hat{p})}{n}$$</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>Selecionadas 19 amostras de tamanho $n$ = 50, temos que:</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">Amostra =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>,</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">Di =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="dv">11</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">8</span>),</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">pi =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.08</span>, <span class="fl">0.06</span>, <span class="fl">0.4</span>, <span class="fl">0.22</span>, <span class="fl">0.18</span>, <span class="fl">0.06</span>, <span class="fl">0.4</span>, <span class="fl">0.22</span>, <span class="fl">0.12</span>, <span class="fl">0.14</span>, <span class="fl">0.22</span>, <span class="fl">0.06</span>, <span class="fl">0.06</span>, <span class="fl">0.18</span>, <span class="fl">0.06</span>, <span class="fl">0.16</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporção média</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>p_barra <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados<span class="sc">$</span>pi)</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>p_barra</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="co">#Cálculo dos limites</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>LSC <span class="ot">=</span> p_barra <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>((p_barra<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p_barra))<span class="sc">/</span><span class="dv">50</span>)</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>LC <span class="ot">=</span> p_barra</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>LIC <span class="ot">=</span> p_barra <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>((p_barra<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p_barra))<span class="sc">/</span><span class="dv">50</span>)</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(LSC, LIC, LC)</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráfico</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dados<span class="sc">$</span>pi, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(LSC, <span class="fu">max</span>(dados<span class="sc">$</span>pi))),</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>,</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Gráfico p"</span>,</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Fração não-conforme"</span>, <span class="at">xlab =</span> <span class="st">"Amostra"</span>)</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(LSC, LC, LIC), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>), </span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Legenda</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"p-barra"</span>, <span class="st">"LIC/LSC"</span>),</span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">NA</span>, <span class="cn">NA</span>))</span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>É possível notar no gráfico que as amostras 6 e 10 ultrapassam o limite superior de controle, portanto, estão, estatísticamente, fora de controle.</span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $np$</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>Em determinados processos, os itens produzidos podem apresentar certo número de pequenas não conformidades que não o caracterizem como um item não conforme. No entanto, pequenas não conformidades em excesso pode ser perceptível (e indesejável) ao consumidor. </span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>O gráfico $np$ tem por objetivo o monitoramento do número de itens defeituosos em uma linha de produção, detectando possíveis problemas no processo quando há extrapolação dos limites de controle. </span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gráfico $np$ com Subgrupos Fixos</span></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>Quando o número de amostras coletadas é fixa ao longo do tempo, seus limites de controle e de advertência também o serão. Desta forma, os limites de controle do gráfico $p$ com nível de operação $3\sigma$ ($L=3$) são adaptados de tal forma que</span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>LIC = \left<span class="sc">\{</span> \begin{array} n\bar{p} -3\sqrt{n\bar{p}\cdot(1-\bar{p})}, \text{ se } LIC &gt; 0; <span class="sc">\\</span> 0, \text{ caso contrário.} \end{array} \right .</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>representa as condições do **limite inferior de controle**,</span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>LC = n\bar{p}</span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>representa o **limite central** e</span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>LSC = n\bar{p} + 3 \sqrt{n\bar{p}\cdot(1-\bar{p})}</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>representa o **limite superior de controle**.</span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>A construção da carta de controle $np$ considera o número de defeitos constados em cada amostra e, baseado nele, é calculado a proporção de defeitos. É possível a determinação de zonas de alerta, onde o processo ainda não sofreu efetivo descontrole, porém é dado um sinal de aviso. O processo deve ser monitorado com maior cautela em casos de tendência ou variações cíclicas e sucessivas.  </span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>Para contextualização o gráfico abaixo representa uma linha de produção com controle realizado feito a partir de $n=50$ itens em cada amostra, com número de defeitos representado por $D_i$. </span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset} </span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### R </span></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar pacote</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(glue)) <span class="fu">install.packages</span>(<span class="st">"glue"</span>)</span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de não-conformidades</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># para reprodutibilidade</span></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>D_i <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">20</span>, <span class="dv">50</span>, <span class="fl">0.1235</span>)</span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>media_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(D_i <span class="sc">/</span> n)</span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>lc <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p</span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a>lsc <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>lic <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="co"># Evitar limites negativos</span></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>lic <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>, lic)</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>lic_a <span class="ot">&lt;-</span> n <span class="sc">*</span> media_p <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> media_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>lic_a <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">0</span>, lic_a)</span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">xlab =</span> <span class="st">''</span>, <span class="at">ylab =</span> <span class="st">''</span>,</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(lic <span class="sc">*</span> <span class="fl">0.75</span>, lsc <span class="sc">*</span> <span class="fl">1.15</span>),</span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>))  <span class="co"># &lt;-- parêntese corrigido</span></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Zona de alerta</span></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a><span class="fu">rect</span>(<span class="at">ybottom =</span> lic_a, <span class="at">ytop =</span> lsc_a, <span class="at">xleft =</span> <span class="dv">0</span>, <span class="at">xright =</span> <span class="dv">20</span>,</span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">248</span><span class="sc">/</span><span class="dv">255</span>, <span class="dv">238</span><span class="sc">/</span><span class="dv">255</span>, <span class="dv">153</span><span class="sc">/</span><span class="dv">255</span>, <span class="at">alpha =</span> .<span class="dv">30</span>), <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a><span class="co"># Sobreposição da série</span></span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(D_i, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">1.15</span>, <span class="at">type =</span> <span class="st">'b'</span>,</span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(lic <span class="sc">*</span> <span class="fl">0.75</span>, lsc <span class="sc">*</span> <span class="fl">1.15</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>),</span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">'#096CC8'</span>, <span class="at">xlab =</span> <span class="st">'Amostra'</span>, <span class="at">ylab =</span> <span class="st">'Número de não-conformes'</span>,</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">'Gráfico np'</span>)</span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">labels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Linhas de controle</span></span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(lsc, lc, lic),</span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'#CD5C5C'</span>, <span class="st">'#8FC6FA'</span>, <span class="st">'#CD5C5C'</span>),</span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">lwd =</span> <span class="fl">1.25</span>)</span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Textos</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">18</span>),</span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="fu">c</span>(lic <span class="sc">*</span> <span class="fl">1.15</span>, lc <span class="sc">*</span> <span class="fl">1.05</span>, lsc <span class="sc">*</span> <span class="fl">0.98</span>, lsc_a <span class="sc">*</span> <span class="fl">0.98</span>),</span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">glue</span>(<span class="st">"LIC = {sprintf('%.4f', lic)}"</span>),</span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a>                <span class="fu">glue</span>(<span class="st">"LC = {sprintf('%.4f', lc)}"</span>),</span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>                <span class="fu">glue</span>(<span class="st">"LSC = {sprintf('%.4f', lsc)}"</span>),</span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a>                <span class="st">'Zona de Alerta'</span>),</span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'#CD5C5C'</span>, <span class="st">'#8FC6FA'</span>, <span class="st">'#CD5C5C'</span>, <span class="st">'#BCAA01'</span>),</span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> .<span class="dv">75</span>)</span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração de dados</span></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="co">#random.seed(1236)</span></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a><span class="co">#D_i = list(np.random.normal(loc=15, scale=3, size=25)</span></span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de não-conformidades</span></span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a>D_i <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">18</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">17</span>]</span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a>p_i <span class="op">=</span> [x <span class="op">/</span> n <span class="cf">for</span> x <span class="kw">in</span> D_i]</span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a><span class="co"># União de dados em um dataframe</span></span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> pd.DataFrame({<span class="st">'Amostra'</span>: <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(D_i)<span class="op">+</span><span class="dv">1</span>)), <span class="st">'D_i'</span>: D_i, <span class="st">'p_i'</span>: p_i})</span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a><span class="co"># Média das proporções</span></span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a>media_p <span class="op">=</span> dados[<span class="st">'p_i'</span>].mean()</span>
+<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a>lc <span class="op">=</span> n<span class="op">*</span>media_p</span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a>lic_a <span class="op">=</span> n<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(n<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">6</span>))</span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>plt.plot(dados[<span class="st">'D_i'</span>], color<span class="op">=</span><span class="st">'#096CC8'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.9</span>, markersize <span class="op">=</span> <span class="dv">6</span>)</span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas dos Limites de Controle</span></span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>lc, color<span class="op">=</span><span class="st">'#8FC6FA'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span>, label<span class="op">=</span><span class="st">'LC'</span>)</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>lsc, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LSC = </span><span class="sc">{</span>lsc<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>lic, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'LIC'</span>)</span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a><span class="co"># Anotação dos Limites de Controle</span></span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'LC = </span><span class="sc">{</span>lc<span class="sc">:.4f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, lc), xytext<span class="op">=</span>(<span class="dv">0</span>, lc<span class="op">*</span><span class="fl">1.05</span>), color<span class="op">=</span><span class="st">'#2471a3'</span>)</span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'LSC= </span><span class="sc">{</span>lsc<span class="sc">:.4f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, lsc), xytext<span class="op">=</span>(<span class="dv">0</span>, lsc<span class="op">*</span><span class="fl">0.95</span>), color<span class="op">=</span><span class="st">'#CD5C5C'</span>)</span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'LIC = </span><span class="sc">{</span>lic<span class="sc">:.4f}</span><span class="ss">'</span>, xy<span class="op">=</span>(<span class="dv">0</span>, lic), xytext<span class="op">=</span>(<span class="dv">0</span>, lic<span class="op">*</span><span class="fl">1.15</span>), color<span class="op">=</span><span class="st">'#CD5C5C'</span>)</span>
+<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Zona de alerta</span></span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a>plt.axhspan(ymin<span class="op">=</span>lic_a, ymax<span class="op">=</span>lsc_a, alpha<span class="op">=</span><span class="fl">0.3</span>, color <span class="op">=</span><span class="st">'#F8EE99'</span>, label <span class="op">=</span> <span class="st">'Zona de Alerta'</span>)</span>
+<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">'Zona de Alerta'</span>, xy<span class="op">=</span>(<span class="bu">len</span>(dados)<span class="op">*</span><span class="fl">.9</span>, lsc_a), xytext<span class="op">=</span>(<span class="bu">len</span>(dados)<span class="op">*</span><span class="fl">.9</span>, lsc_a<span class="op">*</span><span class="fl">.96</span>), color<span class="op">=</span><span class="st">'#BCAA01'</span>)</span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificação dos eixos</span></span>
+<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gráfico de Controle np'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Amostra'</span>)</span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Número de Não-Conformidades'</span>)</span>
+<span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, lsc<span class="op">*</span><span class="fl">1.15</span>)</span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(dados)), labels<span class="op">=</span>dados[<span class="st">'Amostra'</span>])</span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a>A partir do gráfico acima podemos concluir pela estabilidade do processo, com linha central em $LC = 15,44$, limites de alerta ($2\sigma$) em $<span class="sc">\{</span>LIA; LSA<span class="sc">\}</span> = <span class="sc">\{</span>5,6395; 25,2405<span class="sc">\}</span>$ e limites de controle em $<span class="sc">\{</span>LIC; LSC<span class="sc">\}</span> = <span class="sc">\{</span>8,9064; 21,97364<span class="sc">\}</span>$. Nota-se que não há pontos fora da zona de alerta e todos os pontos das $m=25$ amostras retiradas não apresentam sinais de tendência ou ciclidade.</span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gráfico $np$ com Subgrupos Variáveis</span></span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>Na ocorrência de amostras de tamanho variável, sendo $n_j = 1,2,\dots,m$, os limites de controle se adequam ao tamanho amostral individual. Desta forma, os limites para um processo em $3\sigma$ são expressos por</span>
+<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a>LIC = \left<span class="sc">\{</span> \begin{array} nn_j\bar{p} -3\sqrt{n_j\bar{p}\cdot(1-\bar{p})}, \text{ \hspace{.5cm} se \hspace{.25cm}} LIC &gt; 0; <span class="sc">\\</span> 0, \text{ \hspace{5.1cm} caso contrário.} \end{array} \right .</span>
+<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>representando as condições do **limite inferior de controle**,</span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a>LC = n_j\bar{p}</span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>representa o **limite central** e </span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>LSC = n_j\bar{p} + 3 \sqrt{n_j\bar{p}\cdot(1-\bar{p})}</span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a>representa o **limite superior de controle**.</span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>A construção do gráfico considera o número variável do tamanho amostral ($n$), gerando, portanto, limites de controle e de alerta flutuantes. A carta abaixo considerou dimensões de amostra entre 48 e 52 unidades em cada retirada. </span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset} </span>
+<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a><span class="fu">### R </span></span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r np-var-grr, echo=T, include=T, cache=T, warning=F, fig.width=16, fig.height=6}</span></span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(glue)</span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1236</span>)</span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>n_j <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">48</span><span class="sc">:</span><span class="dv">52</span>, <span class="dv">25</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)       <span class="co"># Subgrupos variáveis</span></span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>D_i <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span><span class="dv">15</span>, <span class="at">sd=</span><span class="dv">3</span>),<span class="dv">0</span>)</span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a>p_i <span class="ot">=</span> D_i <span class="sc">/</span> n_j</span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a><span class="co"># União de dados em um dataframe</span></span>
+<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Amostra=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(D_i), <span class="at">D_i=</span>D_i, <span class="at">n_j=</span>n_j, <span class="at">p_i=</span>p_i)</span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Média das proporções</span></span>
+<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a>media_p <span class="ot">=</span> <span class="fu">mean</span>(dados<span class="sc">$</span>p_i)</span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a>lc <span class="ot">=</span> n_j<span class="sc">*</span>media_p</span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a>lsc <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a>lic <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>lic_a <span class="ot">=</span> n_j<span class="sc">*</span>media_p <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(n_j<span class="sc">*</span>media_p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> media_p))</span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dados<span class="sc">$</span>D_i, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd=</span><span class="fl">1.25</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="fl">1.15</span>, <span class="at">type=</span><span class="st">'b'</span>,</span>
+<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(dados)), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(lic)<span class="sc">*</span><span class="fl">0.75</span>,<span class="fu">max</span>(lsc)<span class="sc">*</span><span class="fl">1.1</span>),</span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a>    <span class="at">col=</span><span class="st">'#096CC8'</span>, <span class="at">xlab=</span><span class="st">'Amostra'</span>, <span class="at">ylab=</span><span class="st">'Número de não-conformes'</span>,</span>
+<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">'Gráfico np'</span>)</span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> dados<span class="sc">$</span>Amostra, <span class="at">labels=</span>dados<span class="sc">$</span>Amostra)</span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas dos Limites de Controle</span></span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lc, <span class="at">col =</span> <span class="st">'#8FC6FA'</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">lwd=</span><span class="fl">1.25</span>)</span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lsc, <span class="at">col=</span> <span class="st">'#CD5C5C'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>)</span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lic, <span class="at">col=</span><span class="st">'#CD5C5C'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>)</span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas de Alerta</span></span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lsc_a, <span class="at">col=</span> <span class="st">'#BCAA01'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span>dados<span class="sc">$</span>Amostra, <span class="at">y =</span> lic_a, <span class="at">col=</span> <span class="st">'#BCAA01'</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração das legendas</span></span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="st">'topleft'</span>,<span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"LIC"</span>, <span class="st">"LC"</span>, <span class="st">"LSC"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'#CD5C5C'</span>,<span class="st">'#8FC6FA'</span>,<span class="st">'#CD5C5C'</span>), </span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">lwd=</span><span class="fl">1.25</span>, <span class="at">cex=</span>.<span class="dv">75</span>, <span class="at">horiz=</span><span class="cn">TRUE</span>, <span class="at">title=</span><span class="st">'Limites de Controle'</span>)</span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="st">'topright'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"LIA"</span>, <span class="st">"LSA"</span>), <span class="at">col=</span><span class="st">'#BCAA01'</span>, </span>
+<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">1.5</span>, <span class="at">cex=</span>.<span class="dv">75</span>, <span class="at">horiz=</span><span class="cn">TRUE</span>, <span class="at">title=</span><span class="st">'Zona de Alerta (2σ)'</span>)</span>
+<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a>n_j <span class="op">=</span> [<span class="dv">51</span>,<span class="dv">48</span>,<span class="dv">48</span>,<span class="dv">50</span>,<span class="dv">48</span>,<span class="dv">50</span>,<span class="dv">51</span>,<span class="dv">50</span>,<span class="dv">49</span>,<span class="dv">50</span>,<span class="dv">51</span>,<span class="dv">52</span>,<span class="dv">52</span>,<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">48</span>,<span class="dv">49</span>,<span class="dv">48</span>,<span class="dv">48</span>,<span class="dv">52</span>,<span class="dv">48</span>,<span class="dv">52</span>,<span class="dv">49</span>,<span class="dv">50</span>,<span class="dv">49</span>]</span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a>D_i <span class="op">=</span> [<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">10</span>,<span class="dv">16</span>,<span class="dv">11</span>,<span class="dv">19</span>,<span class="dv">12</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">18</span>,<span class="dv">14</span>,<span class="dv">19</span>,<span class="dv">14</span>,<span class="dv">16</span>,<span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">14</span>,<span class="dv">20</span>,<span class="dv">14</span>,<span class="dv">17</span>]</span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a>p_i <span class="op">=</span> [x <span class="op">/</span> y <span class="cf">for</span> x, y <span class="kw">in</span> <span class="bu">zip</span>(D_i, n_j)]</span>
+<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a><span class="co"># União de dados em um dataframe</span></span>
+<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> pd.DataFrame({<span class="st">'Amostra'</span>: <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(D_i)<span class="op">+</span><span class="dv">1</span>)), <span class="st">'D_i'</span>: D_i, <span class="st">'n_j'</span>:n_j, <span class="st">'p_i'</span>: p_i})</span>
+<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a><span class="co"># Média das proporções</span></span>
+<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a>media_p <span class="op">=</span> dados[<span class="st">'p_i'</span>].mean().<span class="bu">round</span>(<span class="dv">4</span>)</span>
+<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de interesse</span></span>
+<span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a>lic <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a>lc <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p</span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>lsc <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores de alerta (2σ)</span></span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>lsc_a <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>lic_a <span class="op">=</span> dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>np.sqrt(dados[<span class="st">'n_j'</span>]<span class="op">*</span>media_p<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> media_p))</span>
+<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico np</span></span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">6</span>))</span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a>plt.plot(dados[<span class="st">'D_i'</span>], color<span class="op">=</span><span class="st">'#096CC8'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.9</span>, markersize <span class="op">=</span> <span class="dv">6</span>)</span>
+<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas dos Limites de Controle</span></span>
+<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a>plt.plot(lc, color<span class="op">=</span><span class="st">'#8FC6FA'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span>, label<span class="op">=</span><span class="st">'LC'</span>)</span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a>plt.plot(lsc, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LSC'</span>)</span>
+<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a>plt.plot(lic, color<span class="op">=</span><span class="st">'#CD5C5C'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'LIC'</span>)</span>
+<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem das Linhas de Alerta</span></span>
+<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a>plt.plot(lsc_a, color<span class="op">=</span><span class="st">'#BCAA01'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LSA'</span>)</span>
+<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a>plt.plot(lic_a, color<span class="op">=</span><span class="st">'#BCAA01'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'LIA'</span>)</span>
+<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Limites de Controle'</span>)</span>
+<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">0</span>, np.<span class="bu">max</span>(lsc)<span class="op">*</span><span class="fl">1.15</span>])</span>
+<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(dados)), labels<span class="op">=</span>dados[<span class="st">'Amostra'</span>])</span>
+<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a>Quando trabalhamos com limites variáveis, há uma sensibilidade maior em detectar pontos de atenção e pontos fora de controle, dado que amostras menores tendem a indicar proporcionalmente mais defeitos.</span>
+<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $c$</span></span>
+<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-361"><a href="#cb18-361" aria-hidden="true" tabindex="-1"></a>Segundo Montgomery, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Há casos em que quando tem-se como interesse o monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como por exemplo o número de defeitos em um equipamento eletrônico.</span>
+<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a>O gráfico de controle do número de defeitos (gráfico C) mede o número de defeitos em uma amostra de tamanho constante ou uma</span>
+<span id="cb18-364"><a href="#cb18-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráficos de Controle para $u$</span></span>
+<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a>::::</span>
+</code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

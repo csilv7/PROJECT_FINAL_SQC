@@ -5,6 +5,209 @@
 
 # Índice de Capacidade
 
+**Os índices de capacidade do processo são
+parâmetros adimensionais que indiretamente
+medem o quanto o processo consegue atender às
+especificações. Eles comparam a dispersão do processo com os limites de especificação.**  
+
+## Limites de Especificação (definidos em projeto)
+
+**Limite inferior (LIE): valor mínimo aceitável**
+**Limite superior (LSE): valor máximo aceitável**
+
+## Importante:
+
+**> os índices de capacidade só têm sentido
+se os dados analisados forem provenientes de um
+processo dentro de controle. Eles são parâmetros (analisados e definidos);**  
+**> evidenciada a condição de controle o estudo de capacidade pode ser conduzido;**  
+**> eficiência - entendido como baixo nível de não-conformidades.**
+**> 
+
+
+## Índice Cp - Capacidade Potencial**
+
+**Mede a largura do intervalo de especificação em relação à variabilidade do processo.**
+
+**Não considera o centramento.**
+
+**Quanto maior o Cp, melhor**
+
+**Na prática, o desvio padrão é desconhecido e deve ser substituído por uma estimativa de 6-sigma.**
+
+Cp = (LSE- LIE)/ 6*SIGMA   ...# melhorar (fazer Cp como ESTIMADOR)
+
+**Os limites expresam a tolerância natural doprocesso**.
+
+Note que o índice Cp relaciona a tolerância especificada
+com a tolerância natural do processo. Assim,
+
+* Cp < 1, TN é maior que TE (preocupante)
+* Cp = 1, TN é igual TE (precisa melhorar)
+* Cp > 1, TN é menor que TE (desejável)
+
+
+## Porcentagem de Especificação:
+**A percentagem utilizada mede o quanto da faixa de tolerância está sendo ocupada pela variabilidade do processo.**
+
+Pesp = (1/Cp)*100
+
+**>Valores baixos indicam boa folga para atender especificações.**
+**>Valores altos indicam risco de não conformidade.**
+
+
+## Exemplos:
+
+### 1) Um processo tem: LIE = 45, LSE = 55 e σ= 1,5. Calcule Cp.
+```{r}
+LIE <- 45
+LSE <- 55
+desvio <- 1.5 
+Cp <- (LSE - LIE) / (6 * desvio)
+Cp
+
+```
+
+### 2) Sabendo que LIE = 12,0, LSE = 12,6, x_bar = 12,25 e σ = 0,06,calcule Cpu, Cpl e Cpk
+
+```{r}
+LIE =12.0
+LSE = 12.6
+media = 12.25
+desvio = 0.06
+
+Cpu <- (LSE - media) / (3 * desvio)
+Cpu
+
+Cpl <- (media - LIE) / (3 * desvio)
+Cpl
+
+Cpk <- min(Cpu, Cpl)
+Cpk
+
+```
+
+### 3) Um processo apresenta Cp = 1,40. Qual é a percentagem da especificação utilizada?
+
+```{r}
+Cp_3 = 1.40
+
+Pesp = (1/Cp_3)*100   #R: 71,43% de toda a variabilidade permitida  (LSE - LIE)
+Pesp   #"Percentagem de Especificação utilizada = 71.43%
+```
+
+### 4) Um processo de envase tem LIE = 495 mL, LSE = 505 mL, x¯ = 503 mL e σ = 2 mL. Calcule Cpu, Cpl e Cpk e interprete se o processo é capaz.
+
+```{r}
+LIE = 495
+LSE = 505
+media = 503
+desvio = 2
+
+Cpu <- (LSE - media) / (3*desvio)
+Cpu
+
+Cpl <- (media - LIE) / (3*desvio)
+Cpl
+
+Cpk <- min(Cpu, Cpl)        
+Cpk  
+```
+
+**Interpretação: Como Cpk < 1.0 o processo não é capaz.**
+    
+### 5) Considere LIE = 97, LSE = 103, n = 30 e S = 0,8. Teste, ao nível de significância de 5%, se o processo é capaz para Cp = 1,33.
+
+```{r}
+LIE = 97
+LSE = 103
+n = 30
+s = 0.8
+Cp = 1.33
+
+# Calculo de Sig0 (desvio)
+desvio_z = (LSE - LIE)/(6*Cp)
+desvio_z
+# Estataistica de teste
+qui_quad = ((n-1)*s^2)/(desvio_z)^2
+qui_quad
+
+# Análise: Valor crítico para alfa = 0.05, gl = 29
+  # qui_quad_Crit = 17.71
+  # Como qui_quad > qui_quad_Crit, não se rejeita H0,ou seja, o processo não é capaz
+  
+
+# Nota: Hipoteses 
+    #   H0: Cp = Cp0    x   H1: Cp # Cp0   
+
+
+```
+**Interpretação: Como 32.83 > 17.71 ao nível de significancia de 0.05, não rejeitamos H0. Ou seja, o processo não é capaz.**
+
+
+### Uma indústria alimentícia deseja verificar a capacidade do processo de empacotamento de açúcar (peso em gramas). Dados coletados (n = 10, uma medida por pacote):
+
+**Dados: 1005, 1008, 1004, 1007, 1006, 1009, 1005, 1004, 1008, 1006.**   
+
+**Especificações: LIE = 1000 g, LSE = 1010 g.**  
+
+**a) Calcular Cp, Cpu, Cpl e Cpk.**
+
+```{r}
+dados_7 = c(1005, 1008, 1004, 1007, 1006, 1009, 1005, 1004, 1008, 1006)
+media =mean(dados_7)
+desvio = sd(dados_7)
+
+LIE = 1000
+LSE = 1010
+
+ 
+Cp <- (LSE - LIE) / (6 * desvio)
+Cp
+
+Cpu <- (LSE - media) / (3*desvio)
+Cpu
+
+Cpl <- (media - LIE) / (3*desvio)
+Cpl
+
+Cpk <- min(Cpu, Cpl)        
+Cpk 
+
+```
+
+**b) Determinar a percentagem da especificação utilizada.  ----- ver 3a)**
+
+**c) Construir um histograma com os limites de especificação**
+
+```{r}
+library(ggplot2)
+library(qcc)
+dados_7
+
+LSL <- 1000
+USL <- 1001 
+library(ggplot2)
+library(dplyr)
+
+dad = data.frame(valor = rnorm(100, mean = 50, sd = 10))
+
+
+# Defina seus limites de especificação
+limite_inferior <- 30
+limite_superior <- 70
+
+# Crie o histograma com os limites de especificação
+ggplot(dad, aes(x = valor)) +
+  geom_histogram(fill = "skyblue", color = "black", binwidth = 5) + # Crie o histograma
+  geom_vline(xintercept = limite_inferior, color = "red", linetype = "dashed", size = 1) + # Linha do limite inferior
+  geom_vline(xintercept = limite_superior, color = "red", linetype = "dashed", size = 1) + # Linha do limite superior
+  labs(title = "Histograma com Limites de Especificação",
+       x = "Valores",
+       y = "Frequência") +
+  theme_minimal() # Um tema simples para o gráfico
+```
+
 :::: progress
 :::: {.progress-bar style="width: 100%;"}
 ::::
