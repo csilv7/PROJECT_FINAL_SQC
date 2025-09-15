@@ -1,19 +1,33 @@
 :::: progress
-:::: {.progress-bar style="width: 100%;"}
+:::: {.progress-bar style="width: 100%"}
 ::::
 ::::
 
 # Gráficos de Controle para Atributos
 
-```{r, include=FALSE, echo=FALSE}
-library(reticulate)
-use_python("C:/Users/user/anaconda3/python.exe", required = TRUE)
-```
-
 ## Introdução
+Em situações onde controlar as características do produto não podem ou não convenham ser quantificadas diretamente, os parâmetros de qualidade podem ser marcados em termos de *atributos*, conformidade/não-conformidade, adequado/não-adequado ou defeito/não-defeito. A classificação de *defeito* está relacionado ao não atendimento das especificações exigidas por falhas no acabamento, estética ou funcionalidade. 
+
+Para seu manejo, os defeitos podem ser expressos em termos de proporção ou absolutos. A fração de não-conformes é dada pela relação entre o número de defeituosos na amostra e o número da amostra, ou seja, $p=d/n$. Ao tratarmos com gráficos em termos de fração de defeitos e supondo que os itens são produzidos em linha de forma independente, podemos dizer que o controle é dado por uma distribuição binomial $D \sim Bin(n, p)$, onde $D$ é uma variável aleatória que representa o número de defeitos. Para a proporção amostral de defeitos 
+$$
+\hat{p}_i=\dfrac{D_i}{n},
+$$ 
+as propriedades de esperança e variância estatística podem ser descritas como
+
+$$
+E(\hat{p})=p \text{ \hspace{.5cm} } Var(\hat{p})=\dfrac{p(1-p)}{n}.
+$$
+
+Pelo Teorema Central do Limite para $n \rightarrow \infty$, a distribuição se aproxima de uma Normal no formato
+
+$$
+\hat{p} \sim N \left(  \mu_{\hat{p}} = p \text{;  } \sigma_{\hat{p}} = \sqrt{\dfrac{p(1-p)}{n}} \right).
+$$
+
+Ainda que a utilização de gráficos de atributos permita controlar parâmetros variáveis ter como vantagem a simplicidade e rapidez com que os gráficos são construídos, tem como desvantagem a perda de informação sobre como está ocorrendo a variação do parâmetro de qualidade.
+
 
 ## Gráficos de Controle para $p$
-
 O gráfico $p$ é uma ferramenta destinada ao monitoramento da proporção de unidades defeituosas em um processo produtivo. Esse gráfico é particularmente útil quando a característica de qualidade em estudo pode ser classificada de forma binária, isto é, como "defeituoso" ou "não defeituoso".
 
 Para cada amostra coletada é calculada a fração amostral não conforme, definida como a razão entre o número de unidades não conformes (ou seja, unidades defeituosas) na amostra $D_i$ e o tamanho $n$ da amostra, isto é, $$\hat{p_i} = \frac{D_i}{n}$$
@@ -60,105 +74,90 @@ legend("topright", legend = c("p", "p-barra", "LIC/LSC"),
        col = c("black", "blue", "red"), lty = c(1,2,2), pch = c(16, NA, NA))
 ```
 
-É possível notar no gráfico que as amostras 6 e 10 ultrapassam o limite superior de controle, portanto, estão, estatísticamente, fora de controle.
+É possível notar no gráfico que as amostras 6 e 10 ultrapassam o limite superior de controle, portanto, estão, estatisticamente, fora de controle.
+
+
 
 ## Gráficos de Controle para $np$
-
 Em determinados processos, os itens produzidos podem apresentar certo número de pequenas não conformidades que não o caracterizem como um item não conforme. No entanto, pequenas não conformidades em excesso pode ser perceptível (e indesejável) ao consumidor. 
 
 O gráfico $np$ tem por objetivo o monitoramento do número de itens defeituosos em uma linha de produção, detectando possíveis problemas no processo quando há extrapolação dos limites de controle. 
 
 ### Gráfico $np$ com Subgrupos Fixos
-
 Quando o número de amostras coletadas é fixa ao longo do tempo, seus limites de controle e de advertência também o serão. Desta forma, os limites de controle do gráfico $p$ com nível de operação $3\sigma$ ($L=3$) são adaptados de tal forma que
 
 $$
-LIC = \left\{ \begin{array} n\bar{p} -3\sqrt{n\bar{p}\cdot(1-\bar{p})}, \text{ se } LIC > 0; \\ 0, \text{ caso contrário.} \end{array} \right .
+LIC = \left\{ \begin{array} nn\bar{p} -3\sqrt{n\bar{p}\cdot(1-\bar{p})}, \text{ \hspace{.25cm} se \hspace{.25cm}} LIC > 0; \\ 0, \text{ \hspace{4cm} caso contrário.} \end{array} \right .
 $$
 
 representa as condições do **limite inferior de controle**,
-
 $$
 LC = n\bar{p}
 $$
-
-representa o **limite central** e
-
+representa o **limite central** e 
 $$ 
 LSC = n\bar{p} + 3 \sqrt{n\bar{p}\cdot(1-\bar{p})}
 $$
-
 representa o **limite superior de controle**.
 
 A construção da carta de controle $np$ considera o número de defeitos constados em cada amostra e, baseado nele, é calculado a proporção de defeitos. É possível a determinação de zonas de alerta, onde o processo ainda não sofreu efetivo descontrole, porém é dado um sinal de aviso. O processo deve ser monitorado com maior cautela em casos de tendência ou variações cíclicas e sucessivas.  
 
-Para contextualização o gráfico abaixo representa uma linha de produção com controle realizado feito a partir de $n=50$ itens em cada amostra, com número de defeitos representado por $D_i$. 
+Para contextualização o gráfico abaixo representa uma linha de produção com controle realizado feito a partir de $m=25$ amostras com $n=50$ itens em cada, com número de defeitos representado por $D_i$. 
 
 ::: {.panel-tabset} 
-
 ### R 
+```{r np-grr, echo=T, include=T, cache=T, warning=F, fig.width=16, fig.height=6}
+require(glue)
+n = 50 
+set.seed(1235)
+D_i = round(rbinom(n=25, size=50, prob=.30),0)
+p_i = sapply(D_i, function(x) x / n)
 
-```{r}
-# Carregar pacote
-if (!require(glue)) install.packages("glue")
-library(glue)
+# União de dados em um dataframe
+dados = data.frame(Amostra=1:length(D_i), D_i=D_i, p_i=p_i)
 
-# Número de não-conformidades
-set.seed(123) # para reprodutibilidade
-D_i <- rbinom(20, 50, 0.1235)
-n <- 50
-
-media_p <- mean(D_i / n)
+# Média das proporções
+media_p = mean(p_i)
 
 # Valores de interesse
-lc <- n * media_p
-lsc <- n * media_p + 3 * sqrt(n * media_p * (1 - media_p))
-lic <- n * media_p - 3 * sqrt(n * media_p * (1 - media_p))
-
-# Evitar limites negativos
-lic <- max(0, lic)
+lc = n*media_p
+lsc = n*media_p + 3*sqrt(n*media_p*(1 - media_p))
+lic = n*media_p - 3*sqrt(n*media_p*(1 - media_p))
 
 # Valores de alerta (2σ)
-lsc_a <- n * media_p + 2 * sqrt(n * media_p * (1 - media_p))
-lic_a <- n * media_p - 2 * sqrt(n * media_p * (1 - media_p))
-lic_a <- max(0, lic_a)
+lsc_a = n*media_p + 2*sqrt(n*media_p*(1 - media_p))
+lic_a = n*media_p - 2*sqrt(n*media_p*(1 - media_p))
 
 # Gráfico np
-plot(1:10, 1:10, type = "n", xlab = '', ylab = '',
-     ylim = c(lic * 0.75, lsc * 1.15),
-     xlim = c(1, 20))  # <-- parêntese corrigido
+#par(mfrow = c(1, 1))
+# Plot em branco -- definição de limites dos eixos
+plot(1:10, 1:10, type = "n", xlab='',ylab='',
+	ylim = c(lic*.75, lsc*1.15), xlim = c(1, nrow(dados)))
 
-# Zona de alerta
-rect(ybottom = lic_a, ytop = lsc_a, xleft = 0, xright = 20,
-     col = rgb(248/255, 238/255, 153/255, alpha = .30), border = NA)
+# Zona de alerta -- deve ser plotado primeiro para permanecer ao fundo
+rect(ybottom = lic_a, ytop = lsc_a, xleft=0, xright=26,
+	col = rgb(248/255,238/255,153/255, alpha=.30), border = NA)
 
-# Sobreposição da série
 par(new = TRUE)
-plot(D_i, lty = 1, lwd = 1.25, pch = 19, cex = 1.15, type = 'b',
-     ylim = c(lic * 0.75, lsc * 1.15), xlim = c(1, 20),
-     col = '#096CC8', xlab = 'Amostra', ylab = 'Número de não-conformes',
-     main = 'Gráfico np')
-axis(side = 1, at = 1:20, labels = 1:20)
+plot(dados$D_i, lty = 1, lwd=1.25, pch=19, cex=1.15, type='b',
+	ylim = c(lic*.75, lsc*1.15), xlim = c(1, nrow(dados)),
+	col='#096CC8', xlab='Amostra', ylab='Número de não-conformes',
+	main = 'Gráfico np')
+axis(side = 1, at = dados$Amostra, labels=dados$Amostra)
 
-# Linhas de controle
-abline(h = c(lsc, lc, lic),
-       col = c('#CD5C5C', '#8FC6FA', '#CD5C5C'),
-       lty = c(2, 1, 2), lwd = 1.25)
+# Plotagem das Linhas dos Limites de Controle
+abline(h = c(lsc, lc, lic), col = c('#CD5C5C', '#8FC6FA', '#CD5C5C'),
+	lty = c(2,1,2), lwd = 1.25)
+text(x = c(1,1,1,23), y = c(lic*1.15,lc*1.05,lsc*0.98, lsc_a*0.98), 
+	labels = c(glue("LIC = {sprintf('%.4f', lic)}"), 
+		glue("LC = {sprintf('%.4f', lc)}"), 
+		glue("LSC = {sprintf('%.4f', lsc)}"), 'Zona de Alerta'), 
+	col=c('#CD5C5C', '#8FC6FA', '#CD5C5C','#BCAA01'), cex=.75)
 
-# Textos
-text(x = c(1, 1, 1, 18),
-     y = c(lic * 1.15, lc * 1.05, lsc * 0.98, lsc_a * 0.98),
-     labels = c(glue("LIC = {sprintf('%.4f', lic)}"),
-                glue("LC = {sprintf('%.4f', lc)}"),
-                glue("LSC = {sprintf('%.4f', lsc)}"),
-                'Zona de Alerta'),
-     col = c('#CD5C5C', '#8FC6FA', '#CD5C5C', '#BCAA01'),
-     cex = .75)
 ```
 
 ### Python
-
-```{python}
+```{python np-gr-py, echo=T, include=T, cache=T, warning=F, engine.path="C:\\Users\\Ingrid M\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"}
 import numpy as np
 import pandas as pd
 import random
@@ -169,10 +168,10 @@ warnings.filterwarnings('ignore')
 # Geração de dados
 #random.seed(1236)
 n = 50
-#D_i = list(np.random.normal(loc=15, scale=3, size=25)
+#D_i = list(np.random.normal(n=25, p=0.30, size=50)
 # Número de não-conformidades
-D_i = [12, 14, 14, 18, 10, 16, 11, 19, 12, 17, 20, 20, 18, 14, 19, 14, 16, 15, 13, 14, 15, 14, 20, 14, 17]
-p_i = [x / n for x in D_i]
+D_i = [13,15,11,19,18,14,15,17,15,12,21,15,15,16,17,7,19,16,16,18,12,20,19,13,13]
+p_i = [d / n for d in D_i]
 
 # União de dados em um dataframe
 dados = pd.DataFrame({'Amostra': list(range(1,len(D_i)+1)), 'D_i': D_i, 'p_i': p_i})
@@ -216,41 +215,37 @@ plt.xticks(ticks=range(len(dados)), labels=dados['Amostra'])
 plt.tight_layout()
 plt.show()
 ```
-
 :::
 
-A partir do gráfico acima podemos concluir pela estabilidade do processo, com linha central em $LC = 15,44$, limites de alerta ($2\sigma$) em $\{LIA; LSA\} = \{5,6395; 25,2405\}$ e limites de controle em $\{LIC; LSC\} = \{8,9064; 21,97364\}$. Nota-se que não há pontos fora da zona de alerta e todos os pontos das $m=25$ amostras retiradas não apresentam sinais de tendência ou ciclidade.
+A partir do gráfico acima podemos concluir pela estabilidade do processo, com linha central em $LC = 15,44$, limites de alerta ($2\sigma$) em $\{LIA; LSA\} = \{8,9064; 21,9736\}$ e limites de controle em $\{LIC; LSC\} = \{5,6395; 25,2405\}$. Nota-se que há apenas um ponto fora da zona de alerta, todos os pontos das 25 amostras retiradas não apresentam sinais de tendência ou ciclidade.
 
 ### Gráfico $np$ com Subgrupos Variáveis
-
 Na ocorrência de amostras de tamanho variável, sendo $n_j = 1,2,\dots,m$, os limites de controle se adequam ao tamanho amostral individual. Desta forma, os limites para um processo em $3\sigma$ são expressos por
 
 $$
-LIC = \left\{ \begin{array} nn_j\bar{p} -3\sqrt{n_j\bar{p}\cdot(1-\bar{p})}, \text{ \hspace{.5cm} se \hspace{.25cm}} LIC > 0; \\ 0, \text{ \hspace{5.1cm} caso contrário.} \end{array} \right .
+LIC_j = \left\{ \begin{array} nn_j\bar{p} -3\sqrt{n_j\bar{p}\cdot(1-\bar{p})}, \text{ \hspace{.5cm} se \hspace{.25cm}} LIC > 0; \\ 0, \text{ \hspace{5.1cm} caso contrário.} \end{array} \right .
 $$
 
 representando as condições do **limite inferior de controle**,
 $$
-LC = n_j\bar{p}
+LC_j = n_j\bar{p}
 $$
 representa o **limite central** e 
 $$ 
-LSC = n_j\bar{p} + 3 \sqrt{n_j\bar{p}\cdot(1-\bar{p})}
+LSC_j = n_j\bar{p} + 3 \sqrt{n_j\bar{p}\cdot(1-\bar{p})}
 $$
 representa o **limite superior de controle**.
 
 A construção do gráfico considera o número variável do tamanho amostral ($n$), gerando, portanto, limites de controle e de alerta flutuantes. A carta abaixo considerou dimensões de amostra entre 48 e 52 unidades em cada retirada. 
 
 ::: {.panel-tabset} 
-
 ### R 
-
 ```{r np-var-grr, echo=T, include=T, cache=T, warning=F, fig.width=16, fig.height=6}
 require(glue)
-set.seed(1236)
-n_j = sample(48:52, 25, replace=TRUE)       # Subgrupos variáveis
-D_i = round(rnorm(n=25, mean=15, sd=3),0)
-p_i = D_i / n_j
+set.seed(1235)
+n_j = sample(48:52, 25, replace=TRUE)                     # Subgrupos variáveis
+D_i = c(13,15,11,19,18,14,15,17,15,12,21,15,15,16,17,7,19,16,16,18,12,20,19,13,13)           # Número de defeitos
+p_i = D_i / n_j                                           # Proporção de defeitos
 
 # União de dados em um dataframe
 dados = data.frame(Amostra=1:length(D_i), D_i=D_i, n_j=n_j, p_i=p_i)
@@ -268,12 +263,20 @@ lsc_a = n_j*media_p + 2*sqrt(n_j*media_p*(1 - media_p))
 lic_a = n_j*media_p - 2*sqrt(n_j*media_p*(1 - media_p))
 
 # Gráfico np
-par(mfrow = c(1, 1))
-plot(dados$D_i, lty = 1, lwd=1.25, pch=19, cex=1.15, type='b',
-	xlim = c(1, nrow(dados)), ylim = c(min(lic)*0.75,max(lsc)*1.1),
-	col='#096CC8', xlab='Amostra', ylab='Número de não-conformes',
-	main = 'Gráfico np')
-axis(side = 1, at = dados$Amostra, labels=dados$Amostra)
+#par(mfrow = c(1, 1))
+plot(dados$D_i,                                              # Número de defeitos (Di)
+	type='b',                                                # tipo de gráfico: linhas com pontos
+	lty = 1,                                                 # configuração da linha: contínua
+	lwd=1.25,                                                # espessura da linha: 1.25
+	pch=19,                                                  # tipo de marcador: ponto cheio
+	cex=1.15,                                                # proporção relativa do tamamho dos elementos gráficos
+	xlim = c(1, nrow(dados)),                                # limites de x: de a 25 (número de linhas do dataframe)
+	ylim = c(min(lic)*0.75,max(lsc)*1.1),                    # limites de y: relativo a 75% do mínimo valor de LIC / relativo a 110% do máximo valor de LSC
+	col='#096CC8',                                         # cor da linha e dos pontos 
+	xlab='Amostra',                                          # Rótulo do eixo x
+	ylab='Número de não-conformes',                          # Rótulo do eixo y
+	main = 'Gráfico np')                                     # Título do gráfico
+axis(side = 1, at = dados$Amostra, labels=dados$Amostra)     # Formatação dos marcadores do eixo x de acordo com cada amostra
 
 # Plotagem das Linhas dos Limites de Controle
 lines(x=dados$Amostra, y = lc, col = '#8FC6FA', lty=1, lwd=1.25)
@@ -285,25 +288,34 @@ lines(x=dados$Amostra, y = lsc_a, col= '#BCAA01', lty = 2, lwd = 1.5)
 lines(x=dados$Amostra, y = lic_a, col= '#BCAA01', lty = 2, lwd = 1.5)
 
 # Configuração das legendas
-legend(x='topleft',legend = c("LIC", "LC", "LSC"), col=c('#CD5C5C','#8FC6FA','#CD5C5C'), 
-	lty=c(2,1,2), lwd=1.25, cex=.75, horiz=TRUE, title='Limites de Controle')
-legend(x='topright', legend = c("LIA", "LSA"), col='#BCAA01', 
+legend(x='topleft',                                          # Localização da legenda no gráfico: no topo, à esquerda
+	legend = c("LIC/LSC", "LC"),                          # Ordem dos itens a aparecer na legenda
+	col=c('#CD5C5C','#8FC6FA'),              # Cores de identificação de cada linha de controle
+	lty=c(2,1),                                            # Configuração da linha: linha tracejada / linha contínua / linha tracejada
+	lwd=1.25,                                                # Espessura da linha (comum a todos os itens da legenda): 1.25
+	cex=.75,                                                 # Proporção relativa do tamamho dos elementos gráficos
+	horiz=TRUE,                                              # Disposição dos elementos da legenda: horizontal
+	title='Limites de Controle')                             # Título da legenda
+legend(x='topright', legend = "LIA/LSA", col='#BCAA01', 
 	lty=2, lwd=1.5, cex=.75, horiz=TRUE, title='Zona de Alerta (2σ)')
 
 ```
 
 ### Python
+```{python np-var-gr-py, echo=T, include=T, cache=T, warning=F, engine.path="C:\\Users\\Ingrid M\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"}
 
-```{python}
-import warnings
-warnings.filterwarnings('ignore')
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
 
-n_j = [51,48,48,50,48,50,51,50,49,50,51,52,52,50,50,48,49,48,48,52,48,52,49,50,49]
-D_i = [12,14,14,18,10,16,11,19,12,17,20,20,18,14,19,14,16,15,13,14,15,14,20,14,17]
-p_i = [x / y for x, y in zip(D_i, n_j)]
+# Tamanho das amostras (nj) e número de defeitos (Di)
+n_j = [50,51,51,50,52,51,51,52,51,50,51,52,51,49,51,52,51,49,48,52,51,51,52,51,51]
+D_i = [13,15,11,19,18,14,15,17,15,12,21,15,15,16,17,7,19,16,16,18,12,20,19,13,13]
+
+# Proporção de defeitos calculada de cada amostra pelo pares de nj e Di
+p_i = [d / n for d, n in zip(D_i, n_j)]
 
 # União de dados em um dataframe
 dados = pd.DataFrame({'Amostra': list(range(1,len(D_i)+1)), 'D_i': D_i, 'n_j':n_j, 'p_i': p_i})
@@ -322,40 +334,498 @@ lsc_a = dados['n_j']*media_p + 2*np.sqrt(dados['n_j']*media_p*(1 - media_p))
 lic_a = dados['n_j']*media_p - 2*np.sqrt(dados['n_j']*media_p*(1 - media_p))
 
 # Gráfico np
-plt.figure(figsize=(16,6))
-plt.plot(dados['D_i'], color='#096CC8', marker='o', linestyle='-', linewidth=0.9, markersize = 6)
+plt.figure(figsize=(16,6))                               # Porporção da figura: 16:6
+plt.plot(dados['D_i'],                                   # Número de defeitos (Di)
+		linestyle='-',                                   # estilo de linha: linha contínua
+		linewidth=0.9,                                   # espessura da linha: 0.90
+		marker='o',                                      # tipo de marcador: ponto cheio
+		markersize = 6,                                  # tamanho do marcador
+		color='#096CC8')                               # cor das linhas e dos pontos
 
 # Plotagem das Linhas dos Limites de Controle
 plt.plot(lc, color='#8FC6FA', linestyle='-', linewidth = 1.1, label='LC')
-plt.plot(lsc, color='#CD5C5C', linestyle='--', label=f'LSC')
-plt.plot(lic, color='#CD5C5C', linestyle='--', label='LIC')
+plt.plot(lsc, color='#CD5C5C', linestyle='--')
+plt.plot(lic, color='#CD5C5C', linestyle='--', label='LIC/LSC')
 
 # Plotagem das Linhas de Alerta
-plt.plot(lsc_a, color='#BCAA01', linestyle='--', label=f'LSA')
-plt.plot(lic_a, color='#BCAA01', linestyle='--', label=f'LIA')
+plt.plot(lsc_a, color='#BCAA01', linestyle='--')
+plt.plot(lic_a, color='#BCAA01', linestyle='--', label='LIA/LSA')
 plt.legend(title='Limites de Controle')
 
-plt.ylim([0, np.max(lsc)*1.15])
+plt.ylim([0, np.max(lsc)*1.15])                          # limites 
 plt.xticks(ticks=range(len(dados)), labels=dados['Amostra'])
 plt.tight_layout()
 plt.show()
 
 ```
-
 :::
 
-Quando trabalhamos com limites variáveis, há uma sensibilidade maior em detectar pontos de atenção e pontos fora de controle, dado que amostras menores tendem a indicar proporcionalmente mais defeitos.
+Quando trabalhamos com limites variáveis, há uma sensibilidade maior em detectar pontos de atenção e pontos fora de controle, dado que amostras menores tendem a indicar proporcionalmente mais defeitos. 
+
+Avaliando o caso exemplificado, o processo mantém-se sob controle e com apenas o último ponto fora dos limites de alerta. Não há pontos sucessivos na região superior ou inferior em relação à média e sem aparente tendência ou ciclos. 
 
 ## Gráficos de Controle para $c$
 
-Segundo Montgomery, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Há casos em que quando tem-se como interesse o monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como por exemplo o número de defeitos em um equipamento eletrônico.
+Segundo @Montgomery2012Statistical, um item pode conter mais de um tipo de defeito de fabricação (não-conformidades) dependendo da sua natureza e severidade. Quando há interesse no monitoramento dos defeitos resultantes do processo, é preferível trabalhar com o número de defeitos ao invés da fração defeituosa, como, por exemplo, o número de defeitos em um equipamento eletrônico.
 
-O gráfico de controle do número de defeitos (gráfico C) mede o número de defeitos em uma amostra de tamanho constante ou uma
+O Gráfico de Controle c tem o objetivo de monitorar e controlar a quantidade de defeitos em uma amostra de tamanho constante. Ademais, sua aplicação é utilizada para calcular a quantidade total ou o número médio de defeitos por unidade inspecionada.
+
+Por sua vez, esses gráficos assumem que o número de defeitos por amostra de tamanho constante é bem modelada pela distribuição de Poisson:
+
+$$
+P(x) = \dfrac{e^{-c} c}{x!}, \text{ para } x = 0,1,2,...
+$$
+
+onde:
+
+-   $x$: Número de não-conformidades;
+
+-   $c$: Parâmetro de distribuição que representa a média e a variância da distribuição.
+
+A distribuição de Poisson é utilizada como uma aproximação da distribuição Binomial quando $n$ é grande e $p$ (probabilidade de ocorrência de um defeito) é pequeno e constante.
+
+### Construindo o Gráfico de Controle C
+
+A partir das propriedades da distribuição de Poisson, sabe-se que média e a variância são dados pelo parâmetro $c$, isto é, $E(X) = Var(X) = c$. Assim, o número médio de defeitos ($\bar{c}$) e os limites de controle em $\pm 3$ do Gráfico C são dados por:
+
+$$
+\begin{aligned}
+LSC &= c + 3 \sqrt{c} \\
+LC &= c \\
+LIC &= c - 3 \sqrt{c}
+\end{aligned}
+$$ Onde a linha central é a estimativa a partir da média do número de defeitos do processo, definida por:
+
+$$
+\bar{c} = \dfrac{\sum^{m}_{i=1} c_j}{m}
+$$
+
+### Exemplo Computacional
+
+Para facilitar a compreensão dessa técnica, realizaremos a sua aplicação na prática a partir de dados simulados. Foram geradas 30 amostras, seguindo uma distribuição de Poisson, em que cada uma delas representa o número de defeitos identificados em uma inspeção.
+
+::::: panel-tabset
+### R Base
+
+```{r, message=FALSE, warning=FALSE, results='hide'}
+# Definindo a semente para garantir que os dados sempre sejam os mesmos
+set.seed(123)
+
+# Dados simulados com distribuição de Poisson, com média = 5 defeitos por unidade 
+amostra <- 1:30
+defeitos = rpois(30, lambda = 5)
+
+# transformando em dataframe
+tabela = data.frame(Amostra = amostra, Defeitos = defeitos)
+
+# Calculando c
+c = sum(defeitos) / length(defeitos)
+
+# Limites de controle
+LC  = c                            # Limite central c
+LSC = LC + 3 * sqrt(LC)            # Limite superior
+LIC = max(LC - 3 * sqrt(LC), 0)    # Limite Inferior
+
+# Plotando o Grafico C
+plot(defeitos, 
+     type = "b",                            # Estilo de linha com marcadores
+     col = "#004242",                       # Cor da linha
+     pch = 19,                              # Preenche os pontos da linha
+     axes = TRUE,                           # Mantém os eixos padrão
+     ylim = c(0,max(defeitos)+3),           # Ajusta o eixo Y
+     xlim = c(1,30),                        # Define o eixo X
+     xlab = "Amostra",                      # Título do eixo X
+     ylab = "Número de defeitos",           # Título do eixo Y
+     main = "Gráfico de Controle c")        # Título do gráfico
+
+abline(h = c(LSC,LC,LIC),  # desenha 3 linhas
+       lty = c(2,1,2),     # Define os tipos de linha
+       col = c("#CD5C5C","orange","#CD5C5C"))
+
+# Legenda
+legend("topright", legend = c("c", "LC", "LIC/LSC"),
+       col = c("#004242", "orange", "#CD5C5C"), lty = c(1,1,2), pch = c(19, NA, NA))
+```
+
+### R ggplot2
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Definindo a semente para garantir que os dados sempre sejam os mesmos
+set.seed(123)
+
+# Dados simulados com distribuição de Poisson, com média = 5 defeitos por unidade 
+amostra <- 1:30
+defeitos = rpois(30, lambda = 5)
+
+# transformando em dataframe
+tabela = data.frame(Amostra = amostra, Defeitos = defeitos)
+
+# Calculando c
+c = sum(defeitos) / length(defeitos)
+
+# Limites de controle
+LC  = c                            # Limite central c
+LSC = LC + 3 * sqrt(LC)            # Limite superior
+LIC = max(LC - 3 * sqrt(LC), 0)    # Limite Inferior
+
+# Plotando o gráfico no GGplot2
+
+ggplot(tabela, aes(x = Amostra, y = Defeitos)) +
+  geom_line(color = '#004242') +
+  geom_point(color = '#004242', size = 2) +
+  geom_hline(yintercept = LC, color = 'orange', linetype = 'solid') +
+  geom_hline(yintercept = LSC, color = '#CD5C5C', linetype = 'dashed') +
+  geom_hline(yintercept = LIC, color = '#CD5C5C', linetype = 'dashed') +
+  
+  # Adicionando valores
+  geom_text(aes(x = max(Amostra), y = LC, label = paste('LC = ',round(LC,2))),
+            vjust = -0.5, hjust = 1, color = 'orange') +
+  geom_text(aes(x = max(Amostra), y = LSC, label = paste('LSC = ',round(LSC,2))),
+            vjust = 1.2, hjust = 1, color = '#CD5C5C') +
+  geom_text(aes(x = max(Amostra), y = LIC, label = paste('LIC = ',round(LIC,2))),
+            vjust = -0.5, hjust = 1, color = '#CD5C5C') +
+  
+  labs(title = "Gráfico de Controle c",
+       y = "Número de defeitos",
+       x = "Amostras") +
+  theme_classic(base_size = 14) +
+    theme(plot.title = element_text(hjust = 0.5),
+          axis.line = element_line(linewidth = 0.3),
+          axis.title = element_text(size = 11),
+          panel.grid = element_blank())
+
+```
+
+### Python
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE, cache=TRUE}
+#library(reticulate)
+#reticulate::virtualenv_create("r-reticulate")
+#reticulate::use_virtualenv("r-reticulate", required = TRUE)
+#reticulate::use_python("C:\\Users\\Ingrid M\\AppData\\Local\\Programs\\Python\\Python313\\python.exe")
+#reticulate::py_install(c("scipy","seaborn","tabulate"))
+#reticulate::py_require(c("scipy","seaborn","tabulate"))
+
+```
+
+```{python, message=FALSE, warning=FALSE, results='hide', cache=T, engine.path="C:\\Users\\Ingrid M\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"}
+# Bibliotecas Necessárias
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Definindo a semente para garantir a reprodutibilidade dos dados
+np.random.seed(123)
+
+# Simulação dos dados de uma distribuição de Poisson, com média = 5
+n_amostra = 30
+defeitos = np.random.poisson(5, n_amostra)
+
+# Criando o array de amostras, que vão de 1 a 30
+amostra = np.arange(1, n_amostra + 1)
+
+# Tranformando em dataframe
+tabela = pd.DataFrame({
+  'Amostra': amostra,
+  'Defeitos': defeitos
+})
+
+# Limites de controle
+lc = tabela['Defeitos'].mean()
+lsc = lc + 3*np.sqrt(lc)
+lic = np.maximum(lc - 3*np.sqrt(lc), 0)
+
+#Gráfico c
+plt.figure(figsize=(16,5))
+sns.pointplot(tabela['Defeitos'], color="#004242", markersize=5, linewidth=.9)
+plt.axhline(lsc, linestyle = '--', color="#CD5C5C", label = f'LSC ={lsc:.4f}')
+plt.axhline(lc, linewidth=1.1, color = 'orange', label=f'LC = {lc:.4f}')
+plt.axhline(lic, linestyle = "--", color='#CD5C5C', label = f'LIC = {lic:.4f}')
+
+# Anotações
+plt.annotate(f'LSE= {lsc:.2f}', xy=(0, lsc), xytext=(0, lsc - 0.5), color='#CD5C5C')
+plt.annotate(f'LC = {lc:.2f}', xy=(0, lc), xytext=(0, lc + 0.15), color='orange')
+plt.annotate(f'LIE = {lic:.2f}', xy=(0, lic), xytext=(0, lic + 0.15), color='#CD5C5C')
+
+plt.title('Gráfico de controlel c')
+plt.xlabel('Amostra')
+plt.ylabel('Número de defeitos')
+plt.xticks(ticks=range(len(tabela['Defeitos'])), labels=tabela['Amostra'])
+plt.tight_layout()
+plt.show()
+```
+:::
+
 
 ## Gráficos de Controle para $u$
+Quando o registro de defeito é realizado em relação a uma escala (e.g., falhas por metro quadrado de tecido) ou tamanho de unidade variável (e.g., defeitos por página). Como isso viola o pressuposto de igualdade de oportunidade de locações da amostra, a distribuição de Poisson não pode ser utilizada para modelagem da frequência dos eventos. 
 
+Nesse caso, o controle é feito pelo número médio de defeitos por unidade do gráfico, representado por 
+$$
+u = \dfrac{\text{número total de não-conformidades}}{\text{número total de itens da amostra}} = \dfrac{c}{n}.
+$$
+
+Logo, o estimador não viesado para $u$ pode ser descrito como 
+$$
+\hat{u}_j = \dfrac{c_j}{n_j},
+$$
+sendo $c_j$ o número médio de não-conformidades da $j$-ésima amostra e $n_j$ o tamanho da $j$-ésima amostra, com média descrita por 
+
+$$
+\bar{u} = \dfrac{1}{m} \sum_{j=1}^m u_j
+$$
+para $m$ amostras.
+
+### Gráfico $u$ com Subgrupos Fixos
+Considerando que são tomadas $m$ amostras na inspeção, cada amostra com o tamanho fixo em $n$ ($\therefore n_1 = n_2 = \dots = n_m$), podemos descrever $u$ pelo estimador 
+$$
+\bar{u} = \dfrac{\sum_{ij1}^m c_j}{\sum_{j=1}^m n_j} 
+$$
+
+e descrever os limites de um processo em $3\sigma$ por 
+$$
+LIC = \left\{ \begin{array} \bar{u} - 3\sqrt{\dfrac{\bar{u}}{n}}, \text{ \hspace{.5cm} se \hspace{.25cm}} LIC > 0; \\ 0, \text{ \hspace{1.8cm} caso contrário,} \end{array} \right . 
+$$
+representando as condições do **limite inferior de controle**,
+$$
+LC = \bar{u}
+$$
+denotando a **linha central** e 
+$$
+LSC = \bar{u} + 3\sqrt{\dfrac{\bar{u}}{n}}
+$$
+representando o **limite superior de controle**.
+
+Para ilustrar a construção do gráfico $u$, tomemos como exemplo uma fabricante de microcomputadores que deseje controlar não-conformidades em vinte placas de aparelhos celulares na linha de montagem final.
+
+::: {.panel-tabset}
+### R
+```{r gr-u-fx-r, echo=T, include=T, cache=T, warning=F, fig.width=16, fig.height=6}
+# Vetores extraídos do arquivo
+require(glue)
+n = 20
+placa = 1:20
+defeitos = c(6, 1, 4, 3, 4, 4, 5, 4, 2, 3, 4, 2, 4, 6, 1, 2, 5, 12, 8, 13)
+u_i = defeitos / n
+
+placas = data.frame(Placa = placa, Defeitos = defeitos, u_i = u_i)
+
+# Limites de controle
+lc_u = mean(placas$u_i)
+lsc_u = lc_u + 3*sqrt(lc_u/n)
+lic_u = max(lc_u - 3*sqrt(lc_u/n), 0)
+
+# Limites da Zona de Alerta
+lsa_u = lc_u + 2*sqrt(lc_u/n)
+lia_u = max(lc_u - 3*sqrt(lc_u/n), 0)
+
+# Gráfico u -- Número médio de defeitos por unidade de inspeção
+par(mfrow = c(1, 1))
+# Plot em branco -- definição de limites dos eixos
+plot(1:20, 1:20, type = "n", xlab='',ylab='',
+	ylim = c(lic_u*.75, lsc_u*1.35), xlim = c(1, nrow(placas)), axes=F)
+
+# Zona de alerta -- deve ser plotado primeiro para permanecer ao fundo
+rect(ybottom = lia_u, ytop = lsa_u, xleft=0, xright=21,
+	col = rgb(248/255,238/255,153/255, alpha=.30), border = NA)
+
+par(new = TRUE)
+plot(placas$u_i, lty = 1, lwd=1.25, pch=19, cex=1.15, type='b',
+	xlim = c(1, nrow(placas)), ylim = c(min(lic_u)*0.75, max(lsc_u)*1.35),
+	col='#096CC8', xlab='Placa', ylab='Número médio de não-conformes por unidade de inspeção',
+	main = 'Gráfico u -- Número médio de defeitos por placa de aparelho')
+axis(side = 1, at = placas$Placa, labels=placas$Placa)
+
+# Plotagem das Linhas dos Limites de Controle
+abline(h = c(lsc_u, lc_u, lic_u), col = c('#CD5C5C', '#8FC6FA', '#CD5C5C'),
+	lty = c(2,1,2), lwd = 1.25)
+text(x = c(2,2,2,19), y = c(lic_u*1.15,lc_u*1.05,lsc_u*0.98, lsa_u*0.98), 
+	labels = c(glue("LIC = {sprintf('%.4f', lic_u)}"), 
+		glue("LC = {sprintf('%.4f', lc_u)}"), 
+		glue("LSC = {sprintf('%.4f', lsc_u)}"), 'Zona de Alerta'), 
+	col=c('#CD5C5C', '#8FC6FA', '#CD5C5C','#BCAA01'), cex=.75)
+```
+### Python
+```{python u-fx-py, echo=T, include=T, cache=T, warning=F, engine.path="C:\\Users\\Ingrid M\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"}
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+n = 20                          # tamanho das amostras
+placa = list(range(1,21))       # enumeração das amostras
+
+# Número de defeitos (ci)
+defeitos = [6, 1, 4, 3, 4, 4, 5, 4, 2, 3, 4, 2, 4, 6, 1, 2, 5, 12, 8, 13]
+
+# 
+u_j = [c / n for c in defeitos]
+placas = pd.DataFrame({'Placa': placa, 'Defeitos': defeitos, 'u_j': u_j})
+
+# Limites de controle
+lc_u = placas['u_j'].mean()
+lsc_u = lc_u + 3*np.sqrt(lc_u/n)
+lic_u = np.maximum(lc_u - 3*np.sqrt(lc_u/n), 0)
+
+# Limites da Zona de Alerta
+lsa_u = lc_u + 2*np.sqrt(lc_u/n)                     # Limite superior de alerta
+lia_u = np.maximum(lc_u - 3*np.sqrt(lc_u/n), 0)      # Condições para o limite inferior de alerta
+
+# Gráfico u -- Número médio de defeitos por unidade de inspeção
+plt.figure(figsize=(16,6))
+plt.plot(placas['u_j'], color='#096CC8', marker='o', linestyle='-', linewidth=0.9, markersize = 6)
+plt.axhline(lsc_u, linestyle = '--', color="#CD5C5C", label = f'LSC ={lsc_u:.4f}')
+plt.axhline(lc_u, linewidth=1.1, color = '#2471a3', label=f'LC = {lc_u:.4f}')
+plt.axhline(lic_u, linestyle = "--", color='#CD5C5C', label = f'LIC = {lic_u:.4f}')
+
+# Anotação dos Limites de Controle
+plt.annotate(f'LC = {lc_u:.4f}', xy=(0, lc_u), xytext=(0, lc_u*1.05), color='#2471a3')
+plt.annotate(f'LSC= {lsc_u:.4f}', xy=(0, lsc_u), xytext=(0, lsc_u*0.95), color='#CD5C5C')
+plt.annotate(f'LIC = {lic_u:.4f}', xy=(0, lic_u), xytext=(0, lic_u + 0.005), color='#CD5C5C')
+
+# Zona de alerta
+plt.axhspan(ymin=lia_u,                              # Limite inferior do retângulo
+			ymax=lsa_u,                              # Limite superior do retângulo
+			alpha=0.3,                               # Nível de transparência
+			color ='#F8EE99',                      # Cor de fundo
+			label = 'Zona de Alerta')                # Rótulo do elemento gráfico
+
+plt.annotate('Zona de Alerta',                       # Nome a ser impresso no gráfico
+			xy=(len(placas)*.9, lsa_u),              # Coordenadas do texto no gráfico (x= altura, y = amplitude)
+			xytext=(len(placas)*.9, lsa_u*.96),      # Localização do texto em relação às coordenadas (x = altura, y = amplitude)
+			color='#BCAA01')                       # Cor do texto
+
+# Configurações de título e eixos
+plt.title('Gráfico u -- Número médio de defeitos por placa de aparelho')
+plt.xlabel('Placa')
+plt.ylabel('Número médio de não-conformes por unidade de inspeção')
+plt.xticks(ticks=range(len(placas['Defeitos'])), labels=placas['Placa'])
+plt.tight_layout()
+plt.show()
+```
+:::
+
+Nota-se que a partir da 15⁠ª amostra há uma crescente em relação ao número de defeitos por unidade, ultrapassando os limites superiores de controle na 18⁠ª amostra. Desta forma, o processo apresenta instabilidade, devendo-se averiguar se as causas são atribuíveis, eliminando os pontos fora de controle para reavaliação, ou não atribuíveis, buscando investigação e correção de procedimentos.
+
+### Gráfico $u$ com Subgrupos Variáveis 
+No caso do tamanho amostral ($n_j$) ser variável, em um processo operado em $3\sigma$,  os limites de controle são dados por
+
+$$
+LIC_j = \left\{ \begin{array} \bar{u} - 3\sqrt{\dfrac{\bar{u}}{n_j}}, \text{\hspace{0.5cm} se \hspace{0.25cm}} LIC_j >0; \\ 0 \text{\hspace{2cm} caso contrário,} \end{array} \right .
+$$
+
+que representa as condições do **limite inferior de controle**,
+
+$$
+LC = \bar{u}
+$$
+
+que representa a **linha central** e 
+$$
+LSC_j = \bar{u} + 3\sqrt{\dfrac{\bar{u}}{n_j}}
+$$
+
+que representa a **limite superior de controle**. 
+
+Tomando o exemplo das placas de aparelhos celulares com diferentes tamanhos de amostra (entre 18 e 22 placas), temos flutuações dos limites de controle e de alerta, mantendo-se a linha central fixa.  
+
+::: {.panel-tabset}
+### R
+```{r u-var-r, echo=T, include=T, cache=T, warning=F, fig.width=16, fig.height=6}
+
+set.seed(1235)
+n_j = sample(18:22, 20, replace=TRUE)
+placa = 1:20
+defeitos = c(6, 1, 4, 3, 4, 4, 5, 4, 2, 3, 4, 2, 4, 6, 1, 2, 5, 12, 8, 13)
+u_i = defeitos / n_j
+
+placas = data.frame(Placa = placa, Amostra = n, Defeitos = defeitos, u_i = u_i)
+
+# Limites de controle
+lc_u = mean(placas$u_i)
+lsc_u = lc_u + 3*sqrt(lc_u/n_j)
+lic_u = max(lc_u - 3*sqrt(lc_u/n_j), 0)
+
+# Limites da Zona de Alerta
+lsa_u = lc_u + 2*sqrt(lc_u/n_j)
+lia_u = max(lc_u - 3*sqrt(lc_u/n_j), 0)
+
+# Gráfico u -- Número médio de defeitos por unidade de inspeção
+#par(mfrow = c(1, 1))
+plot(placas$u_i, lty = 1, lwd=1.25, pch=19, cex=1.15, type='b',
+	xlim = c(1, nrow(placas)), ylim = c(min(lic_u)*0.75, max(lsc_u)*1.35),
+	col='#096CC8', xlab='Placa', ylab='Número médio de não-conformes por unidade de inspeção',
+	main = 'Gráfico u -- Número médio de defeitos por placa de aparelho')
+axis(side = 1, at = placas$Placa, labels=placas$Placa)
+
+# Plotagem das Linhas dos Limites de Controle
+abline(h = lc_u, col = '#8FC6FA', lty=1, lwd=1.25)
+lines(x=placas$Placa, y = lsc_u, col= '#CD5C5C', lty = 2, lwd = 1.25)
+abline(h = lic_u, col='#CD5C5C', lty = 2, lwd = 1.25)
+
+# Plotagem das Linhas de Alerta
+lines(x=placas$Placa, y = lsa_u, col= '#BCAA01', lty = 2, lwd = 1.5)
+abline(h = lia_u, col= '#BCAA01', lty = 2, lwd = 1.5)
+
+# Configuração das legendas
+legend(x='topleft',legend = c("LIC", "LC", "LSC"), col=c('#CD5C5C','#8FC6FA','#CD5C5C'), 
+	lty=c(2,1,2), lwd=1.25, cex=.75, horiz=TRUE, title='Limites de Controle')
+legend(x='topright', legend = c("LIA", "LSA"), col='#BCAA01',
+	lty=2, lwd=1.5, cex=.75, horiz=TRUE, title='Zona de Alerta (2σ)')
+```
+### Python
+```{python u-var-py, echo=T, include=T, cache=T, warning=F, engine.path="C:\\Users\\Ingrid M\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+n_j = [21, 22, 21, 19, 18, 22, 21, 21, 22, 21, 21, 18, 19, 22, 21, 22, 20, 18, 18, 18]
+placa = list(range(1,21))
+defeitos = [6, 1, 4, 3, 4, 4, 5, 4, 2, 3, 4, 2, 4, 6, 1, 2, 5, 12, 8, 13]
+u_i = [x / y for x, y in zip(defeitos, n_j)]
+
+placas = pd.DataFrame({'Placa': placa, 'Defeitos': defeitos, "Amostra": n_j, 'u_i': u_i})
+
+# Limites de controle
+lc_u = placas['u_i'].mean()
+lsc_u = lc_u + 3*np.sqrt([lc_u / y for y in n_j])
+lic_u = np.maximum(lc_u - 3*np.sqrt([lc_u / y for y in n_j]), 0)
+
+# Limites da Zona de Alerta
+lsa_u = lc_u + 2*np.sqrt([lc_u / y for y in n_j])
+lia_u = np.maximum(lc_u - 3*np.sqrt([lc_u / y for y in n_j]), 0)
+
+# Gráfico u -- Número médio de defeitos por unidade de inspeção
+plt.figure(figsize=(16,6))
+plt.plot(placas['u_i'], color='#096CC8', marker='o', linestyle='-', linewidth=0.9, markersize = 6)
+plt.plot(lsc_u, linestyle = '--', color="#CD5C5C", label = 'LSC')
+plt.axhline(lc_u, linewidth=1.1, color = '#2471a3', label='LC')
+plt.plot(lia_u, linestyle = "--", color='#CD5C5C', label = 'LIC')
+
+# Zona de alerta
+plt.plot(lsa_u, linestyle = '--', color="#BCAA01", label = 'LSA')
+plt.plot(lia_u, linestyle = '--', color="#BCAA01", label = 'LIA')
+
+# Configurações de título e eixos
+plt.title('Gráfico u -- Número médio de defeitos por placa de aparelho')
+plt.xlabel('Placa')
+plt.legend()
+plt.ylabel('Número médio de não-conformes por unidade de inspeção')
+plt.xticks(ticks=range(len(placas['Defeitos'])), labels=placas['Placa'])
+plt.tight_layout()
+plt.show()
+```
+:::
+
+Tal como no gráfico $u$ com tamanho de amostra fixo, há uma concentração de pontos da região inferior à linha central, indicando possível descontrole do processo. Da 18⁠ª amostra em diante, os pontos se concentram fora da zona de alerta e fora do limite superior de controle, cabendo a investigação das causas relacionadas. 
 
 :::: progress
-:::: {.progress-bar style="width: 100%;"}
+:::: {.progress-bar style="width: 100%"}
 ::::
 ::::
