@@ -256,7 +256,7 @@ window.Quarto = {
   <li><a href="#demais-variações-do-gráfico-de-controle-de-barx" id="toc-demais-variações-do-gráfico-de-controle-de-barx" class="nav-link" data-scroll-target="#demais-variações-do-gráfico-de-controle-de-barx"><span class="header-section-number">2.4</span> Demais Variações do Gráfico de Controle de <span class="math inline">\(\bar{X}\)</span></a>
   <ul class="collapse">
   <li><a href="#gráficos-de-médias-e-amplitudes-barx-e-r" id="toc-gráficos-de-médias-e-amplitudes-barx-e-r" class="nav-link" data-scroll-target="#gráficos-de-médias-e-amplitudes-barx-e-r"><span class="header-section-number">2.4.1</span> Gráficos de Médias e Amplitudes (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</a></li>
-  <li><a href="#exemplos-computacionais-1" id="toc-exemplos-computacionais-1" class="nav-link" data-scroll-target="#exemplos-computacionais-1"><span class="header-section-number">2.4.2</span> Exemplos Computacionais</a></li>
+  <li><a href="#gráficos-de-médias-e-desvio-padrão-barx-e-s" id="toc-gráficos-de-médias-e-desvio-padrão-barx-e-s" class="nav-link" data-scroll-target="#gráficos-de-médias-e-desvio-padrão-barx-e-s"><span class="header-section-number">2.4.2</span> Gráficos de Médias e Desvio Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(S\)</span>)</a></li>
   </ul></li>
   <li><a href="#gráfico-de-controle-para-r" id="toc-gráfico-de-controle-para-r" class="nav-link" data-scroll-target="#gráfico-de-controle-para-r"><span class="header-section-number">2.5</span> Gráfico de Controle para <span class="math inline">\(R\)</span></a></li>
   <li><a href="#gráfico-de-controle-para-s" id="toc-gráfico-de-controle-para-s" class="nav-link" data-scroll-target="#gráfico-de-controle-para-s"><span class="header-section-number">2.6</span> Gráfico de Controle para <span class="math inline">\(S\)</span></a></li>
@@ -586,9 +586,8 @@ Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qua
 \text{Limites} = \begin{cases} \bar{\bar{X}} + A_2 \bar{R}, \quad \text{se o Limite for Inferior} \\ \bar{\bar{X}}, \quad \text{se o Limite for Central} \\ \bar{\bar{X}} - A_2 \bar{R}, \quad \text{se o Limite for Superior} \end{cases}.
 \tag{2.2}\]</span></span></p>
 <p>As constantes <span class="math inline">\(A_2\)</span> são tabeladas e dependem do tamanho do subgrupo (<span class="math inline">\(n\)</span>). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o “Introdução ao Controle de Qualidade” de Montgomery. Tal constantes e outras podem ser vistas na <a href="#fig-CONSTS_CEQ" class="quarto-xref">Figura&nbsp;<span>2.1</span></a>.</p>
-</section>
-<section id="exemplos-computacionais-1" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="exemplos-computacionais-1"><span class="header-section-number">2.4.2</span> Exemplos Computacionais</h3>
+<section id="exemplos-computacionais-1" class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="exemplos-computacionais-1"><span class="header-section-number">2.4.1.1</span> Exemplos Computacionais</h4>
 <p>Para exemplificar o gráfico de controle recém apresentado, será usado o <em>Exemplo 6.1. página 239 (Montgomery, 2009): Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro</em>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">R usando <code>ggplot2</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Python</a></li></ul>
@@ -894,8 +893,26 @@ Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qua
 </div>
 </div>
 </div>
-<section id="gráficos-de-médias-e-desvio-padrão-barx-e-r" class="level4" data-number="2.4.2.1">
-<h4 data-number="2.4.2.1" class="anchored" data-anchor-id="gráficos-de-médias-e-desvio-padrão-barx-e-r"><span class="header-section-number">2.4.2.1</span> Gráficos de Médias e Desvio Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(R\)</span>)</h4>
+</section>
+</section>
+<section id="gráficos-de-médias-e-desvio-padrão-barx-e-s" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="gráficos-de-médias-e-desvio-padrão-barx-e-s"><span class="header-section-number">2.4.2</span> Gráficos de Médias e Desvio Padrão (<span class="math inline">\(\bar{X}\)</span> e <span class="math inline">\(S\)</span>)</h3>
+<section id="exemplos-computacionais-2" class="level4" data-number="2.4.2.1">
+<h4 data-number="2.4.2.1" class="anchored" data-anchor-id="exemplos-computacionais-2"><span class="header-section-number">2.4.2.1</span> Exemplos Computacionais</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R Base</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R usando <code>ggplot2</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -1670,13 +1687,13 @@ Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qua
 <span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a>As constantes $A_2$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery. Tal constantes e outras podem ser vistas na @fig-CONSTS_CEQ.</span>
 <span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplos Computacionais</span></span>
+<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Exemplos Computacionais</span></span>
 <span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a>Para exemplificar o gráfico de controle recém apresentado, será usado o *Exemplo 6.1. página 239 (Montgomery, 2009): Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro*.</span>
 <span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
 <span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R Base</span></span>
+<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a><span class="fu">##### R Base</span></span>
 <span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_BASE_2</span></span>
@@ -1771,7 +1788,7 @@ Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qua
 <span id="cb11-399"><a href="#cb11-399" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-400"><a href="#cb11-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R usando `ggplot2`</span></span>
+<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a><span class="fu">##### R usando `ggplot2`</span></span>
 <span id="cb11-403"><a href="#cb11-403" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-406"><a href="#cb11-406" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_R_ggplot2_2</span></span>
@@ -1861,7 +1878,7 @@ Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qua
 <span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb11-492"><a href="#cb11-492" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Python</span></span>
+<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Python</span></span>
 <span id="cb11-495"><a href="#cb11-495" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-498"><a href="#cb11-498" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb11-499"><a href="#cb11-499" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: EX_PYTHON_2</span></span>
@@ -1950,16 +1967,28 @@ Figura&nbsp;2.1: Constantes Estatísticas usadas no Controle Estatístico de Qua
 <span id="cb11-582"><a href="#cb11-582" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-583"><a href="#cb11-583" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb11-584"><a href="#cb11-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-585"><a href="#cb11-585" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $R$)</span></span>
+<span id="cb11-585"><a href="#cb11-585" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $S$)</span></span>
 <span id="cb11-586"><a href="#cb11-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-587"><a href="#cb11-587" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $R$</span></span>
+<span id="cb11-587"><a href="#cb11-587" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Exemplos Computacionais</span></span>
 <span id="cb11-588"><a href="#cb11-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-589"><a href="#cb11-589" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $S$</span></span>
+<span id="cb11-589"><a href="#cb11-589" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
 <span id="cb11-590"><a href="#cb11-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-591"><a href="#cb11-591" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb11-592"><a href="#cb11-592" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb11-593"><a href="#cb11-593" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb11-594"><a href="#cb11-594" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb11-591"><a href="#cb11-591" aria-hidden="true" tabindex="-1"></a><span class="fu">##### R Base</span></span>
+<span id="cb11-592"><a href="#cb11-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-593"><a href="#cb11-593" aria-hidden="true" tabindex="-1"></a><span class="fu">##### R usando `ggplot2`</span></span>
+<span id="cb11-594"><a href="#cb11-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-595"><a href="#cb11-595" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Python</span></span>
+<span id="cb11-596"><a href="#cb11-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-597"><a href="#cb11-597" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-598"><a href="#cb11-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-599"><a href="#cb11-599" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $R$</span></span>
+<span id="cb11-600"><a href="#cb11-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-601"><a href="#cb11-601" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico de Controle para $S$</span></span>
+<span id="cb11-602"><a href="#cb11-602" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-603"><a href="#cb11-603" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb11-604"><a href="#cb11-604" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb11-605"><a href="#cb11-605" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-606"><a href="#cb11-606" aria-hidden="true" tabindex="-1"></a>::::</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

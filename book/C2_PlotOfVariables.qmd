@@ -290,13 +290,13 @@ $$ {#eq-DEF_LIMITS_R_CHARTS}
 
 As constantes $A_2$ são tabeladas e dependem do tamanho do subgrupo ($n$). Elas podem ser encontradas em apêndices de livros de referência sobre o tema, como o "Introdução ao Controle de Qualidade" de Montgomery. Tal constantes e outras podem ser vistas na @fig-CONSTS_CEQ.
 
-### Exemplos Computacionais
+#### Exemplos Computacionais
 
 Para exemplificar o gráfico de controle recém apresentado, será usado o *Exemplo 6.1. página 239 (Montgomery, 2009): Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro*.
 
 ::: panel-tabset
 
-#### R Base
+##### R Base
 
 ```{r}
 #| label: EX_R_BASE_2
@@ -391,7 +391,7 @@ legend("topright",
 )
 ```
 
-#### R usando `ggplot2`
+##### R usando `ggplot2`
 
 ```{r}
 #| label: EX_R_ggplot2_2
@@ -481,7 +481,7 @@ ggplot(data = NULL, aes(x = 1:nrow(samples.x), y = vec.means)) +
   )
 ```
 
-#### Python
+##### Python
 
 ```{python}
 #| label: EX_PYTHON_2
@@ -570,7 +570,19 @@ plt.show()
 
 :::
 
-#### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $R$)
+### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $S$)
+
+#### Exemplos Computacionais
+
+::: panel-tabset
+
+##### R Base
+
+##### R usando `ggplot2`
+
+##### Python
+
+:::
 
 ## Gráfico de Controle para $R$
 
