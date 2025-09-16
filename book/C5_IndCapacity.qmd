@@ -3,210 +3,154 @@
 ::::
 ::::
 
-# Índice de Capacidade
+# Índices de Capacidade
 
-**Os índices de capacidade do processo são
-parâmetros adimensionais que indiretamente
-medem o quanto o processo consegue atender às
-especificações. Eles comparam a dispersão do processo com os limites de especificação.**  
+Este capítulo explora os **índices de capacidade de processo** — medidas que avaliam quão bem um processo produtivo se comporta em relação aos limites de especificação (tolerâncias), considerando tanto a variabilidade do processo quanto seu posicionamento (centralização) dentro da especificação.
 
-## Limites de Especificação (definidos em projeto)
+## Conceitos Fundamentais
 
-**Limite inferior (LIE): valor mínimo aceitável**
-**Limite superior (LSE): valor máximo aceitável**
+* Um processo está em **controle estatístico** quando sua variabilidade é estável ao longo do tempo, sem causas especiais (válido para aplicar índices de capacidade).
 
-## Importante:
+* A especificação de um produto define dois limites importantes:
 
-**> os índices de capacidade só têm sentido
-se os dados analisados forem provenientes de um
-processo dentro de controle. Eles são parâmetros (analisados e definidos);**  
-**> evidenciada a condição de controle o estudo de capacidade pode ser conduzido;**  
-**> eficiência - entendido como baixo nível de não-conformidades.**
-**> 
+  $$
+  LSL = \text{Lower Specification Limit} \quad\text{e}\quad USL = \text{Upper Specification Limit}
+  $$
 
+  Estes limites definem a faixa aceitável para a característica de qualidade $X$.
 
-## Índice Cp - Capacidade Potencial**
+* Seja $\mu$ a média do processo e $\sigma$ seu desvio-padrão (usualmente estimado a partir de dados em curto prazo / dentro de subgrupos), ou outro estimador apropriado dependendo da estabilidade do processo.
 
-**Mede a largura do intervalo de especificação em relação à variabilidade do processo.**
+## Principais Índices: Cp, Cpl, Cpu, Cpk
 
-**Não considera o centramento.**
+### Definições
 
-**Quanto maior o Cp, melhor**
+* **Cp** (capacidade potencial, ou índice de capacidade do processo) avalia apenas a dispersão do processo em relação à tolerância, assumindo que o processo está centralizado dentro dos limites:
 
-**Na prática, o desvio padrão é desconhecido e deve ser substituído por uma estimativa de 6-sigma.**
+$$
+Cp = \frac{USL - LSL}{6\,\sigma}
+$$
 
-Cp = (LSE- LIE)/ 6*SIGMA   ...# melhorar (fazer Cp como ESTIMADOR)
+* **Cpu** e **Cpl** (capacidade em lados individualizados, superior e inferior) medem quão distante está a média do processo do limite superior ou inferior:
 
-**Os limites expresam a tolerância natural doprocesso**.
+$$
+Cpu = \frac{USL - \mu}{3\,\sigma},\qquad Cpl = \frac{\mu - LSL}{3\,\sigma}
+$$
 
-Note que o índice Cp relaciona a tolerância especificada
-com a tolerância natural do processo. Assim,
+* **Cpk** (índice de capacidade corrigido ou real) considera tanto a variabilidade quanto a centralização, definindo-se como:
 
-* Cp < 1, TN é maior que TE (preocupante)
-* Cp = 1, TN é igual TE (precisa melhorar)
-* Cp > 1, TN é menor que TE (desejável)
+$$
+Cpk = \min(Cpu,\, Cpl)
+$$
 
+Estas fórmulas supõem distribuição aproximadamente normal do processo, e uso de estimador de variabilidade adequado (dentro de subgrupos, quando aplicável).
 
-## Porcentagem de Especificação:
-**A percentagem utilizada mede o quanto da faixa de tolerância está sendo ocupada pela variabilidade do processo.**
+### Relação entre Cp e Cpk
 
-Pesp = (1/Cp)*100
+* Se o processo está bem centralizado ($\mu \approx (USL + LSL)/2$), então $Cpu \approx Cpl$ e $Cpk \approx Cp$.
+* Se o processo está deslocado em direção a um dos limites, $Cpk < Cp$.
+* Cp avalia a capacidade **potencial** (se fosse centralizado); Cpk avalia a capacidade **real**.
 
-**>Valores baixos indicam boa folga para atender especificações.**
-**>Valores altos indicam risco de não conformidade.**
+## Interpretação de Valores
 
+| Faixa de índice      | Interpretação comum                                                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| $Cp, Cpk < 1.00$     | Processo **não capaz**: partes do produto ficarão fora das especificações se mantido o nível de variabilidade atual.    |
+| $Cpk = 1.00$         | Processo “barely capable”: ±3σ atinge exatamente os limites. Aproximadamente 0,27% fora de especificação se centrado.   |
+| $Cpk ≈ 1.33$         | Boa prática — muitos padrões (ex: indústria automotiva) adotam esse valor como mínimo aceitável para processos maduros. |
+| $Cpk ≥ 1.67$ ou mais | Excelente capacidade / processo robusto, muito raramente gerando defeitos.                                              |
 
-## Exemplos:
+Além disso:
 
-### 1) Um processo tem: LIE = 45, LSE = 55 e σ= 1,5. Calcule Cp.
-```{r}
-LIE <- 45
-LSE <- 55
-desvio <- 1.5 
-Cp <- (LSE - LIE) / (6 * desvio)
-Cp
+* Comparar **Cpu** e **Cpl** ajuda identificar se o problema está com desvio em direção a LSL ou USL.
+* Avaliar se Cp está significativamente maior que Cpk: indica que variabilidade pode estar ok, mas centralização está ruim.
+* Verificar se o processo realmente está em estado de controle antes de usar esses índices; se não estiver, os resultados podem ser enganosos.
 
-```
+## Fórmulas Completas
 
-### 2) Sabendo que LIE = 12,0, LSE = 12,6, x_bar = 12,25 e σ = 0,06,calcule Cpu, Cpl e Cpk
+Para relembrar:
 
-```{r}
-LIE =12.0
-LSE = 12.6
-media = 12.25
-desvio = 0.06
+$$
+\begin{aligned}
+Cp &= \frac{USL - LSL}{6 \sigma} \\
+Cpu &= \frac{USL - \mu}{3 \sigma} \\
+Cpl &= \frac{\mu - LSL}{3 \sigma} \\
+Cpk &= \min(Cpu,\, Cpl)
+\end{aligned}
+$$
 
-Cpu <- (LSE - media) / (3 * desvio)
-Cpu
+Também há variantes:
 
-Cpl <- (media - LIE) / (3 * desvio)
-Cpl
+* **Pp**, **Ppk**: versões de longo prazo (“long term” ou “overall”) que usam estimadores de variabilidade diferentes (todos os dados, não só dentro de subgrupos). ([JMP][2])
+* **Cpm**, **Cpmk**: que incorporam penalidades se o processo não tiver exatamente um alvo (*target*) prescrito.
 
-Cpk <- min(Cpu, Cpl)
-Cpk
+## Cálculo Computacional em R
 
-```
+Aqui vão exemplos práticos para cálculo de Cp, Cpk usando R, tanto para dados simulados quanto reais.
 
-### 3) Um processo apresenta Cp = 1,40. Qual é a percentagem da especificação utilizada?
-
-```{r}
-Cp_3 = 1.40
-
-Pesp = (1/Cp_3)*100   #R: 71,43% de toda a variabilidade permitida  (LSE - LIE)
-Pesp   #"Percentagem de Especificação utilizada = 71.43%
-```
-
-### 4) Um processo de envase tem LIE = 495 mL, LSE = 505 mL, x¯ = 503 mL e σ = 2 mL. Calcule Cpu, Cpl e Cpk e interprete se o processo é capaz.
+###  Exemplo simples (dados simulados)
 
 ```{r}
-LIE = 495
-LSE = 505
-media = 503
-desvio = 2
+# Simulação de dados
+set.seed(123)
+n <- 1000
+mu_true <- 50
+sigma_true <- 2
+dados <- rnorm(n, mean = mu_true, sd = sigma_true)
 
-Cpu <- (LSE - media) / (3*desvio)
-Cpu
+USL <- 55
+LSL <- 45
 
-Cpl <- (media - LIE) / (3*desvio)
-Cpl
+# Estimadores
+mu_hat <- mean(dados)
+sigma_hat <- sd(dados)
 
-Cpk <- min(Cpu, Cpl)        
-Cpk  
+Cp_hat <- (USL - LSL) / (6 * sigma_hat)
+Cpu_hat <- (USL - mu_hat) / (3 * sigma_hat)
+Cpl_hat <- (mu_hat - LSL) / (3 * sigma_hat)
+Cpk_hat <- min(Cpu_hat, Cpl_hat)
+
+# Exibir resultados
+data.frame(
+  Mu = mu_hat,
+  Sigma = sigma_hat,
+  Cp = Cp_hat,
+  Cpu = Cpu_hat,
+  Cpl = Cpl_hat,
+  Cpk = Cpk_hat
+)
 ```
 
-**Interpretação: Como Cpk < 1.0 o processo não é capaz.**
-    
-### 5) Considere LIE = 97, LSE = 103, n = 30 e S = 0,8. Teste, ao nível de significância de 5%, se o processo é capaz para Cp = 1,33.
+**Interpretação** (exemplo):
 
-```{r}
-LIE = 97
-LSE = 103
-n = 30
-s = 0.8
-Cp = 1.33
-
-# Calculo de Sig0 (desvio)
-desvio_z = (LSE - LIE)/(6*Cp)
-desvio_z
-# Estataistica de teste
-qui_quad = ((n-1)*s^2)/(desvio_z)^2
-qui_quad
-
-# Análise: Valor crítico para alfa = 0.05, gl = 29
-  # qui_quad_Crit = 17.71
-  # Como qui_quad > qui_quad_Crit, não se rejeita H0,ou seja, o processo não é capaz
-  
-
-# Nota: Hipoteses 
-    #   H0: Cp = Cp0    x   H1: Cp # Cp0   
+* Se $Cp_hat = 1.25$ mas $Cpk_hat = 0.90$, indica que embora a variabilidade seja razoável, a média está deslocada para um dos limites.
+* Ajustes podem envolver centralizar o processo, reduzir variabilidade ou ajustar especificações, se possível.
 
 
-```
-**Interpretação: Como 32.83 > 17.71 ao nível de significancia de 0.05, não rejeitamos H0. Ou seja, o processo não é capaz.**
+## Considerações Práticas
 
+* **Distribuição dos dados**: muitos índices pressupõem normalidade. Se os dados forem muito assimétricos ou com caudas pesadas, pode ser necessário usar transformações ou índices específicos para não-normais.
+* **Dados em controle**: como mencionado, aplicar índices somente se o processo estiver estável em termos de variabilidade. Caso contrário, a estimativa de $\sigma$ será instável.
+* **Tamanho da amostra e agrupamentos**: estimadores de $\sigma$ “dentro-subgrupos” geralmente mais confiáveis para variação de curto prazo. Para longo prazo, use variabilidade global.
+* **Unilaterais vs bilaterais**: quando só um limite de especificação é crítico (por exemplo só USL ou só LSL), índices como Cpu ou Cpl têm papel importante, ou índices modificados para tolerâncias unilaterais.
+* **Metas e padrões da indústria**: muitos setores (por exemplo automotivo, aeroespacial) definem metas mínimas como $Cpk \ge 1.33$ ou maior, como parte de requisitos de qualidade.
+* **Relatórios e comunicação**: além dos valores numéricos, apresentar gráficos (histograma com limites, densidade, overlay de especificação) ajuda na interpretação.
 
-### Uma indústria alimentícia deseja verificar a capacidade do processo de empacotamento de açúcar (peso em gramas). Dados coletados (n = 10, uma medida por pacote):
+## Exemplos de Interpretação e Decisão
 
-**Dados: 1005, 1008, 1004, 1007, 1006, 1009, 1005, 1004, 1008, 1006.**   
+* Se $Cp$ é alto (digamos ≥ 1.50) mas $Cpk$ é baixo (\~0.90): indica que a causa principal do problema é centralização. Pode-se ajustar médio do processo (calibrar máquina, ajuste de parâmetros de operação) para mover a média para o centro.
+* Se $Cpk$ e $Cp$ ambos baixos (<1): ou variabilidade é grande demais ou processos instáveis — primeiro verificar fontes de variabilidade (equipamento, matéria-prima, ambiente, etc.), talvez mudar de processo ou especificação.
+* Se o processo tem metas rígidas de qualidade ou segurança, mesmo $Cpk$ ligeiramente acima de 1 pode ser insuficiente — verificar política da empresa ou cliente.
 
-**Especificações: LIE = 1000 g, LSE = 1010 g.**  
+## Extensões e Índices Derivados
 
-**a) Calcular Cp, Cpu, Cpl e Cpk.**
+* **Cpm, Cpmk**: quando há um *target* (meta) fixo que não é necessariamente o centro entre os limites, penalizando desvios deste alvo. ([JMP][2])
+* **Índices para distribuições não-normais**: adaptações via quantis ou transformações.
+* **Análise multivariada de capacidade**: quando características de qualidade múltiplas devem simultaneamente atender limites, usando PCA ou índices multivariados.
 
-```{r}
-dados_7 = c(1005, 1008, 1004, 1007, 1006, 1009, 1005, 1004, 1008, 1006)
-media =mean(dados_7)
-desvio = sd(dados_7)
+## Referências para Consulta
 
-LIE = 1000
-LSE = 1010
-
- 
-Cp <- (LSE - LIE) / (6 * desvio)
-Cp
-
-Cpu <- (LSE - media) / (3*desvio)
-Cpu
-
-Cpl <- (media - LIE) / (3*desvio)
-Cpl
-
-Cpk <- min(Cpu, Cpl)        
-Cpk 
-
-```
-
-**b) Determinar a percentagem da especificação utilizada.  ----- ver 3a)**
-
-**c) Construir um histograma com os limites de especificação**
-
-```{r}
-library(ggplot2)
-library(qcc)
-dados_7
-
-LSL <- 1000
-USL <- 1001 
-library(ggplot2)
-library(dplyr)
-
-dad = data.frame(valor = rnorm(100, mean = 50, sd = 10))
-
-
-# Defina seus limites de especificação
-limite_inferior <- 30
-limite_superior <- 70
-
-# Crie o histograma com os limites de especificação
-ggplot(dad, aes(x = valor)) +
-  geom_histogram(fill = "skyblue", color = "black", binwidth = 5) + # Crie o histograma
-  geom_vline(xintercept = limite_inferior, color = "red", linetype = "dashed", size = 1) + # Linha do limite inferior
-  geom_vline(xintercept = limite_superior, color = "red", linetype = "dashed", size = 1) + # Linha do limite superior
-  labs(title = "Histograma com Limites de Especificação",
-       x = "Valores",
-       y = "Frequência") +
-  theme_minimal() # Um tema simples para o gráfico
-```
+As referências usadas foram @Montgomery2012Statistical, @kotz1993process, @sahay2014process, @benkova2024evaluation, @grau2007generalization e @pci_r_package.
 
 :::: progress
 :::: {.progress-bar style="width: 100%;"}

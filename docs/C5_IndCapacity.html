@@ -8,7 +8,7 @@
 
 <meta name="description" content="Fundamentos Teóricos e Aplicações em Softwares">
 
-<title>5&nbsp; Índice de Capacidade – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
+<title>5&nbsp; Índices de Capacidade – CONTROLE ESTATÍSTICO DE QUALIDADE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,7 +56,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -106,6 +126,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -118,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./C5_IndCapacity.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./C5_IndCapacity.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índices de Capacidade</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -196,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./C5_IndCapacity.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índices de Capacidade</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,19 +264,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#limites-de-especificação-definidos-em-projeto" id="toc-limites-de-especificação-definidos-em-projeto" class="nav-link active" data-scroll-target="#limites-de-especificação-definidos-em-projeto"><span class="header-section-number">5.1</span> Limites de Especificação (definidos em projeto)</a></li>
-  <li><a href="#importante" id="toc-importante" class="nav-link" data-scroll-target="#importante"><span class="header-section-number">5.2</span> Importante:</a></li>
-  <li><a href="#índice-cp---capacidade-potencial" id="toc-índice-cp---capacidade-potencial" class="nav-link" data-scroll-target="#índice-cp---capacidade-potencial"><span class="header-section-number">5.3</span> Índice Cp - Capacidade Potencial**</a></li>
-  <li><a href="#porcentagem-de-especificação" id="toc-porcentagem-de-especificação" class="nav-link" data-scroll-target="#porcentagem-de-especificação"><span class="header-section-number">5.4</span> Porcentagem de Especificação:</a></li>
-  <li><a href="#exemplos" id="toc-exemplos" class="nav-link" data-scroll-target="#exemplos"><span class="header-section-number">5.5</span> Exemplos:</a>
+  <li><a href="#conceitos-fundamentais" id="toc-conceitos-fundamentais" class="nav-link active" data-scroll-target="#conceitos-fundamentais"><span class="header-section-number">5.1</span> Conceitos Fundamentais</a></li>
+  <li><a href="#principais-índices-cp-cpl-cpu-cpk" id="toc-principais-índices-cp-cpl-cpu-cpk" class="nav-link" data-scroll-target="#principais-índices-cp-cpl-cpu-cpk"><span class="header-section-number">5.2</span> Principais Índices: Cp, Cpl, Cpu, Cpk</a>
   <ul class="collapse">
-  <li><a href="#um-processo-tem-lie-45-lse-55-e-σ-15.-calcule-cp." id="toc-um-processo-tem-lie-45-lse-55-e-σ-15.-calcule-cp." class="nav-link" data-scroll-target="#um-processo-tem-lie-45-lse-55-e-σ-15.-calcule-cp."><span class="header-section-number">5.5.1</span> 1) Um processo tem: LIE = 45, LSE = 55 e σ= 1,5. Calcule Cp.</a></li>
-  <li><a href="#sabendo-que-lie-120-lse-126-x_bar-1225-e-σ-006calcule-cpu-cpl-e-cpk" id="toc-sabendo-que-lie-120-lse-126-x_bar-1225-e-σ-006calcule-cpu-cpl-e-cpk" class="nav-link" data-scroll-target="#sabendo-que-lie-120-lse-126-x_bar-1225-e-σ-006calcule-cpu-cpl-e-cpk"><span class="header-section-number">5.5.2</span> 2) Sabendo que LIE = 12,0, LSE = 12,6, x_bar = 12,25 e σ = 0,06,calcule Cpu, Cpl e Cpk</a></li>
-  <li><a href="#um-processo-apresenta-cp-140.-qual-é-a-percentagem-da-especificação-utilizada" id="toc-um-processo-apresenta-cp-140.-qual-é-a-percentagem-da-especificação-utilizada" class="nav-link" data-scroll-target="#um-processo-apresenta-cp-140.-qual-é-a-percentagem-da-especificação-utilizada"><span class="header-section-number">5.5.3</span> 3) Um processo apresenta Cp = 1,40. Qual é a percentagem da especificação utilizada?</a></li>
-  <li><a href="#um-processo-de-envase-tem-lie-495-ml-lse-505-ml-x-503-ml-e-σ-2-ml.-calcule-cpu-cpl-e-cpk-e-interprete-se-o-processo-é-capaz." id="toc-um-processo-de-envase-tem-lie-495-ml-lse-505-ml-x-503-ml-e-σ-2-ml.-calcule-cpu-cpl-e-cpk-e-interprete-se-o-processo-é-capaz." class="nav-link" data-scroll-target="#um-processo-de-envase-tem-lie-495-ml-lse-505-ml-x-503-ml-e-σ-2-ml.-calcule-cpu-cpl-e-cpk-e-interprete-se-o-processo-é-capaz."><span class="header-section-number">5.5.4</span> 4) Um processo de envase tem LIE = 495 mL, LSE = 505 mL, x¯ = 503 mL e σ = 2 mL. Calcule Cpu, Cpl e Cpk e interprete se o processo é capaz.</a></li>
-  <li><a href="#considere-lie-97-lse-103-n-30-e-s-08.-teste-ao-nível-de-significância-de-5-se-o-processo-é-capaz-para-cp-133." id="toc-considere-lie-97-lse-103-n-30-e-s-08.-teste-ao-nível-de-significância-de-5-se-o-processo-é-capaz-para-cp-133." class="nav-link" data-scroll-target="#considere-lie-97-lse-103-n-30-e-s-08.-teste-ao-nível-de-significância-de-5-se-o-processo-é-capaz-para-cp-133."><span class="header-section-number">5.5.5</span> 5) Considere LIE = 97, LSE = 103, n = 30 e S = 0,8. Teste, ao nível de significância de 5%, se o processo é capaz para Cp = 1,33.</a></li>
-  <li><a href="#uma-indústria-alimentícia-deseja-verificar-a-capacidade-do-processo-de-empacotamento-de-açúcar-peso-em-gramas.-dados-coletados-n-10-uma-medida-por-pacote" id="toc-uma-indústria-alimentícia-deseja-verificar-a-capacidade-do-processo-de-empacotamento-de-açúcar-peso-em-gramas.-dados-coletados-n-10-uma-medida-por-pacote" class="nav-link" data-scroll-target="#uma-indústria-alimentícia-deseja-verificar-a-capacidade-do-processo-de-empacotamento-de-açúcar-peso-em-gramas.-dados-coletados-n-10-uma-medida-por-pacote"><span class="header-section-number">5.5.6</span> Uma indústria alimentícia deseja verificar a capacidade do processo de empacotamento de açúcar (peso em gramas). Dados coletados (n = 10, uma medida por pacote):</a></li>
+  <li><a href="#definições" id="toc-definições" class="nav-link" data-scroll-target="#definições"><span class="header-section-number">5.2.1</span> Definições</a></li>
+  <li><a href="#relação-entre-cp-e-cpk" id="toc-relação-entre-cp-e-cpk" class="nav-link" data-scroll-target="#relação-entre-cp-e-cpk"><span class="header-section-number">5.2.2</span> Relação entre Cp e Cpk</a></li>
   </ul></li>
+  <li><a href="#interpretação-de-valores" id="toc-interpretação-de-valores" class="nav-link" data-scroll-target="#interpretação-de-valores"><span class="header-section-number">5.3</span> Interpretação de Valores</a></li>
+  <li><a href="#fórmulas-completas" id="toc-fórmulas-completas" class="nav-link" data-scroll-target="#fórmulas-completas"><span class="header-section-number">5.4</span> Fórmulas Completas</a></li>
+  <li><a href="#cálculo-computacional-em-r" id="toc-cálculo-computacional-em-r" class="nav-link" data-scroll-target="#cálculo-computacional-em-r"><span class="header-section-number">5.5</span> Cálculo Computacional em R</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-simples-dados-simulados" id="toc-exemplo-simples-dados-simulados" class="nav-link" data-scroll-target="#exemplo-simples-dados-simulados"><span class="header-section-number">5.5.1</span> Exemplo simples (dados simulados)</a></li>
+  </ul></li>
+  <li><a href="#considerações-práticas" id="toc-considerações-práticas" class="nav-link" data-scroll-target="#considerações-práticas"><span class="header-section-number">5.6</span> Considerações Práticas</a></li>
+  <li><a href="#exemplos-de-interpretação-e-decisão" id="toc-exemplos-de-interpretação-e-decisão" class="nav-link" data-scroll-target="#exemplos-de-interpretação-e-decisão"><span class="header-section-number">5.7</span> Exemplos de Interpretação e Decisão</a></li>
+  <li><a href="#extensões-e-índices-derivados" id="toc-extensões-e-índices-derivados" class="nav-link" data-scroll-target="#extensões-e-índices-derivados"><span class="header-section-number">5.8</span> Extensões e Índices Derivados</a></li>
+  <li><a href="#referências-para-consulta" id="toc-referências-para-consulta" class="nav-link" data-scroll-target="#referências-para-consulta"><span class="header-section-number">5.9</span> Referências para Consulta</a></li>
   </ul>
 </nav>
     </div>
@@ -236,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índice de Capacidade</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Índices de Capacidade</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
 </div>
 
 
@@ -258,271 +310,187 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<p><strong>Os índices de capacidade do processo são parâmetros adimensionais que indiretamente medem o quanto o processo consegue atender às especificações. Eles comparam a dispersão do processo com os limites de especificação.</strong></p>
-<section id="limites-de-especificação-definidos-em-projeto" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="limites-de-especificação-definidos-em-projeto"><span class="header-section-number">5.1</span> Limites de Especificação (definidos em projeto)</h2>
-<p><strong>Limite inferior (LIE): valor mínimo aceitável</strong> <strong>Limite superior (LSE): valor máximo aceitável</strong></p>
-</section>
-<section id="importante" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="importante"><span class="header-section-number">5.2</span> Importante:</h2>
-<p><strong>&gt; os índices de capacidade só têm sentido se os dados analisados forem provenientes de um processo dentro de controle. Eles são parâmetros (analisados e definidos);</strong><br>
-<strong>&gt; evidenciada a condição de controle o estudo de capacidade pode ser conduzido;</strong><br>
-<strong>&gt; eficiência - entendido como baixo nível de não-conformidades.</strong> **&gt;</p>
-</section>
-<section id="índice-cp---capacidade-potencial" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="índice-cp---capacidade-potencial"><span class="header-section-number">5.3</span> Índice Cp - Capacidade Potencial**</h2>
-<p><strong>Mede a largura do intervalo de especificação em relação à variabilidade do processo.</strong></p>
-<p><strong>Não considera o centramento.</strong></p>
-<p><strong>Quanto maior o Cp, melhor</strong></p>
-<p><strong>Na prática, o desvio padrão é desconhecido e deve ser substituído por uma estimativa de 6-sigma.</strong></p>
-<p>Cp = (LSE- LIE)/ 6*SIGMA …# melhorar (fazer Cp como ESTIMADOR)</p>
-<p><strong>Os limites expresam a tolerância natural doprocesso</strong>.</p>
-<p>Note que o índice Cp relaciona a tolerância especificada com a tolerância natural do processo. Assim,</p>
+<p>Este capítulo explora os <strong>índices de capacidade de processo</strong> — medidas que avaliam quão bem um processo produtivo se comporta em relação aos limites de especificação (tolerâncias), considerando tanto a variabilidade do processo quanto seu posicionamento (centralização) dentro da especificação.</p>
+<section id="conceitos-fundamentais" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="conceitos-fundamentais"><span class="header-section-number">5.1</span> Conceitos Fundamentais</h2>
 <ul>
-<li>Cp &lt; 1, TN é maior que TE (preocupante)</li>
-<li>Cp = 1, TN é igual TE (precisa melhorar)</li>
-<li>Cp &gt; 1, TN é menor que TE (desejável)</li>
+<li><p>Um processo está em <strong>controle estatístico</strong> quando sua variabilidade é estável ao longo do tempo, sem causas especiais (válido para aplicar índices de capacidade).</p></li>
+<li><p>A especificação de um produto define dois limites importantes:</p>
+<p><span class="math display">\[
+LSL = \text{Lower Specification Limit} \quad\text{e}\quad USL = \text{Upper Specification Limit}
+\]</span></p>
+<p>Estes limites definem a faixa aceitável para a característica de qualidade <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Seja <span class="math inline">\(\mu\)</span> a média do processo e <span class="math inline">\(\sigma\)</span> seu desvio-padrão (usualmente estimado a partir de dados em curto prazo / dentro de subgrupos), ou outro estimador apropriado dependendo da estabilidade do processo.</p></li>
 </ul>
 </section>
-<section id="porcentagem-de-especificação" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="porcentagem-de-especificação"><span class="header-section-number">5.4</span> Porcentagem de Especificação:</h2>
-<p><strong>A percentagem utilizada mede o quanto da faixa de tolerância está sendo ocupada pela variabilidade do processo.</strong></p>
-<p>Pesp = (1/Cp)*100</p>
-<p><strong>&gt;Valores baixos indicam boa folga para atender especificações.</strong> <strong>&gt;Valores altos indicam risco de não conformidade.</strong></p>
+<section id="principais-índices-cp-cpl-cpu-cpk" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="principais-índices-cp-cpl-cpu-cpk"><span class="header-section-number">5.2</span> Principais Índices: Cp, Cpl, Cpu, Cpk</h2>
+<section id="definições" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="definições"><span class="header-section-number">5.2.1</span> Definições</h3>
+<ul>
+<li><strong>Cp</strong> (capacidade potencial, ou índice de capacidade do processo) avalia apenas a dispersão do processo em relação à tolerância, assumindo que o processo está centralizado dentro dos limites:</li>
+</ul>
+<p><span class="math display">\[
+Cp = \frac{USL - LSL}{6\,\sigma}
+\]</span></p>
+<ul>
+<li><strong>Cpu</strong> e <strong>Cpl</strong> (capacidade em lados individualizados, superior e inferior) medem quão distante está a média do processo do limite superior ou inferior:</li>
+</ul>
+<p><span class="math display">\[
+Cpu = \frac{USL - \mu}{3\,\sigma},\qquad Cpl = \frac{\mu - LSL}{3\,\sigma}
+\]</span></p>
+<ul>
+<li><strong>Cpk</strong> (índice de capacidade corrigido ou real) considera tanto a variabilidade quanto a centralização, definindo-se como:</li>
+</ul>
+<p><span class="math display">\[
+Cpk = \min(Cpu,\, Cpl)
+\]</span></p>
+<p>Estas fórmulas supõem distribuição aproximadamente normal do processo, e uso de estimador de variabilidade adequado (dentro de subgrupos, quando aplicável).</p>
 </section>
-<section id="exemplos" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="exemplos"><span class="header-section-number">5.5</span> Exemplos:</h2>
-<section id="um-processo-tem-lie-45-lse-55-e-σ-15.-calcule-cp." class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="um-processo-tem-lie-45-lse-55-e-σ-15.-calcule-cp."><span class="header-section-number">5.5.1</span> 1) Um processo tem: LIE = 45, LSE = 55 e σ= 1,5. Calcule Cp.</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">&lt;-</span> <span class="dv">45</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">&lt;-</span> <span class="dv">55</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">&lt;-</span> <span class="fl">1.5</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> desvio)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Cp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.111111</code></pre>
-</div>
-</div>
+<section id="relação-entre-cp-e-cpk" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="relação-entre-cp-e-cpk"><span class="header-section-number">5.2.2</span> Relação entre Cp e Cpk</h3>
+<ul>
+<li>Se o processo está bem centralizado (<span class="math inline">\(\mu \approx (USL + LSL)/2\)</span>), então <span class="math inline">\(Cpu \approx Cpl\)</span> e <span class="math inline">\(Cpk \approx Cp\)</span>.</li>
+<li>Se o processo está deslocado em direção a um dos limites, <span class="math inline">\(Cpk &lt; Cp\)</span>.</li>
+<li>Cp avalia a capacidade <strong>potencial</strong> (se fosse centralizado); Cpk avalia a capacidade <strong>real</strong>.</li>
+</ul>
 </section>
-<section id="sabendo-que-lie-120-lse-126-x_bar-1225-e-σ-006calcule-cpu-cpl-e-cpk" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="sabendo-que-lie-120-lse-126-x_bar-1225-e-σ-006calcule-cpu-cpl-e-cpk"><span class="header-section-number">5.5.2</span> 2) Sabendo que LIE = 12,0, LSE = 12,6, x_bar = 12,25 e σ = 0,06,calcule Cpu, Cpl e Cpk</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span><span class="fl">12.0</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="fl">12.6</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span> <span class="fl">12.25</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">=</span> <span class="fl">0.06</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Cpu <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> media) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> desvio)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Cpu</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.944444</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Cpl <span class="ot">&lt;-</span> (media <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> desvio)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Cpl</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.388889</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Cpk <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu, Cpl)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Cpk</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.388889</code></pre>
-</div>
-</div>
 </section>
-<section id="um-processo-apresenta-cp-140.-qual-é-a-percentagem-da-especificação-utilizada" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="um-processo-apresenta-cp-140.-qual-é-a-percentagem-da-especificação-utilizada"><span class="header-section-number">5.5.3</span> 3) Um processo apresenta Cp = 1,40. Qual é a percentagem da especificação utilizada?</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Cp_3 <span class="ot">=</span> <span class="fl">1.40</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Pesp <span class="ot">=</span> (<span class="dv">1</span><span class="sc">/</span>Cp_3)<span class="sc">*</span><span class="dv">100</span>   <span class="co">#R: 71,43% de toda a variabilidade permitida  (LSE - LIE)</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Pesp   <span class="co">#"Percentagem de Especificação utilizada = 71.43%</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 71.42857</code></pre>
-</div>
-</div>
+<section id="interpretação-de-valores" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="interpretação-de-valores"><span class="header-section-number">5.3</span> Interpretação de Valores</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Faixa de índice</th>
+<th>Interpretação comum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Cp, Cpk &lt; 1.00\)</span></td>
+<td>Processo <strong>não capaz</strong>: partes do produto ficarão fora das especificações se mantido o nível de variabilidade atual.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Cpk = 1.00\)</span></td>
+<td>Processo “barely capable”: ±3σ atinge exatamente os limites. Aproximadamente 0,27% fora de especificação se centrado.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Cpk ≈ 1.33\)</span></td>
+<td>Boa prática — muitos padrões (ex: indústria automotiva) adotam esse valor como mínimo aceitável para processos maduros.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Cpk ≥ 1.67\)</span> ou mais</td>
+<td>Excelente capacidade / processo robusto, muito raramente gerando defeitos.</td>
+</tr>
+</tbody>
+</table>
+<p>Além disso:</p>
+<ul>
+<li>Comparar <strong>Cpu</strong> e <strong>Cpl</strong> ajuda identificar se o problema está com desvio em direção a LSL ou USL.</li>
+<li>Avaliar se Cp está significativamente maior que Cpk: indica que variabilidade pode estar ok, mas centralização está ruim.</li>
+<li>Verificar se o processo realmente está em estado de controle antes de usar esses índices; se não estiver, os resultados podem ser enganosos.</li>
+</ul>
 </section>
-<section id="um-processo-de-envase-tem-lie-495-ml-lse-505-ml-x-503-ml-e-σ-2-ml.-calcule-cpu-cpl-e-cpk-e-interprete-se-o-processo-é-capaz." class="level3" data-number="5.5.4">
-<h3 data-number="5.5.4" class="anchored" data-anchor-id="um-processo-de-envase-tem-lie-495-ml-lse-505-ml-x-503-ml-e-σ-2-ml.-calcule-cpu-cpl-e-cpk-e-interprete-se-o-processo-é-capaz."><span class="header-section-number">5.5.4</span> 4) Um processo de envase tem LIE = 495 mL, LSE = 505 mL, x¯ = 503 mL e σ = 2 mL. Calcule Cpu, Cpl e Cpk e interprete se o processo é capaz.</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span> <span class="dv">495</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="dv">505</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span> <span class="dv">503</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Cpu <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> media) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>Cpu</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3333333</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Cpl <span class="ot">&lt;-</span> (media <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Cpl</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.333333</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Cpk <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu, Cpl)        </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Cpk  </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3333333</code></pre>
-</div>
-</div>
-<p><strong>Interpretação: Como Cpk &lt; 1.0 o processo não é capaz.</strong></p>
+<section id="fórmulas-completas" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="fórmulas-completas"><span class="header-section-number">5.4</span> Fórmulas Completas</h2>
+<p>Para relembrar:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Cp &amp;= \frac{USL - LSL}{6 \sigma} \\
+Cpu &amp;= \frac{USL - \mu}{3 \sigma} \\
+Cpl &amp;= \frac{\mu - LSL}{3 \sigma} \\
+Cpk &amp;= \min(Cpu,\, Cpl)
+\end{aligned}
+\]</span></p>
+<p>Também há variantes:</p>
+<ul>
+<li><strong>Pp</strong>, <strong>Ppk</strong>: versões de longo prazo (“long term” ou “overall”) que usam estimadores de variabilidade diferentes (todos os dados, não só dentro de subgrupos). ([JMP][2])</li>
+<li><strong>Cpm</strong>, <strong>Cpmk</strong>: que incorporam penalidades se o processo não tiver exatamente um alvo (<em>target</em>) prescrito.</li>
+</ul>
 </section>
-<section id="considere-lie-97-lse-103-n-30-e-s-08.-teste-ao-nível-de-significância-de-5-se-o-processo-é-capaz-para-cp-133." class="level3" data-number="5.5.5">
-<h3 data-number="5.5.5" class="anchored" data-anchor-id="considere-lie-97-lse-103-n-30-e-s-08.-teste-ao-nível-de-significância-de-5-se-o-processo-é-capaz-para-cp-133."><span class="header-section-number">5.5.5</span> 5) Considere LIE = 97, LSE = 103, n = 30 e S = 0,8. Teste, ao nível de significância de 5%, se o processo é capaz para Cp = 1,33.</h3>
+<section id="cálculo-computacional-em-r" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="cálculo-computacional-em-r"><span class="header-section-number">5.5</span> Cálculo Computacional em R</h2>
+<p>Aqui vão exemplos práticos para cálculo de Cp, Cpk usando R, tanto para dados simulados quanto reais.</p>
+<section id="exemplo-simples-dados-simulados" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="exemplo-simples-dados-simulados"><span class="header-section-number">5.5.1</span> Exemplo simples (dados simulados)</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span> <span class="dv">97</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="dv">103</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">30</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>s <span class="ot">=</span> <span class="fl">0.8</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">=</span> <span class="fl">1.33</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo de Sig0 (desvio)</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>desvio_z <span class="ot">=</span> (LSE <span class="sc">-</span> LIE)<span class="sc">/</span>(<span class="dv">6</span><span class="sc">*</span>Cp)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>desvio_z</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulação de dados</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mu_true <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sigma_true <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_true, <span class="at">sd =</span> sigma_true)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>USL <span class="ot">&lt;-</span> <span class="dv">55</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>LSL <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimadores</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Cp_hat <span class="ot">&lt;-</span> (USL <span class="sc">-</span> LSL) <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> sigma_hat)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Cpu_hat <span class="ot">&lt;-</span> (USL <span class="sc">-</span> mu_hat) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> sigma_hat)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Cpl_hat <span class="ot">&lt;-</span> (mu_hat <span class="sc">-</span> LSL) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> sigma_hat)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Cpk_hat <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu_hat, Cpl_hat)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultados</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mu =</span> mu_hat,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sigma =</span> sigma_hat,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cp =</span> Cp_hat,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cpu =</span> Cpu_hat,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cpl =</span> Cpl_hat,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cpk =</span> Cpk_hat</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7518797</code></pre>
+<pre><code>        Mu   Sigma        Cp       Cpu       Cpl       Cpk
+1 50.03226 1.98339 0.8403121 0.8348912 0.8457331 0.8348912</code></pre>
 </div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estataistica de teste</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>qui_quad <span class="ot">=</span> ((n<span class="dv">-1</span>)<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(desvio_z)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>qui_quad</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 32.83078</code></pre>
 </div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise: Valor crítico para alfa = 0.05, gl = 29</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># qui_quad_Crit = 17.71</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Como qui_quad &gt; qui_quad_Crit, não se rejeita H0,ou seja, o processo não é capaz</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: Hipoteses </span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   H0: Cp = Cp0    x   H1: Cp # Cp0   </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p><strong>Interpretação: Como 32.83 &gt; 17.71 ao nível de significancia de 0.05, não rejeitamos H0. Ou seja, o processo não é capaz.</strong></p>
+<p><strong>Interpretação</strong> (exemplo):</p>
+<ul>
+<li>Se <span class="math inline">\(Cp_hat = 1.25\)</span> mas <span class="math inline">\(Cpk_hat = 0.90\)</span>, indica que embora a variabilidade seja razoável, a média está deslocada para um dos limites.</li>
+<li>Ajustes podem envolver centralizar o processo, reduzir variabilidade ou ajustar especificações, se possível.</li>
+</ul>
 </section>
-<section id="uma-indústria-alimentícia-deseja-verificar-a-capacidade-do-processo-de-empacotamento-de-açúcar-peso-em-gramas.-dados-coletados-n-10-uma-medida-por-pacote" class="level3" data-number="5.5.6">
-<h3 data-number="5.5.6" class="anchored" data-anchor-id="uma-indústria-alimentícia-deseja-verificar-a-capacidade-do-processo-de-empacotamento-de-açúcar-peso-em-gramas.-dados-coletados-n-10-uma-medida-por-pacote"><span class="header-section-number">5.5.6</span> Uma indústria alimentícia deseja verificar a capacidade do processo de empacotamento de açúcar (peso em gramas). Dados coletados (n = 10, uma medida por pacote):</h3>
-<p><strong>Dados: 1005, 1008, 1004, 1007, 1006, 1009, 1005, 1004, 1008, 1006.</strong></p>
-<p><strong>Especificações: LIE = 1000 g, LSE = 1010 g.</strong></p>
-<p><strong>a) Calcular Cp, Cpu, Cpl e Cpk.</strong></p>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dados_7 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1005</span>, <span class="dv">1008</span>, <span class="dv">1004</span>, <span class="dv">1007</span>, <span class="dv">1006</span>, <span class="dv">1009</span>, <span class="dv">1005</span>, <span class="dv">1004</span>, <span class="dv">1008</span>, <span class="dv">1006</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span><span class="fu">mean</span>(dados_7)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">=</span> <span class="fu">sd</span>(dados_7)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="dv">1010</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> desvio)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>Cp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9517337</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Cpu <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> media) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Cpu</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7233176</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Cpl <span class="ot">&lt;-</span> (media <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Cpl</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.18015</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Cpk <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu, Cpl)        </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Cpk </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7233176</code></pre>
-</div>
-</div>
-<p><strong>b) Determinar a percentagem da especificação utilizada. —– ver 3a)</strong></p>
-<p><strong>c) Construir um histograma com os limites de especificação</strong></p>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>dados_7</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 1005 1008 1004 1007 1006 1009 1005 1004 1008 1006</code></pre>
-</div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>LSL <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>USL <span class="ot">&lt;-</span> <span class="dv">1001</span> </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>dad <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">valor =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Defina seus limites de especificação</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>limite_inferior <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>limite_superior <span class="ot">&lt;-</span> <span class="dv">70</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Crie o histograma com os limites de especificação</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dad, <span class="fu">aes</span>(<span class="at">x =</span> valor)) <span class="sc">+</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="co"># Crie o histograma</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> limite_inferior, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># Linha do limite inferior</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> limite_superior, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># Linha do limite superior</span></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma com Limites de Especificação"</span>,</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Valores"</span>,</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co"># Um tema simples para o gráfico</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="C5_IndCapacity_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+</section>
+<section id="considerações-práticas" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="considerações-práticas"><span class="header-section-number">5.6</span> Considerações Práticas</h2>
+<ul>
+<li><strong>Distribuição dos dados</strong>: muitos índices pressupõem normalidade. Se os dados forem muito assimétricos ou com caudas pesadas, pode ser necessário usar transformações ou índices específicos para não-normais.</li>
+<li><strong>Dados em controle</strong>: como mencionado, aplicar índices somente se o processo estiver estável em termos de variabilidade. Caso contrário, a estimativa de <span class="math inline">\(\sigma\)</span> será instável.</li>
+<li><strong>Tamanho da amostra e agrupamentos</strong>: estimadores de <span class="math inline">\(\sigma\)</span> “dentro-subgrupos” geralmente mais confiáveis para variação de curto prazo. Para longo prazo, use variabilidade global.</li>
+<li><strong>Unilaterais vs bilaterais</strong>: quando só um limite de especificação é crítico (por exemplo só USL ou só LSL), índices como Cpu ou Cpl têm papel importante, ou índices modificados para tolerâncias unilaterais.</li>
+<li><strong>Metas e padrões da indústria</strong>: muitos setores (por exemplo automotivo, aeroespacial) definem metas mínimas como <span class="math inline">\(Cpk \ge 1.33\)</span> ou maior, como parte de requisitos de qualidade.</li>
+<li><strong>Relatórios e comunicação</strong>: além dos valores numéricos, apresentar gráficos (histograma com limites, densidade, overlay de especificação) ajuda na interpretação.</li>
+</ul>
+</section>
+<section id="exemplos-de-interpretação-e-decisão" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="exemplos-de-interpretação-e-decisão"><span class="header-section-number">5.7</span> Exemplos de Interpretação e Decisão</h2>
+<ul>
+<li>Se <span class="math inline">\(Cp\)</span> é alto (digamos ≥ 1.50) mas <span class="math inline">\(Cpk\)</span> é baixo (~0.90): indica que a causa principal do problema é centralização. Pode-se ajustar médio do processo (calibrar máquina, ajuste de parâmetros de operação) para mover a média para o centro.</li>
+<li>Se <span class="math inline">\(Cpk\)</span> e <span class="math inline">\(Cp\)</span> ambos baixos (&lt;1): ou variabilidade é grande demais ou processos instáveis — primeiro verificar fontes de variabilidade (equipamento, matéria-prima, ambiente, etc.), talvez mudar de processo ou especificação.</li>
+<li>Se o processo tem metas rígidas de qualidade ou segurança, mesmo <span class="math inline">\(Cpk\)</span> ligeiramente acima de 1 pode ser insuficiente — verificar política da empresa ou cliente.</li>
+</ul>
+</section>
+<section id="extensões-e-índices-derivados" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="extensões-e-índices-derivados"><span class="header-section-number">5.8</span> Extensões e Índices Derivados</h2>
+<ul>
+<li><strong>Cpm, Cpmk</strong>: quando há um <em>target</em> (meta) fixo que não é necessariamente o centro entre os limites, penalizando desvios deste alvo. ([JMP][2])</li>
+<li><strong>Índices para distribuições não-normais</strong>: adaptações via quantis ou transformações.</li>
+<li><strong>Análise multivariada de capacidade</strong>: quando características de qualidade múltiplas devem simultaneamente atender limites, usando PCA ou índices multivariados.</li>
+</ul>
+</section>
+<section id="referências-para-consulta" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="referências-para-consulta"><span class="header-section-number">5.9</span> Referências para Consulta</h2>
+<p>As referências usadas foram <span class="citation" data-cites="Montgomery2012Statistical">Montgomery (<a href="references.html#ref-Montgomery2012Statistical" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="kotz1993process">Kotz e Johnson (<a href="references.html#ref-kotz1993process" role="doc-biblioref">1993</a>)</span>, <span class="citation" data-cites="sahay2014process">Sahay (<a href="references.html#ref-sahay2014process" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="benkova2024evaluation">Benková et al. (<a href="references.html#ref-benkova2024evaluation" role="doc-biblioref">2024</a>)</span>, <span class="citation" data-cites="grau2007generalization">Grau (<a href="references.html#ref-grau2007generalization" role="doc-biblioref">2007</a>)</span> e <span class="citation" data-cites="pci_r_package">Team (<a href="references.html#ref-pci_r_package" role="doc-biblioref">2024</a>)</span>.</p>
 <div class="progress">
 <div class="progress-bar" style="width: 100%;">
 
@@ -532,7 +500,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-benkova2024evaluation" class="csl-entry" role="listitem">
+Benková, M. et al. 2024. <span>«Process Capability Evaluation Using Capability Indices as Tools for Process Assessment: A Case Study»</span>. <em>Mathematics</em> 12 (11): 1679. <a href="https://doi.org/10.3390/math12111679">https://doi.org/10.3390/math12111679</a>.
+</div>
+<div id="ref-grau2007generalization" class="csl-entry" role="listitem">
+Grau, Daniel. 2007. <span>«Generalization of Usual Capability Indices for Unilateral Tolerances»</span>. <em>arXiv</em> math/0702841.
+</div>
+<div id="ref-kotz1993process" class="csl-entry" role="listitem">
+Kotz, Samuel, e Norman L. Johnson. 1993. <em>Process Capability Indices</em>. 1.ª ed. Boca Raton, FL: CRC Press.
+</div>
+<div id="ref-Montgomery2012Statistical" class="csl-entry" role="listitem">
+Montgomery, Douglas C. 2012. <em>Statistical <span>Quality</span> <span>Control</span></em>. 7.ª ed. John Wiley &amp; Sons.
+</div>
+<div id="ref-sahay2014process" class="csl-entry" role="listitem">
+Sahay, A. 2014. <span>«Process Capability Analysis for Six Sigma»</span>. <em>Real Lean Six Sigma Quality</em> 1 (1).
+</div>
+<div id="ref-pci_r_package" class="csl-entry" role="listitem">
+Team, PCI Development. 2024. <span>«pci: A Collection of Process Capability Index Functions»</span>. R package documentation. <a href="https://cran.r-project.org/web/packages/pci/pci.pdf">https://cran.r-project.org/web/packages/pci/pci.pdf</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -998,220 +985,164 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb33" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Índice de Capacidade</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>**Os índices de capacidade do processo são</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>parâmetros adimensionais que indiretamente</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>medem o quanto o processo consegue atender às</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>especificações. Eles comparam a dispersão do processo com os limites de especificação.**  </span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limites de Especificação (definidos em projeto)</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>**Limite inferior (LIE): valor mínimo aceitável**</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>**Limite superior (LSE): valor máximo aceitável**</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Importante:</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>**&gt; os índices de capacidade só têm sentido</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>se os dados analisados forem provenientes de um</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>processo dentro de controle. Eles são parâmetros (analisados e definidos);**  </span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>**&gt; evidenciada a condição de controle o estudo de capacidade pode ser conduzido;**  </span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>**&gt; eficiência - entendido como baixo nível de não-conformidades.**</span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>**&gt; </span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Índice Cp - Capacidade Potencial**</span></span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>**Mede a largura do intervalo de especificação em relação à variabilidade do processo.**</span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>**Não considera o centramento.**</span>
-<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>**Quanto maior o Cp, melhor**</span>
-<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>**Na prática, o desvio padrão é desconhecido e deve ser substituído por uma estimativa de 6-sigma.**</span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>Cp = (LSE- LIE)/ 6*SIGMA   ...# melhorar (fazer Cp como ESTIMADOR)</span>
-<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>**Os limites expresam a tolerância natural doprocesso**.</span>
-<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>Note que o índice Cp relaciona a tolerância especificada</span>
-<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>com a tolerância natural do processo. Assim,</span>
-<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Cp &lt; 1, TN é maior que TE (preocupante)</span>
-<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Cp = 1, TN é igual TE (precisa melhorar)</span>
-<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Cp &gt; 1, TN é menor que TE (desejável)</span>
-<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Porcentagem de Especificação:</span></span>
-<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>**A percentagem utilizada mede o quanto da faixa de tolerância está sendo ocupada pela variabilidade do processo.**</span>
-<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>Pesp = (1/Cp)*100</span>
-<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a>**&gt;Valores baixos indicam boa folga para atender especificações.**</span>
-<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a>**&gt;Valores altos indicam risco de não conformidade.**</span>
-<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exemplos:</span></span>
-<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1) Um processo tem: LIE = 45, LSE = 55 e σ= 1,5. Calcule Cp.</span></span>
-<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">&lt;-</span> <span class="dv">45</span></span>
-<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">&lt;-</span> <span class="dv">55</span></span>
-<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">&lt;-</span> <span class="fl">1.5</span> </span>
-<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> desvio)</span>
-<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a>Cp</span>
-<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2) Sabendo que LIE = 12,0, LSE = 12,6, x_bar = 12,25 e σ = 0,06,calcule Cpu, Cpl e Cpk</span></span>
-<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span><span class="fl">12.0</span></span>
-<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="fl">12.6</span></span>
-<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span> <span class="fl">12.25</span></span>
-<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">=</span> <span class="fl">0.06</span></span>
-<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a>Cpu <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> media) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> desvio)</span>
-<span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a>Cpu</span>
-<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a>Cpl <span class="ot">&lt;-</span> (media <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> desvio)</span>
-<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a>Cpl</span>
-<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a>Cpk <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu, Cpl)</span>
-<span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a>Cpk</span>
-<span id="cb33-91"><a href="#cb33-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-92"><a href="#cb33-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-94"><a href="#cb33-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3) Um processo apresenta Cp = 1,40. Qual é a percentagem da especificação utilizada?</span></span>
-<span id="cb33-95"><a href="#cb33-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-98"><a href="#cb33-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-99"><a href="#cb33-99" aria-hidden="true" tabindex="-1"></a>Cp_3 <span class="ot">=</span> <span class="fl">1.40</span></span>
-<span id="cb33-100"><a href="#cb33-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a>Pesp <span class="ot">=</span> (<span class="dv">1</span><span class="sc">/</span>Cp_3)<span class="sc">*</span><span class="dv">100</span>   <span class="co">#R: 71,43% de toda a variabilidade permitida  (LSE - LIE)</span></span>
-<span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a>Pesp   <span class="co">#"Percentagem de Especificação utilizada = 71.43%</span></span>
-<span id="cb33-103"><a href="#cb33-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-104"><a href="#cb33-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-105"><a href="#cb33-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4) Um processo de envase tem LIE = 495 mL, LSE = 505 mL, x¯ = 503 mL e σ = 2 mL. Calcule Cpu, Cpl e Cpk e interprete se o processo é capaz.</span></span>
-<span id="cb33-106"><a href="#cb33-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-109"><a href="#cb33-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-110"><a href="#cb33-110" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span> <span class="dv">495</span></span>
-<span id="cb33-111"><a href="#cb33-111" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="dv">505</span></span>
-<span id="cb33-112"><a href="#cb33-112" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span> <span class="dv">503</span></span>
-<span id="cb33-113"><a href="#cb33-113" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb33-114"><a href="#cb33-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-115"><a href="#cb33-115" aria-hidden="true" tabindex="-1"></a>Cpu <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> media) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb33-116"><a href="#cb33-116" aria-hidden="true" tabindex="-1"></a>Cpu</span>
-<span id="cb33-117"><a href="#cb33-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-118"><a href="#cb33-118" aria-hidden="true" tabindex="-1"></a>Cpl <span class="ot">&lt;-</span> (media <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a>Cpl</span>
-<span id="cb33-120"><a href="#cb33-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-121"><a href="#cb33-121" aria-hidden="true" tabindex="-1"></a>Cpk <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu, Cpl)        </span>
-<span id="cb33-122"><a href="#cb33-122" aria-hidden="true" tabindex="-1"></a>Cpk  </span>
-<span id="cb33-123"><a href="#cb33-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-124"><a href="#cb33-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a>**Interpretação: Como Cpk &lt; 1.0 o processo não é capaz.**</span>
-<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5) Considere LIE = 97, LSE = 103, n = 30 e S = 0,8. Teste, ao nível de significância de 5%, se o processo é capaz para Cp = 1,33.</span></span>
-<span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-131"><a href="#cb33-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-132"><a href="#cb33-132" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span> <span class="dv">97</span></span>
-<span id="cb33-133"><a href="#cb33-133" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="dv">103</span></span>
-<span id="cb33-134"><a href="#cb33-134" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">30</span></span>
-<span id="cb33-135"><a href="#cb33-135" aria-hidden="true" tabindex="-1"></a>s <span class="ot">=</span> <span class="fl">0.8</span></span>
-<span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">=</span> <span class="fl">1.33</span></span>
-<span id="cb33-137"><a href="#cb33-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-138"><a href="#cb33-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo de Sig0 (desvio)</span></span>
-<span id="cb33-139"><a href="#cb33-139" aria-hidden="true" tabindex="-1"></a>desvio_z <span class="ot">=</span> (LSE <span class="sc">-</span> LIE)<span class="sc">/</span>(<span class="dv">6</span><span class="sc">*</span>Cp)</span>
-<span id="cb33-140"><a href="#cb33-140" aria-hidden="true" tabindex="-1"></a>desvio_z</span>
-<span id="cb33-141"><a href="#cb33-141" aria-hidden="true" tabindex="-1"></a><span class="co"># Estataistica de teste</span></span>
-<span id="cb33-142"><a href="#cb33-142" aria-hidden="true" tabindex="-1"></a>qui_quad <span class="ot">=</span> ((n<span class="dv">-1</span>)<span class="sc">*</span>s<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(desvio_z)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb33-143"><a href="#cb33-143" aria-hidden="true" tabindex="-1"></a>qui_quad</span>
-<span id="cb33-144"><a href="#cb33-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-145"><a href="#cb33-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise: Valor crítico para alfa = 0.05, gl = 29</span></span>
-<span id="cb33-146"><a href="#cb33-146" aria-hidden="true" tabindex="-1"></a>  <span class="co"># qui_quad_Crit = 17.71</span></span>
-<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Como qui_quad &gt; qui_quad_Crit, não se rejeita H0,ou seja, o processo não é capaz</span></span>
-<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: Hipoteses </span></span>
-<span id="cb33-151"><a href="#cb33-151" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   H0: Cp = Cp0    x   H1: Cp # Cp0   </span></span>
-<span id="cb33-152"><a href="#cb33-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-155"><a href="#cb33-155" aria-hidden="true" tabindex="-1"></a>**Interpretação: Como 32.83 &gt; 17.71 ao nível de significancia de 0.05, não rejeitamos H0. Ou seja, o processo não é capaz.**</span>
-<span id="cb33-156"><a href="#cb33-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-157"><a href="#cb33-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-158"><a href="#cb33-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uma indústria alimentícia deseja verificar a capacidade do processo de empacotamento de açúcar (peso em gramas). Dados coletados (n = 10, uma medida por pacote):</span></span>
-<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a>**Dados: 1005, 1008, 1004, 1007, 1006, 1009, 1005, 1004, 1008, 1006.**   </span>
-<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a>**Especificações: LIE = 1000 g, LSE = 1010 g.**  </span>
-<span id="cb33-163"><a href="#cb33-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-164"><a href="#cb33-164" aria-hidden="true" tabindex="-1"></a>**a) Calcular Cp, Cpu, Cpl e Cpk.**</span>
-<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-168"><a href="#cb33-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-169"><a href="#cb33-169" aria-hidden="true" tabindex="-1"></a>dados_7 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1005</span>, <span class="dv">1008</span>, <span class="dv">1004</span>, <span class="dv">1007</span>, <span class="dv">1006</span>, <span class="dv">1009</span>, <span class="dv">1005</span>, <span class="dv">1004</span>, <span class="dv">1008</span>, <span class="dv">1006</span>)</span>
-<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span><span class="fu">mean</span>(dados_7)</span>
-<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a>desvio <span class="ot">=</span> <span class="fu">sd</span>(dados_7)</span>
-<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a>LIE <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb33-174"><a href="#cb33-174" aria-hidden="true" tabindex="-1"></a>LSE <span class="ot">=</span> <span class="dv">1010</span></span>
-<span id="cb33-175"><a href="#cb33-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> desvio)</span>
-<span id="cb33-178"><a href="#cb33-178" aria-hidden="true" tabindex="-1"></a>Cp</span>
-<span id="cb33-179"><a href="#cb33-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a>Cpu <span class="ot">&lt;-</span> (LSE <span class="sc">-</span> media) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a>Cpu</span>
-<span id="cb33-182"><a href="#cb33-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-183"><a href="#cb33-183" aria-hidden="true" tabindex="-1"></a>Cpl <span class="ot">&lt;-</span> (media <span class="sc">-</span> LIE) <span class="sc">/</span> (<span class="dv">3</span><span class="sc">*</span>desvio)</span>
-<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a>Cpl</span>
-<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-186"><a href="#cb33-186" aria-hidden="true" tabindex="-1"></a>Cpk <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu, Cpl)        </span>
-<span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a>Cpk </span>
-<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a>**b) Determinar a percentagem da especificação utilizada.  ----- ver 3a)**</span>
-<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a>**c) Construir um histograma com os limites de especificação**</span>
-<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-197"><a href="#cb33-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-198"><a href="#cb33-198" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb33-199"><a href="#cb33-199" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
-<span id="cb33-200"><a href="#cb33-200" aria-hidden="true" tabindex="-1"></a>dados_7</span>
-<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-202"><a href="#cb33-202" aria-hidden="true" tabindex="-1"></a>LSL <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb33-203"><a href="#cb33-203" aria-hidden="true" tabindex="-1"></a>USL <span class="ot">&lt;-</span> <span class="dv">1001</span> </span>
-<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb33-205"><a href="#cb33-205" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb33-206"><a href="#cb33-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a>dad <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">valor =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
-<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a><span class="co"># Defina seus limites de especificação</span></span>
-<span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a>limite_inferior <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a>limite_superior <span class="ot">&lt;-</span> <span class="dv">70</span></span>
-<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Crie o histograma com os limites de especificação</span></span>
-<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dad, <span class="fu">aes</span>(<span class="at">x =</span> valor)) <span class="sc">+</span></span>
-<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="co"># Crie o histograma</span></span>
-<span id="cb33-217"><a href="#cb33-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> limite_inferior, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># Linha do limite inferior</span></span>
-<span id="cb33-218"><a href="#cb33-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> limite_superior, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># Linha do limite superior</span></span>
-<span id="cb33-219"><a href="#cb33-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma com Limites de Especificação"</span>,</span>
-<span id="cb33-220"><a href="#cb33-220" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Valores"</span>,</span>
-<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
-<span id="cb33-222"><a href="#cb33-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co"># Um tema simples para o gráfico</span></span>
-<span id="cb33-223"><a href="#cb33-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb33-224"><a href="#cb33-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-225"><a href="#cb33-225" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb33-226"><a href="#cb33-226" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb33-227"><a href="#cb33-227" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb33-228"><a href="#cb33-228" aria-hidden="true" tabindex="-1"></a>::::</span>
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Índices de Capacidade</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Este capítulo explora os **índices de capacidade de processo** — medidas que avaliam quão bem um processo produtivo se comporta em relação aos limites de especificação (tolerâncias), considerando tanto a variabilidade do processo quanto seu posicionamento (centralização) dentro da especificação.</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conceitos Fundamentais</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Um processo está em **controle estatístico** quando sua variabilidade é estável ao longo do tempo, sem causas especiais (válido para aplicar índices de capacidade).</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A especificação de um produto define dois limites importantes:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  LSL = \text{Lower Specification Limit} \quad\text{e}\quad USL = \text{Upper Specification Limit}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  Estes limites definem a faixa aceitável para a característica de qualidade $X$.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Seja $\mu$ a média do processo e $\sigma$ seu desvio-padrão (usualmente estimado a partir de dados em curto prazo / dentro de subgrupos), ou outro estimador apropriado dependendo da estabilidade do processo.</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Principais Índices: Cp, Cpl, Cpu, Cpk</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Definições</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Cp** (capacidade potencial, ou índice de capacidade do processo) avalia apenas a dispersão do processo em relação à tolerância, assumindo que o processo está centralizado dentro dos limites:</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>Cp = \frac{USL - LSL}{6\,\sigma}</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Cpu** e **Cpl** (capacidade em lados individualizados, superior e inferior) medem quão distante está a média do processo do limite superior ou inferior:</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>Cpu = \frac{USL - \mu}{3\,\sigma},\qquad Cpl = \frac{\mu - LSL}{3\,\sigma}</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Cpk** (índice de capacidade corrigido ou real) considera tanto a variabilidade quanto a centralização, definindo-se como:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>Cpk = \min(Cpu,\, Cpl)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>Estas fórmulas supõem distribuição aproximadamente normal do processo, e uso de estimador de variabilidade adequado (dentro de subgrupos, quando aplicável).</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Relação entre Cp e Cpk</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Se o processo está bem centralizado ($\mu \approx (USL + LSL)/2$), então $Cpu \approx Cpl$ e $Cpk \approx Cp$.</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Se o processo está deslocado em direção a um dos limites, $Cpk &lt; Cp$.</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Cp avalia a capacidade **potencial** (se fosse centralizado); Cpk avalia a capacidade **real**.</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretação de Valores</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Faixa de índice      <span class="pp">|</span> Interpretação comum                                                                                                     <span class="pp">|</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="pp">| --------------------</span> <span class="pp">| -----------------------------------------------------------------------------------------------------------------------</span> <span class="pp">|</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $Cp, Cpk &lt; 1.00$     <span class="pp">|</span> Processo **não capaz**: partes do produto ficarão fora das especificações se mantido o nível de variabilidade atual.    <span class="pp">|</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $Cpk = 1.00$         <span class="pp">|</span> Processo “barely capable”: ±3σ atinge exatamente os limites. Aproximadamente 0,27% fora de especificação se centrado.   <span class="pp">|</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $Cpk ≈ 1.33$         <span class="pp">|</span> Boa prática — muitos padrões (ex: indústria automotiva) adotam esse valor como mínimo aceitável para processos maduros. <span class="pp">|</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $Cpk ≥ 1.67$ ou mais <span class="pp">|</span> Excelente capacidade / processo robusto, muito raramente gerando defeitos.                                              <span class="pp">|</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>Além disso:</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Comparar **Cpu** e **Cpl** ajuda identificar se o problema está com desvio em direção a LSL ou USL.</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Avaliar se Cp está significativamente maior que Cpk: indica que variabilidade pode estar ok, mas centralização está ruim.</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Verificar se o processo realmente está em estado de controle antes de usar esses índices; se não estiver, os resultados podem ser enganosos.</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fórmulas Completas</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>Para relembrar:</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>Cp &amp;= \frac{USL - LSL}{6 \sigma} <span class="sc">\\</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>Cpu &amp;= \frac{USL - \mu}{3 \sigma} <span class="sc">\\</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>Cpl &amp;= \frac{\mu - LSL}{3 \sigma} <span class="sc">\\</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>Cpk &amp;= \min(Cpu,\, Cpl)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>Também há variantes:</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Pp**, **Ppk**: versões de longo prazo (“long term” ou “overall”) que usam estimadores de variabilidade diferentes (todos os dados, não só dentro de subgrupos). (<span class="co">[</span><span class="ot">JMP</span><span class="co">][2]</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Cpm**, **Cpmk**: que incorporam penalidades se o processo não tiver exatamente um alvo (*target*) prescrito.</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cálculo Computacional em R</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>Aqui vão exemplos práticos para cálculo de Cp, Cpk usando R, tanto para dados simulados quanto reais.</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Exemplo simples (dados simulados)</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulação de dados</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>mu_true <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>sigma_true <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_true, <span class="at">sd =</span> sigma_true)</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>USL <span class="ot">&lt;-</span> <span class="dv">55</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>LSL <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimadores</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados)</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados)</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>Cp_hat <span class="ot">&lt;-</span> (USL <span class="sc">-</span> LSL) <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> sigma_hat)</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>Cpu_hat <span class="ot">&lt;-</span> (USL <span class="sc">-</span> mu_hat) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> sigma_hat)</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Cpl_hat <span class="ot">&lt;-</span> (mu_hat <span class="sc">-</span> LSL) <span class="sc">/</span> (<span class="dv">3</span> <span class="sc">*</span> sigma_hat)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>Cpk_hat <span class="ot">&lt;-</span> <span class="fu">min</span>(Cpu_hat, Cpl_hat)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultados</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mu =</span> mu_hat,</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sigma =</span> sigma_hat,</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cp =</span> Cp_hat,</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cpu =</span> Cpu_hat,</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cpl =</span> Cpl_hat,</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">Cpk =</span> Cpk_hat</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>**Interpretação** (exemplo):</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Se $Cp_hat = 1.25$ mas $Cpk_hat = 0.90$, indica que embora a variabilidade seja razoável, a média está deslocada para um dos limites.</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Ajustes podem envolver centralizar o processo, reduzir variabilidade ou ajustar especificações, se possível.</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="fu">## Considerações Práticas</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Distribuição dos dados**: muitos índices pressupõem normalidade. Se os dados forem muito assimétricos ou com caudas pesadas, pode ser necessário usar transformações ou índices específicos para não-normais.</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Dados em controle**: como mencionado, aplicar índices somente se o processo estiver estável em termos de variabilidade. Caso contrário, a estimativa de $\sigma$ será instável.</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Tamanho da amostra e agrupamentos**: estimadores de $\sigma$ “dentro-subgrupos” geralmente mais confiáveis para variação de curto prazo. Para longo prazo, use variabilidade global.</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Unilaterais vs bilaterais**: quando só um limite de especificação é crítico (por exemplo só USL ou só LSL), índices como Cpu ou Cpl têm papel importante, ou índices modificados para tolerâncias unilaterais.</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Metas e padrões da indústria**: muitos setores (por exemplo automotivo, aeroespacial) definem metas mínimas como $Cpk \ge 1.33$ ou maior, como parte de requisitos de qualidade.</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Relatórios e comunicação**: além dos valores numéricos, apresentar gráficos (histograma com limites, densidade, overlay de especificação) ajuda na interpretação.</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exemplos de Interpretação e Decisão</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Se $Cp$ é alto (digamos ≥ 1.50) mas $Cpk$ é baixo (\~0.90): indica que a causa principal do problema é centralização. Pode-se ajustar médio do processo (calibrar máquina, ajuste de parâmetros de operação) para mover a média para o centro.</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Se $Cpk$ e $Cp$ ambos baixos (&lt;1): ou variabilidade é grande demais ou processos instáveis — primeiro verificar fontes de variabilidade (equipamento, matéria-prima, ambiente, etc.), talvez mudar de processo ou especificação.</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Se o processo tem metas rígidas de qualidade ou segurança, mesmo $Cpk$ ligeiramente acima de 1 pode ser insuficiente — verificar política da empresa ou cliente.</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extensões e Índices Derivados</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Cpm, Cpmk**: quando há um *target* (meta) fixo que não é necessariamente o centro entre os limites, penalizando desvios deste alvo. (<span class="co">[</span><span class="ot">JMP</span><span class="co">][2]</span>)</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Índices para distribuições não-normais**: adaptações via quantis ou transformações.</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Análise multivariada de capacidade**: quando características de qualidade múltiplas devem simultaneamente atender limites, usando PCA ou índices multivariados.</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## Referências para Consulta</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>As referências usadas foram @Montgomery2012Statistical, @kotz1993process, @sahay2014process, @benkova2024evaluation, @grau2007generalization e @pci_r_package.</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>::::</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

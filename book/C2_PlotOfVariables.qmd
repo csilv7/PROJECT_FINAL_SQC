@@ -572,21 +572,851 @@ plt.show()
 
 ### Gráficos de Médias e Desvio Padrão ($\bar{X}$ e $S$)
 
+Os gráficos $\bar{X}$ e $S$ são a alternativa natural aos gráficos $\bar{X}$ e $R$ quando o tamanho do subgrupo é moderado/maior (tipicamente $n>10$) ou quando se prefere usar o desvio-padrão amostral como estimador da variabilidade. Para cada subgrupo $i$ de tamanho $n$ definimos:
+
+* Média amostral: $\bar{X}_i = \dfrac{1}{n}\sum_{j=1}^{n} X_{ij}$.
+* Desvio padrão amostral (unbiased usual): $S_i = \sqrt{\dfrac{1}{n-1}\sum_{j=1}^n (X_{ij} - \bar{X}_i)^2}$.
+
+Sejam $\bar{\bar{X}} = \dfrac{1}{m}\sum_{i=1}^{m}\bar{X}_i$ e $\bar{S} = \dfrac{1}{m}\sum_{i=1}^{m} S_i$ as estimativas da média e da variabilidade do processo durante o período de referência (fase de *set-up* do gráfico). Os limites de controle são dados por:
+
+$$
+\text{Limites do gráfico }\bar{X}:\quad
+\text{LSC} = \bar{\bar{X}} + A_3 \,\bar{S},\qquad
+\text{LC} = \bar{\bar{X}},\qquad
+\text{LIC} = \bar{\bar{X}} - A_3 \,\bar{S},
+$$
+
+onde $A_3$ é uma constante que depende do tamanho do subgrupo $n$.
+
+**Interpretação prática:** examina-se primeiro o gráfico $S$ (variabilidade). Se a variabilidade estiver sob controle (nenhum sinal no $S$), procede-se à análise do $\bar{X}$. Se o $S$ indicar descontrole, não se interpreta o gráfico $\bar{X}$ até que a causa da variabilidade seja corrigida. Essa ordem evita conclusões equivocadas sobre a média quando a variabilidade do processo é instável.
+
 #### Exemplos Computacionais
+
+Usando os dados do exemplo anterior temos:
 
 ::: panel-tabset
 
 ##### R Base
 
+```{r}
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Supondo matriz.data (m x n)
+vec.means <- apply(samples.x, 1, mean)
+vec.sds   <- apply(samples.x, 1, sd)
+
+xbar.bar <- mean(vec.means)
+s.bar    <- mean(vec.sds)
+
+A3 <- 1.287 # EXEMPLO (depende de n)
+
+LC <- xbar.bar
+LSC <- xbar.bar + A3 * s.bar
+LIC <- xbar.bar - A3 * s.bar
+
+# Definir limites do eixo Y para garantir que tudo seja visível
+ylim <- c(min(vec.means, LIC) - 0.25, max(vec.means, LSC) + 0.25)
+
+# Criar o gráfico principal com pontos e linhas
+plot(x = 1:k, y = vec.means,
+     type = "b", # "b" para both (pontos e linhas)
+     xlab = "Amostra",
+     ylab = "Medida",
+     ylim = ylim,
+     pch = 19, # Tipo de ponto (círculo sólido)
+     col = "black",
+     font.lab = 2 # Deixa os títulos dos eixos em negrito
+)
+
+# Adicionar as linhas de controle
+abline(h = LIC, col = "red", lwd = 2)
+abline(h = LC, col = "blue", lwd = 2)
+abline(h = LSC, col = "red", lwd = 2)
+
+# Adicionar a legenda
+legend("topright",
+       legend = c(
+         bquote(LSC == .(round(LSC, 2))),
+         bquote(hat(mu) == .(round(LC, 2))),
+         bquote(LIC == .(round(LIC, 2)))
+       ),
+       col = c("red", "blue", "red"),
+       lwd = 2,
+       cex = 0.75,
+       bty = "solid" # "n" Remove a caixa ao redor da legenda
+)
+```
+
+
 ##### R usando `ggplot2`
 
+```{r}
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Supondo matriz.data (m x n)
+vec.means <- apply(samples.x, 1, mean)
+vec.sds   <- apply(samples.x, 1, sd)
+
+xbar.bar <- mean(vec.means)
+s.bar    <- mean(vec.sds)
+
+A3 <- 1.287 # EXEMPLO (depende de n)
+
+LC <- xbar.bar
+LSC <- xbar.bar + A3 * s.bar
+LIC <- xbar.bar - A3 * s.bar
+
+library(ggplot2)
+
+# Construir Gráfico de Controle no ggplot2
+ggplot(data = NULL, aes(x = 1:nrow(samples.x), y = vec.means)) +
+  geom_point(size = 2) + geom_line() +
+  geom_hline(aes(yintercept = LIC, color = "LIC")) +
+  geom_hline(aes(yintercept = LC, color = "LC")) +
+  geom_hline(aes(yintercept = LSC, color = "LSC")) +
+  scale_color_manual(
+    values = c("LIC" = "red", "LC" = "blue", "LSC" = "red"),
+    labels = c(
+      bquote(LIC == .(round(LIC, 2))),
+      bquote(mu[0] == .(round(x.bar, 2))),
+      bquote(LSC == .(round(LSC, 2)))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medida",
+    color = "Limites"
+  ) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )
+```
+
+
 ##### Python
+
+```{python}
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+tbl61 = np.array([
+    [1, 1.3235, 1.4128, 1.6744, 1.4573],
+    [2, 1.4314, 1.3592, 1.6075, 1.4666],
+    [3, 1.4284, 1.4871, 1.4932, 1.4324],
+    [4, 1.5028, 1.6352, 1.3841, 1.2831],
+    [5, 1.5604, 1.2735, 1.5265, 1.4362],
+    [6, 1.5955, 1.5451, 1.3574, 1.3281],
+    [7, 1.6274, 1.5064, 1.8366, 1.4177],
+    [8, 1.4190, 1.4303, 1.6637, 1.6067],
+    [9, 1.3884, 1.7277, 1.5355, 1.5176],
+    [10, 1.4039, 1.6697, 1.5089, 1.6477],
+    [11, 1.4158, 1.7667, 1.4278, 1.5927],
+    [12, 1.5821, 1.3355, 1.5777, 1.3908],
+    [13, 1.2856, 1.4106, 1.4447, 1.6388],
+    [14, 1.4951, 1.4036, 1.5893, 1.6458],
+    [15, 1.3589, 1.2863, 1.5996, 1.2497],
+    [16, 1.5747, 1.5301, 1.5171, 1.1839],
+    [17, 1.3680, 1.7269, 1.3957, 1.5019],
+    [18, 1.4163, 1.3864, 1.3057, 1.6210],
+    [19, 1.5796, 1.4185, 1.6541, 1.5116],
+    [20, 1.7106, 1.4412, 1.2361, 1.3824],
+    [21, 1.4371, 1.5051, 1.3485, 1.5670],
+    [22, 1.4738, 1.5936, 1.6583, 1.4973],
+    [23, 1.5917, 1.4333, 1.5551, 1.5295],
+    [24, 1.6399, 1.5243, 1.5705, 1.5563],
+    [25, 1.5797, 1.3663, 1.6240, 1.3732]
+])
+
+# Obter apenas as amostras
+samples_x = tbl61[:, 1:]
+
+# Vetor de médias (média de cada linha)
+vec_means = samples_x.mean(axis=1)
+
+# Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)
+vec_std = samples_x.std(axis=1)
+
+# Estimar quantidades
+x_bar = vec_means.mean()
+x_std = vec_std.mean()
+
+# Definir Constantes Estatíticas
+A3 = 1.287 # EXEMPLO (depende de n)
+
+# Construir limites
+lic = x_bar - A3 * x_std  # Limite Inferior de Controle
+lc  = x_bar               # Limite Central
+lsc = x_bar + A3 * x_std  # Limite Inferior de Controle
+
+# Configurar o estilo do gráfico
+sns.set_theme(style="ticks") # Similar ao theme_classic()
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(5, 3), dpi=800)
+
+sns.lineplot(x=range(1, samples_x.shape[0]+1), y=vec_means, marker="o", color="black", ax=ax)
+
+# Plotar as linhas de controle
+ax.axhline(y=lsc, color="red", linestyle="-", label=f"LSC = {lsc:.2f}")
+ax.axhline(y=lc, color="blue", linestyle="-", label=f"$\\hat{{\\mu}}$ = {lc:.2f}") # Usando LaTeX para mu
+ax.axhline(y=lic, color="red", linestyle="-", label=f"LIC = {lic:.2f}")
+
+# Configurações de eixos e títulos
+ax.set_ylim(min(vec_means.min(), lic) - 0.25, max(vec_means.max(), lsc) + 0.25)
+ax.set_xlabel("Amostra", weight="bold", fontsize=12)
+ax.set_ylabel("Medida", weight="bold", fontsize=12)
+
+# Configurações de Legenda
+ax.legend(prop={"size":8, "weight": "bold"}, loc="upper right", frameon=False) # bbox_to_anchor=(1, 0.5), 
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
 
 :::
 
 ## Gráfico de Controle para $R$
 
+O gráfico $R$ monitora a **amplitude** de cada subgrupo: $R_i = \max_j X_{ij} - \min_j X_{ij}$. Seja $\bar{R} = \dfrac{1}{m}\sum_{i=1}^{m} R_i$ a amplitude média. Os limites de controle do gráfico $R$ são:
+
+$$
+\text{LC}_R = \bar{R},\qquad
+\text{LSC}_R = D_4\,\bar{R},\qquad
+\text{LIC}_R = D_3\,\bar{R},
+$$
+
+onde $D_3$ e $D_4$ são constantes tabeladas (dependem de $n$). Para muitos tamanhos de subgrupo pequenos, $D_3 = 0$ (o que implica ausência de limite inferior prático). As constantes $A_2, D_3, D_4$ são usadas em conjunto com o gráfico $\bar{X}$ quando a estimativa da variabilidade se faz via amplitudes (ex.: $\bar{\bar{X}} \pm A_2 \bar{R}$).
+
+**Uso prático e ordem de verificação:** sempre verifique se o gráfico $R$ está sob controle antes de interpretar o gráfico $\bar{X}$. Se o R indicar descontrole, a causa deve ser investigada (variação no processo, mudança de máquina, operador, matéria-prima, instrumento de inspeção etc.) e corrigida.
+
+### Exemplos Computacionais
+
+Fazendo uso dos dados dos exemplos anteriores, temos:
+
+::: panel-tabset
+
+#### R Base
+
+```{r}
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Supondo matriz.data (m x n)
+vec.range <- apply(samples.x, 1, function(x) max(x) - min(x))
+
+R.bar <- mean(vec.range)
+
+# Definir Constantes Estatíticas
+D3 <- 0.00  # exemplo (depende de n)
+D4 <- 2.282 # exemplo (depende de n)
+
+LC <- R.bar
+LSC <- D4 * R.bar
+LIC <- D3 * R.bar
+
+# Definir limites do eixo Y para garantir que tudo seja visível
+ylim <- c(min(vec.range, LIC) - 0.25, max(vec.range, LSC) + 0.25)
+
+# Criar o gráfico principal com pontos e linhas
+plot(x = 1:k, y = vec.range,
+     type = "b", # "b" para both (pontos e linhas)
+     xlab = "Amostra",
+     ylab = "Medida",
+     ylim = ylim,
+     pch = 19, # Tipo de ponto (círculo sólido)
+     col = "black",
+     font.lab = 2 # Deixa os títulos dos eixos em negrito
+)
+
+# Adicionar as linhas de controle
+abline(h = LIC, col = "red", lwd = 2)
+abline(h = LC, col = "blue", lwd = 2)
+abline(h = LSC, col = "red", lwd = 2)
+
+# Adicionar a legenda
+legend("topright",
+       legend = c(
+         bquote(LSC == .(round(LSC, 2))),
+         bquote(LC == .(round(LC, 2))),
+         bquote(LIC == .(round(LIC, 2)))
+       ),
+       col = c("red", "blue", "red"),
+       lwd = 2,
+       cex = 0.75,
+       bty = "solid" # "n" Remove a caixa ao redor da legenda
+)
+```
+
+
+#### R usando `ggplot2`
+
+```{r}
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Supondo matriz.data (m x n)
+vec.range <- apply(samples.x, 1, function(x) max(x) - min(x))
+
+R.bar <- mean(vec.range)
+
+# Definir Constantes Estatíticas
+D3 <- 0.00  # exemplo (depende de n)
+D4 <- 2.282 # exemplo (depende de n)
+
+LC <- R.bar
+LSC <- D4 * R.bar
+LIC <- D3 * R.bar
+
+library(ggplot2)
+
+# Construir Gráfico de Controle no ggplot2
+ggplot(data = NULL, aes(x = 1:nrow(samples.x), y = vec.range)) +
+  geom_point(size = 2) + geom_line() +
+  geom_hline(aes(yintercept = LIC, color = "LIC")) +
+  geom_hline(aes(yintercept = LC, color = "LC")) +
+  geom_hline(aes(yintercept = LSC, color = "LSC")) +
+  scale_color_manual(
+    values = c("LIC" = "red", "LC" = "blue", "LSC" = "red"),
+    labels = c(
+      bquote(LIC == .(round(LIC, 2))),
+      bquote(LC == .(round(R.bar, 2))),
+      bquote(LSC == .(round(LSC, 2)))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medida",
+    color = "Limites"
+  ) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )
+```
+
+
+#### Python
+
+```{python}
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+tbl61 = np.array([
+    [1, 1.3235, 1.4128, 1.6744, 1.4573],
+    [2, 1.4314, 1.3592, 1.6075, 1.4666],
+    [3, 1.4284, 1.4871, 1.4932, 1.4324],
+    [4, 1.5028, 1.6352, 1.3841, 1.2831],
+    [5, 1.5604, 1.2735, 1.5265, 1.4362],
+    [6, 1.5955, 1.5451, 1.3574, 1.3281],
+    [7, 1.6274, 1.5064, 1.8366, 1.4177],
+    [8, 1.4190, 1.4303, 1.6637, 1.6067],
+    [9, 1.3884, 1.7277, 1.5355, 1.5176],
+    [10, 1.4039, 1.6697, 1.5089, 1.6477],
+    [11, 1.4158, 1.7667, 1.4278, 1.5927],
+    [12, 1.5821, 1.3355, 1.5777, 1.3908],
+    [13, 1.2856, 1.4106, 1.4447, 1.6388],
+    [14, 1.4951, 1.4036, 1.5893, 1.6458],
+    [15, 1.3589, 1.2863, 1.5996, 1.2497],
+    [16, 1.5747, 1.5301, 1.5171, 1.1839],
+    [17, 1.3680, 1.7269, 1.3957, 1.5019],
+    [18, 1.4163, 1.3864, 1.3057, 1.6210],
+    [19, 1.5796, 1.4185, 1.6541, 1.5116],
+    [20, 1.7106, 1.4412, 1.2361, 1.3824],
+    [21, 1.4371, 1.5051, 1.3485, 1.5670],
+    [22, 1.4738, 1.5936, 1.6583, 1.4973],
+    [23, 1.5917, 1.4333, 1.5551, 1.5295],
+    [24, 1.6399, 1.5243, 1.5705, 1.5563],
+    [25, 1.5797, 1.3663, 1.6240, 1.3732]
+])
+
+# Obter apenas as amostras
+samples_x = tbl61[:, 1:]
+
+# Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)
+vec_range = samples_x.ptp(axis=1)
+
+# Estimar quantidades
+x_range = vec_range.mean()
+
+# Definir Constantes Estatíticas
+D3 = 0.00  # exemplo (depende de n)
+D4 = 2.282 # exemplo (depende de n)
+
+# Construir limites
+lic = D3 * x_range  # Limite Inferior de Controle
+lc  = x_range       # Limite Central
+lsc = D4 * x_range  # Limite Inferior de Controle
+
+# Configurar o estilo do gráfico
+sns.set_theme(style="ticks") # Similar ao theme_classic()
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(5, 3), dpi=800)
+
+sns.lineplot(x=range(1, samples_x.shape[0]+1), y=vec_range, marker="o", color="black", ax=ax)
+
+# Plotar as linhas de controle
+ax.axhline(y=lsc, color="red", linestyle="-", label=f"LSC = {lsc:.2f}")
+ax.axhline(y=lc, color="blue", linestyle="-", label=f"$\\hat{{\\mu}}$ = {lc:.2f}") # Usando LaTeX para mu
+ax.axhline(y=lic, color="red", linestyle="-", label=f"LIC = {lic:.2f}")
+
+# Configurações de eixos e títulos
+ax.set_ylim(min(vec_range.min(), lic) - 0.25, max(vec_range.max(), lsc) + 0.25)
+ax.set_xlabel("Amostra", weight="bold", fontsize=12)
+ax.set_ylabel("Medida", weight="bold", fontsize=12)
+
+# Configurações de Legenda
+ax.legend(prop={"size":8, "weight": "bold"}, loc="upper right", frameon=False) # bbox_to_anchor=(1, 0.5), 
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+
+:::
+
 ## Gráfico de Controle para $S$
+
+O gráfico $S$ monitora o **desvio-padrão** amostral $S_i$ de cada subgrupo. Como já mostrado em 2.4.2, os limites do gráfico $S$ são:
+
+$$
+\text{LSC}_S = B_4\,\bar{S},\qquad
+\text{LC}_S = \bar{S},\qquad
+\text{LIC}_S = B_3\,\bar{S},
+$$
+
+com $B_3,B_4$ tabelados. O gráfico $S$ é geralmente preferido ao gráfico $R$ quando $n$ é maior (maior precisão no estimador do desvio-padrão) e quando subgrupos possuem tamanhos variados. Além disso, o cálculo de constantes para $S$ (A$_3$, B$_3$, B$_4$) pode ser feito por fórmulas que envolvem a constante $c_4$ (fator de correção de viés do estimador do desvio-padrão) quando necessário. ([East London NHS Foundation Trust][3])
+
+**Vantagens do S-chart sobre R-chart:**
+
+* melhor desempenho (menor viés) para amostras maiores;
+* permite tratamento mais natural quando o tamanho do subgrupo varia;
+* geralmente leva a limites mais estáveis para variâncias estimadas.
+
+### Exemplos Computacionais
+
+Fazendo uso dos dados dos exemplos anteriores, temos:
+
+::: panel-tabset
+
+#### R Base
+
+```{r}
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Supondo matriz.data (m x n)
+vec.std <- apply(samples.x, 1, sd)
+
+S.bar <- mean(vec.std)
+
+# Definir Constantes Estatíticas
+B3 <- 0.030 # exemplo (depende de n)
+B4 <- 1.970 # exemplo (depende de n)
+
+LC <- S.bar
+LSC <- B4 * S.bar
+LIC <- B3 * S.bar
+
+# Definir limites do eixo Y para garantir que tudo seja visível
+ylim <- c(min(vec.std, LIC) - 0.25, max(vec.std, LSC) + 0.25)
+
+# Criar o gráfico principal com pontos e linhas
+plot(x = 1:k, y = vec.std,
+     type = "b", # "b" para both (pontos e linhas)
+     xlab = "Amostra",
+     ylab = "Medida",
+     ylim = ylim,
+     pch = 19, # Tipo de ponto (círculo sólido)
+     col = "black",
+     font.lab = 2 # Deixa os títulos dos eixos em negrito
+)
+
+# Adicionar as linhas de controle
+abline(h = LIC, col = "red", lwd = 2)
+abline(h = LC, col = "blue", lwd = 2)
+abline(h = LSC, col = "red", lwd = 2)
+
+# Adicionar a legenda
+legend("topright",
+       legend = c(
+         bquote(LSC == .(round(LSC, 2))),
+         bquote(LC == .(round(LC, 2))),
+         bquote(LIC == .(round(LIC, 2)))
+       ),
+       col = c("red", "blue", "red"),
+       lwd = 2,
+       cex = 0.75,
+       bty = "solid" # "n" Remove a caixa ao redor da legenda
+)
+```
+
+
+#### R usando `ggplot2`
+
+```{r}
+# Criando a Tabela 6.1 em R
+tbl.6.1 <- matrix(
+  c(
+    1, 1.3235, 1.4128, 1.6744, 1.4573,
+    2, 1.4314, 1.3592, 1.6075, 1.4666,
+    3, 1.4284, 1.4871, 1.4932, 1.4324,
+    4, 1.5028, 1.6352, 1.3841, 1.2831,
+    5, 1.5604, 1.2735, 1.5265, 1.4362,
+    6, 1.5955, 1.5451, 1.3574, 1.3281,
+    7, 1.6274, 1.5064, 1.8366, 1.4177,
+    8, 1.4190, 1.4303, 1.6637, 1.6067,
+    9, 1.3884, 1.7277, 1.5355, 1.5176,
+    10, 1.4039, 1.6697, 1.5089, 1.6477,
+    11, 1.4158, 1.7667, 1.4278, 1.5927,
+    12, 1.5821, 1.3355, 1.5777, 1.3908,
+    13, 1.2856, 1.4106, 1.4447, 1.6388,
+    14, 1.4951, 1.4036, 1.5893, 1.6458,
+    15, 1.3589, 1.2863, 1.5996, 1.2497,
+    16, 1.5747, 1.5301, 1.5171, 1.1839,
+    17, 1.3680, 1.7269, 1.3957, 1.5019,
+    18, 1.4163, 1.3864, 1.3057, 1.6210,
+    19, 1.5796, 1.4185, 1.6541, 1.5116,
+    20, 1.7106, 1.4412, 1.2361, 1.3824,
+    21, 1.4371, 1.5051, 1.3485, 1.5670,
+    22, 1.4738, 1.5936, 1.6583, 1.4973,
+    23, 1.5917, 1.4333, 1.5551, 1.5295,
+    24, 1.6399, 1.5243, 1.5705, 1.5563,
+    25, 1.5797, 1.3663, 1.6240, 1.3732
+  ),
+  ncol = 5, byrow = TRUE
+)
+
+# Alguns ajustes
+tbl.6.1 <- as.data.frame(tbl.6.1)
+colnames(tbl.6.1) <- c("Amostra", "x1", "x2", "x3", "x4")
+
+# Obter apenas as amostras
+samples.x <- tbl.6.1[, -1]
+
+# Supondo matriz.data (m x n)
+vec.std <- apply(samples.x, 1, sd)
+
+S.bar <- mean(vec.std)
+
+# Definir Constantes Estatíticas
+B3 <- 0.030 # exemplo (depende de n)
+B4 <- 1.970 # exemplo (depende de n)
+
+LC <- S.bar
+LSC <- B4 * S.bar
+LIC <- B3 * S.bar
+
+library(ggplot2)
+
+# Construir Gráfico de Controle no ggplot2
+ggplot(data = NULL, aes(x = 1:nrow(samples.x), y = vec.std)) +
+  geom_point(size = 2) + geom_line() +
+  geom_hline(aes(yintercept = LIC, color = "LIC")) +
+  geom_hline(aes(yintercept = LC, color = "LC")) +
+  geom_hline(aes(yintercept = LSC, color = "LSC")) +
+  scale_color_manual(
+    values = c("LIC" = "red", "LC" = "blue", "LSC" = "red"),
+    labels = c(
+      bquote(LIC == .(round(LIC, 2))),
+      bquote(LC == .(round(S.bar, 2))),
+      bquote(LSC == .(round(LSC, 2)))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medida",
+    color = "Limites"
+  ) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )
+```
+
+
+#### Python
+
+```{python}
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+tbl61 = np.array([
+    [1, 1.3235, 1.4128, 1.6744, 1.4573],
+    [2, 1.4314, 1.3592, 1.6075, 1.4666],
+    [3, 1.4284, 1.4871, 1.4932, 1.4324],
+    [4, 1.5028, 1.6352, 1.3841, 1.2831],
+    [5, 1.5604, 1.2735, 1.5265, 1.4362],
+    [6, 1.5955, 1.5451, 1.3574, 1.3281],
+    [7, 1.6274, 1.5064, 1.8366, 1.4177],
+    [8, 1.4190, 1.4303, 1.6637, 1.6067],
+    [9, 1.3884, 1.7277, 1.5355, 1.5176],
+    [10, 1.4039, 1.6697, 1.5089, 1.6477],
+    [11, 1.4158, 1.7667, 1.4278, 1.5927],
+    [12, 1.5821, 1.3355, 1.5777, 1.3908],
+    [13, 1.2856, 1.4106, 1.4447, 1.6388],
+    [14, 1.4951, 1.4036, 1.5893, 1.6458],
+    [15, 1.3589, 1.2863, 1.5996, 1.2497],
+    [16, 1.5747, 1.5301, 1.5171, 1.1839],
+    [17, 1.3680, 1.7269, 1.3957, 1.5019],
+    [18, 1.4163, 1.3864, 1.3057, 1.6210],
+    [19, 1.5796, 1.4185, 1.6541, 1.5116],
+    [20, 1.7106, 1.4412, 1.2361, 1.3824],
+    [21, 1.4371, 1.5051, 1.3485, 1.5670],
+    [22, 1.4738, 1.5936, 1.6583, 1.4973],
+    [23, 1.5917, 1.4333, 1.5551, 1.5295],
+    [24, 1.6399, 1.5243, 1.5705, 1.5563],
+    [25, 1.5797, 1.3663, 1.6240, 1.3732]
+])
+
+# Obter apenas as amostras
+samples_x = tbl61[:, 1:]
+
+# Vetor de desvios (desvio padrão amostral de cada linha, ddof=1)
+vec_std = samples_x.std(axis=1)
+
+# Estimar quantidades
+S_bar = vec_std.mean()
+
+# Definir Constantes Estatíticas
+B3 = 0.030 # exemplo (depende de n)
+B4 = 1.970 # exemplo (depende de n)
+
+# Construir limites
+lic = B3 * S_bar  # Limite Inferior de Controle
+lc  = S_bar       # Limite Central
+lsc = B4 * S_bar  # Limite Inferior de Controle
+
+# Configurar o estilo do gráfico
+sns.set_theme(style="ticks") # Similar ao theme_classic()
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(5, 3), dpi=800)
+
+sns.lineplot(x=range(1, samples_x.shape[0]+1), y=vec_std, marker="o", color="black", ax=ax)
+
+# Plotar as linhas de controle
+ax.axhline(y=lsc, color="red", linestyle="-", label=f"LSC = {lsc:.2f}")
+ax.axhline(y=lc, color="blue", linestyle="-", label=f"LC = {lc:.2f}") # Usando LaTeX para mu
+ax.axhline(y=lic, color="red", linestyle="-", label=f"LIC = {lic:.2f}")
+
+# Configurações de eixos e títulos
+ax.set_ylim(min(vec_std.min(), lic) - 0.25, max(vec_std.max(), lsc) + 0.25)
+ax.set_xlabel("Amostra", weight="bold", fontsize=12)
+ax.set_ylabel("Medida", weight="bold", fontsize=12)
+
+# Configurações de Legenda
+ax.legend(prop={"size":8, "weight": "bold"}, loc="upper right", frameon=False) # bbox_to_anchor=(1, 0.5), 
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+
+:::
+
+## Considerações Finais
+
+As referências usadas foram @Montgomery2012Statistical, @mit_constants, @nhs_elft_xbar_s, @spcforexcel_xbar_s_part1 e @bessegato_constants_table.
 
 :::: progress
 ::: {.progress-bar style="width: 100%;"}

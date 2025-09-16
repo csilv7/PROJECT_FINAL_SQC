@@ -1,3 +1,40 @@
+@misc{mit_constants,
+  author       = {Massachusetts Institute of Technology},
+  title        = {Tables of Constants for Control Charts},
+  howpublished = {Lecture Notes / PDF},
+  year         = {n.d.},
+  note         = {Constantes como A₂, A₃, B₃, B₄, D₃, D₄, d₂ para vários tamanhos de subgrupo},
+  url          = {https://web.mit.edu/2.810/www/files/readings/ControlChartConstantsAndFormulae.pdf}
+}
+
+@misc{nhs_elft_xbar_s,
+  author       = {East London Foundation Trust (ELFT)},
+  title        = {Shewhart X-Bar and S Chart Formulas and Constants},
+  howpublished = {PDF},
+  year         = {n.d.},
+  note         = {Inclui fórmulas que usam o fator de correção c₄, além das constantes A₃, B₃, B₄},
+  url          = {https://www.elft.nhs.uk/sites/default/files/import-news/x-bar-s-Chart-Formula.pdf}
+}
+
+@misc{spcforexcel_xbar_s_part1,
+  author       = {SPC for Excel},
+  title        = {X-bar-S Control Charts: Part 1},
+  howpublished = {Webpage},
+  year         = {n.d.},
+  note         = {Tabela de A₃, B₃, B₄, c₄ para tamanhos de subgrupo até 25; uso prático},
+  url          = {https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1/}
+}
+
+@misc{bessegato_constants_table,
+  author       = {Bessegato / UFJF},
+  title        = {Table of Control Chart Constants},
+  howpublished = {PDF},
+  year         = {n.d.},
+  note         = {Constantes de controle para gráficos \bar{X}-R e \bar{X}-S, etc., para subgrupos de tamanho 2 a 25},
+  url          = {https://www.bessegato.com.br/UFJF/resources/table_of_control_chart_constants_old.pdf}
+}
+
+
 @book{Montgomery2012Statistical,
 	author = {{Montgomery}, Douglas C.},
 	isbn = {9781118146811},
@@ -49,4 +86,52 @@
 	howpublished = {\url{https://www.r-bloggers.com/2018/10/estimating-control-chart-constants-with-r/}},
 	year = {2018},
 	note = {[Acesso em: 07 set. 2025]},
+}
+
+@book{kotz1993process,
+  author    = {Kotz, Samuel and Johnson, Norman L.},
+  title     = {Process Capability Indices},
+  publisher = {CRC Press},
+  year      = {1993},
+  edition   = {1},
+  address   = {Boca Raton, FL}
+}
+
+@article{sahay2014process,
+  author    = {Sahay, A.},
+  title     = {Process Capability Analysis for Six Sigma},
+  journal   = {Real Lean Six Sigma Quality},
+  year      = {2014},
+  volume    = {1},
+  number    = {1},
+  note      = {Capacitation of process capability, distinções entre capacidades de curto e longo prazo}
+}
+
+@article{benkova2024evaluation,
+  author    = {Benková, M. and others},
+  title     = {Process Capability Evaluation Using Capability Indices as Tools for Process Assessment: A Case Study},
+  journal   = {Mathematics},
+  year      = {2024},
+  volume    = {12},
+  number    = {11},
+  pages     = {1679},
+  doi       = {10.3390/math12111679}
+}
+
+@article{grau2007generalization,
+  author    = {Grau, Daniel},
+  title     = {Generalization of Usual Capability Indices for Unilateral Tolerances},
+  journal   = {arXiv},
+  year      = {2007},
+  volume    = {math/0702841},
+  note      = {Preprint: considera tolerâncias unilaterais e distribuições não-normais}
+}
+
+@misc{pci_r_package,
+  author    = {PCI Development Team},
+  title     = {pci: A Collection of Process Capability Index Functions},
+  howpublished = {R package documentation},
+  year      = {2024},
+  note      = {Implementações de Cp, Cpk, Cpm, etc. no ambiente R},
+  url       = {https://cran.r-project.org/web/packages/pci/pci.pdf}
 }
