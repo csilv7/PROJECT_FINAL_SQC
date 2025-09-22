@@ -1,15 +1,15 @@
 :::: progress
-:::: {.progress-bar style="width: 100%;"}
+:::: {.progress-bar style="width: 100%"}
 ::::
 ::::
 
 # Introdução ao Controle Estatístico de Qualidade
 
-A busca pela qualidade acompanha a história da produção de bens e serviços. Desde os primeiros artesãos, que inspecionavam manualmente suas peças, até os sistemas modernos de manufatura avançada e serviços digitais, sempre houve a necessidade de garantir que o produto final atendesse a requisitos previamente definidos. No entanto, foi apenas no início do século XX que a **estatística** passou a desempenhar um papel central nesse processo.
+A busca pela qualidade acompanha a história da produção de bens e serviços. Desde os primeiros artesãos, que inspecionavam manualmente suas peças, até os sistemas modernos de manufatura avançada e serviços digitais, sempre houve a necessidade de garantir que o produto final atendesse a requisitos previamente definidos. No entanto, foi apenas no início do século XX que a **Estatística** passou a desempenhar um papel central nesse processo.
 
 O **Controle Estatístico de Qualidade (CEQ)** surge como uma metodologia estruturada para compreender, monitorar e melhorar processos por meio de técnicas estatísticas. Seu objetivo central é distinguir a **variabilidade natural** — inerente a qualquer processo — das **causas especiais de variação**, que sinalizam problemas ou mudanças não planejadas. Essa distinção, introduzida por **Walter A. Shewhart**, é a base conceitual dos gráficos de controle, uma das ferramentas mais utilizadas até hoje.
 
-A aplicação do CEQ traz benefícios que vão além da simples detecção de falhas. Ao proporcionar uma visão clara sobre a estabilidade de um processo, ele permite:
+A aplicação do CEQ vão além da simples detecção de falhas. Ao proporcionar uma visão clara sobre a estabilidade de um processo, ele permite:
 
 * **Reduzir desperdícios e custos**, ao identificar rapidamente fontes de defeitos;
 * **Aumentar a confiabilidade** de produtos e serviços;
@@ -39,6 +39,7 @@ Apesar das semelhanças, existem diferenças importantes na aplicação de Teste
 * **GC:** Seu objetivo principal é monitorar e verificar a estabilidade do processo de forma contínua ao longo do tempo.
 
 As causas que levam um processo a sair do controle podem se manifestar de várias formas, mas nem todas se alinham perfeitamente ao modelo de um teste de hipóteses clássico. Por exemplo, uma causa atribuível pode resultar em:
+
 1.  Uma mudança permanente na média para um novo valor.
 2.  Uma mudança temporária, com a média retornando ao estado de controle.
 3.  Um deslocamento constante ou uma tendência de subida/descida na média.
@@ -47,11 +48,30 @@ As causas que levam um processo a sair do controle podem se manifestar de vária
 
 ## Sobre os Softwares Usados
 
+
 ### Linguagem de Programação R
+
+O R é um tipo de linguagem e um software computacional e gráfico de código aberto, livre e gratuito do tipo GNU (*General Public License*), permitindo aos usuários sua redistribuição de forma livre e atualização para melhorias, estendendo seu poder computacional. 
+
+Disseminado como um programa estatístico, é retroalimentado pela própria comunidade de usuários pela criação de funções específicas e o agrupamento delas em pacotes. Dentre suas habilidades, podem ser citadas análises estatísticas, modelagem, estatística espacial, tratamento de dados em bioinformática, entre outras aplicações [@Ritter2019; @Lopes2021].
+
+Focando na visualização gráfica, um dos pacotes mais elegantes em termos de funcionalidade é o **ggplot2**, que funciona a partir do fornecimento do conjunto de dados e do mapeamento estético, com adição progressiva de camadas, escala de cores e sistemas de coordenadas [@ggplot2]. 
+
 
 ### Linguagem de Programação Python
 
+Python é uma linguagem de alto nível com programação orientada a objetos, sendo considerada de fácil aprendizado com estrutura poderosa e eficiente. As características de sua natureza interpretativa, o tornam uma linguagem ideal para fazer *scripts* e desenvolvimento de aplicações rápidas em diversas áreas e na maioria das plataformas [@PythonDocs2025; @SciPython2025].
+
+A ampla biblioteca do Python incluem diversos métodos numéricos, ferramentas gráficas e processamento de dados, tendo vasta utilização na computação científica e ciência de dados. Entre elas, se destacam **NumPy**, **SciPy** e **Matplotlib**, fundamentais no uso da linguagem. Fazendo um breve resumo sobre cada uma: 
+
+* **NumPy:** voltada para computação numérica, oferece suporte para *arrays* multidimensionais e funções matemáticas de alto desempenho [@harris2020array]. É a base para muitas outras bibliotecas científicas em Python.
+
+* **SciPy:** construída a partir do *NumPy*, fornece ferramentas avançadas para cálculos científicos, como álgebra linear, otimização, integração, estatística e processamento de sinais [@SciPython2025].
+
+* **Matplotlib**: focada na parte gráfica e visualização de dados, permite a construção de grafos personalizados em duas e três dimensões, incluindo gráficos a partir de dados em grade, dados volumétricos, de distribuição estatística e comparações pareadas [@Hunter:2007].
+
+
 :::: progress
-:::: {.progress-bar style="width: 100%;"}
+:::: {.progress-bar style="width: 100%"}
 ::::
 ::::
